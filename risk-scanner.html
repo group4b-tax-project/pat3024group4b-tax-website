@@ -59,15 +59,16 @@
         </p>
     </section>
 
-    <section id="risk-assessment">
+<section id="risk-assessment">
 
-        <h2>Interactive Tax Planning Risk Assessment</h2>
+    <h2>Interactive Tax Planning Risk Assessment</h2>
 
-        <p>
-            Answer the following questions based on the company's
-            proposed tax planning arrangement.
-        </p>
+    <p>
+        Answer the following questions based on the company's
+        proposed tax planning arrangement.
+    </p>
 
+    <div class="risk-question">
         <label for="commercial-purpose">
             1. Does the arrangement have a genuine commercial purpose
             apart from obtaining tax benefits?
@@ -77,7 +78,9 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+    </div>
 
+    <div class="risk-question">
         <label for="documentation">
             2. Is the arrangement supported by proper documents
             and evidence?
@@ -87,7 +90,9 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+    </div>
 
+    <div class="risk-question">
         <label for="compliance">
             3. Does the arrangement comply with the relevant
             provisions of the Income Tax Act 1967?
@@ -97,7 +102,9 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+    </div>
 
+    <div class="risk-question">
         <label for="transparency">
             4. Are the transactions transparent and accurately
             disclosed in the company's tax records?
@@ -107,7 +114,9 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+    </div>
 
+    <div class="risk-question">
         <label for="arm-length">
             5. Are related-party transactions conducted on
             commercially justifiable terms?
@@ -117,17 +126,19 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+    </div>
 
-        <button type="button" onclick="assessRisk()">
-            ASSESS TAX PLANNING RISK
-        </button>
+    <button type="button" onclick="assessRisk()">
+        ASSESS TAX PLANNING RISK
+    </button>
 
-        <div id="risk-result">
-            <h3>Assessment Results</h3>
-            <p>Your assessment results will appear here.</p>
-        </div>
+    <div id="risk-result">
+        <h3>Assessment Results</h3>
+        <p>Your assessment results will appear here.</p>
+    </div>
 
-    </section>
+</section>
+
 
     <section id="ethical-index">
 
