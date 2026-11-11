@@ -872,7 +872,7 @@ footer {
         font-size: 30px;
     }
 
-
+}
 /* =========================================
    MODULE 1 - CORPORATE CASE HUB DESIGN
 ========================================= */
@@ -1098,4 +1098,60 @@ footer {
         padding: 8px 6px;
     }
 
+}
+
+/* =========================================
+   MODULE 1 - CONTINUE TO MODULE 2
+========================================= */
+
+#continue-to-module-2 {
+    background: linear-gradient(135deg, #eaf2fc, #dcecff);
+    text-align: center;
+    padding: 40px 30px;
+    border-top: 5px solid #2475c7;
+    border-radius: 12px;
+}
+
+#continue-to-module-2 h2 {
+    color: #16345c;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+#continue-to-module-2 p {
+    color: #42546b;
+    max-width: 750px;
+    margin: 0 auto 20px;
+    line-height: 1.8;
+}
+
+#continue-to-module-2 .main-button {
+    display: inline-block;
+    background-color: #16345c;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+#continue-to-module-2 .main-button:hover {
+    background-color: #2475c7;
+    transform: translateY(-3px);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 600px) {
+    #continue-to-module-2 {
+        padding: 30px 18px;
+    }
+
+    #continue-to-module-2 h2 {
+        font-size: 21px;
+    }
+
+    #continue-to-module-2 .main-button {
+        width: 100%;
+    }
 }
