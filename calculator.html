@@ -136,7 +136,10 @@ function calculateTax() {
         Number(document.getElementById("balancing-charge").value) || 0;
 
     const capitalAllowance =
-        Number(document.getElementById("capital-allowance").value) || 0;
+    Number(document.getElementById("capital-allowance").value) || 0;
+
+    const capitalAllowanceBF =
+    Number(document.getElementById("capital-allowance-bf").value) || 0;
 
     const otherIncome =
         Number(document.getElementById("other-income").value) || 0;
@@ -152,9 +155,22 @@ function calculateTax() {
     const adjustedIncomeAfterBC =
         adjustedBusinessIncome + balancingCharge;
 
-    // Step 3: Statutory Business Income
-    const statutoryBusinessIncome =
-        Math.max(0, adjustedIncomeAfterBC - capitalAllowance);
+    // Step 3: Capital Allowances
+    const totalCapitalAllowances =
+        capitalAllowance + capitalAllowanceBF;
+
+    const availableIncomeForCA =
+        Math.max(0, adjustedIncomeAfterBC);
+
+    const capitalAllowancesAbsorbed =
+        Math.min(totalCapitalAllowances, availableIncomeForCA);
+
+    const unabsorbedCapitalAllowances =
+        totalCapitalAllowances - capitalAllowancesAbsorbed;
+
+// Step 4: Statutory Business Income
+const statutoryBusinessIncome =
+    Math.max(0, adjustedIncomeAfterBC - capitalAllowancesAbsorbed);
 
     // Step 4: Aggregate Income
     const aggregateIncome =
@@ -191,8 +207,20 @@ function calculateTax() {
         <p>Balancing Charge:
         RM ${balancingCharge.toLocaleString("en-MY")}</p>
 
-        <p>Capital Allowances:
+        <p>Current Year Capital Allowances:
         RM ${capitalAllowance.toLocaleString("en-MY")}</p>
+
+        <p>Unabsorbed Capital Allowances Brought Forward:
+        RM ${capitalAllowanceBF.toLocaleString("en-MY")}</p>
+
+        <p><strong>Total Capital Allowances Available:</strong>
+        RM ${totalCapitalAllowances.toLocaleString("en-MY")}</p>
+
+        <p>Capital Allowances Absorbed:
+        RM ${capitalAllowancesAbsorbed.toLocaleString("en-MY")}</p>
+
+        <p><strong>Unabsorbed Capital Allowances Carried Forward:</strong>
+        RM ${unabsorbedCapitalAllowances.toLocaleString("en-MY")}</p>
 
         <p><strong>Statutory Business Income:</strong>
         RM ${statutoryBusinessIncome.toLocaleString("en-MY")}</p>
