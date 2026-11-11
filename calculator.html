@@ -355,10 +355,35 @@ const practiceActivities = [
         `
     },
     {
-        title: "Tax Adjustment Activity",
-        question: "Review the company's expenses and identify which items require tax adjustment. We will examine the case details and tax treatment in this step.",
-        content: "<p>Learning activity: Identify non-allowable expenses and allowable deductions.</p>"
-    },
+    title: "Tax Adjustment Activity",
+    question: "Note 8: Repairs and Maintenance. The company incurred RM15,000 for additional tools with a lifespan of two years. How should this expenditure be treated?",
+    content: `
+        <div class="guided-quiz">
+            <p><strong>Choose the most appropriate answer:</strong></p>
+
+            <label class="guided-option">
+                <input type="radio" name="tax-adjustment-answer" value="a">
+                A. Allow it as an ordinary repair expense without adjustment.
+            </label>
+
+            <label class="guided-option">
+                <input type="radio" name="tax-adjustment-answer" value="b">
+                B. Add it back as capital expenditure and consider capital allowance eligibility separately.
+            </label>
+
+            <label class="guided-option">
+                <input type="radio" name="tax-adjustment-answer" value="c">
+                C. Treat it as an approved donation.
+            </label>
+
+            <button type="button" onclick="checkGuidedTaxAdjustment()">
+                CHECK MY ANSWER
+            </button>
+
+            <p id="tax-adjustment-feedback"></p>
+        </div>
+    `
+},
     {
         title: "Capital Allowance Activity",
         question: "Review the capital allowance information provided in Note 14 of the case study.",
@@ -673,7 +698,40 @@ function calculateTax() {
     `;
 }
     
+function checkGuidedTaxAdjustment() {
+    const selectedAnswer = document.querySelector(
+        'input[name="tax-adjustment-answer"]:checked'
+    );
 
+    const feedback = document.getElementById(
+        "tax-adjustment-feedback"
+    );
+
+    if (!selectedAnswer) {
+        feedback.textContent = "Please select an answer first.";
+        feedback.style.color = "#d97706";
+        return;
+    }
+
+    if (selectedAnswer.value === "b") {
+        feedback.innerHTML = `
+            <strong>Correct!</strong><br>
+            The additional tools have a useful life of two years.
+            This indicates capital expenditure rather than an
+            ordinary revenue repair expense. The amount should
+            be added back, and capital allowance eligibility
+            should be considered separately.
+        `;
+        feedback.style.color = "#15803d";
+    } else {
+        feedback.innerHTML = `
+            <strong>Not quite. Try again!</strong><br>
+            Think about the two-year useful life of the tools.
+            Does this indicate capital or revenue expenditure?
+        `;
+        feedback.style.color = "#dc2626";
+    }
+}
 function selectCalculatorMode(mode) {
 
     const companyInfo = document.getElementById("company-information");
