@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PAT3024 Corporate Tax Interactive Learning Hub</title>
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- Website Header -->
     <header>
         <h1>PAT3024 Corporate Tax Interactive Learning Hub</h1>
+        <p>Explore. Calculate. Analyse. Reflect.</p>
     </header>
 
     <!-- Navigation Menu -->
@@ -24,56 +26,224 @@
         <a href="legal-explorer.html">MODULE 4</a>
     </nav>
 
-    <!-- Homepage Introduction -->
     <main>
 
-        <section id="welcome">
-            <h2>1. Homepage</h2>
-            <p>Welcome to our Corporate Taxation project website.</p>
+        <!-- Welcome Section -->
+        <section id="welcome" class="hero-section">
+
+            <p class="welcome-label">WELCOME TO PAT3024</p>
+
+            <h2>Your Interactive Corporate Tax Learning Journey Starts Here!</h2>
+
+            <p>
+                Discover corporate taxation through practical case studies,
+                interactive tax calculations, ethical risk assessments and
+                statutory legal references.
+            </p>
+
+            <a href="case-hub.html" class="main-button">
+                START LEARNING →
+            </a>
+
         </section>
 
-        <!-- Five Case Study Questions -->
-        <section id="case-questions">
-            <h2>Five Case Study Questions</h2>
 
-            <ul>
-                <li>Q1 - Maju Mampan Sdn Bhd: Corporate Tax Computation</li>
-                <li>Q2 - Withholding Tax, Agricultural and Capital Allowances</li>
-                <li>Q3 - Partnership Income and Basis Period</li>
-                <li>Q4 - Additional Assessment, Appeals, Time Bar and DG Powers</li>
-                <li>Q5 - Tax Estimates, Instalments, Penalties and Catering Expenses</li>
-            </ul>
+        <!-- Learning Progress -->
+        <section id="learning-progress">
+
+            <h2>Your Learning Dashboard</h2>
+
+            <p>Explore all four interactive modules to develop your
+            understanding of corporate taxation.</p>
+
+            <div class="progress-summary">
+
+                <div class="progress-number">
+                    <h3 id="completed-count">0 / 4</h3>
+                    <p>Modules Completed</p>
+                </div>
+
+                <div class="progress-details">
+
+                    <div class="progress-bar">
+                        <div id="progress-fill"></div>
+                    </div>
+
+                    <p id="progress-message">
+                        Your learning journey is waiting to begin!
+                    </p>
+
+                </div>
+
+            </div>
+
         </section>
+
 
         <!-- Four Interactive Modules -->
         <section id="interactive-modules">
-            <h2>Four Interactive Modules</h2>
 
-            <ul>
-                <li>Module 1 - Corporate Case Hub & Primary Audit Documents</li>
-                <li>Module 2 - Dynamic Form C Optimization Calculator</li>
-                <li>Module 3 - AaDab Integrity & Section 140 Risk Scanner</li>
-                <li>Module 4 - Statutory Legal Explorer & Reflective Learning Hub</li>
-            </ul>
+            <h2>Explore Our Interactive Modules</h2>
+
+            <p>Select a module below to explore its learning activities.</p>
+
+            <div class="module-grid">
+
+                <a href="case-hub.html" class="module-card">
+                    <span class="module-icon">📁</span>
+                    <h3>MODULE 1</h3>
+                    <h4>Corporate Case Hub & Primary Audit Documents</h4>
+                    <p>Explore the company background and inspect
+                    important corporate tax documents.</p>
+                    <span class="module-link">Explore Module →</span>
+                </a>
+
+
+                <a href="calculator.html" class="module-card">
+                    <span class="module-icon">🧮</span>
+                    <h3>MODULE 2</h3>
+                    <h4>Dynamic Form C Optimization Calculator</h4>
+                    <p>Calculate corporate tax figures and compare
+                    different tax planning scenarios.</p>
+                    <span class="module-link">Explore Module →</span>
+                </a>
+
+
+                <a href="risk-scanner.html" class="module-card">
+                    <span class="module-icon">🛡️</span>
+                    <h3>MODULE 3</h3>
+                    <h4>AaDab Integrity & Section 140 Risk Scanner</h4>
+                    <p>Evaluate tax planning strategies through
+                    ethical and compliance assessments.</p>
+                    <span class="module-link">Explore Module →</span>
+                </a>
+
+
+                <a href="legal-explorer.html" class="module-card">
+                    <span class="module-icon">📚</span>
+                    <h3>MODULE 4</h3>
+                    <h4>Statutory Legal Explorer & Reflective Learning Hub</h4>
+                    <p>Explore tax provisions, public rulings,
+                    student Q&A and reflective learning.</p>
+                    <span class="module-link">Explore Module →</span>
+                </a>
+
+            </div>
+
         </section>
+
+
+        <!-- Five Case Study Questions -->
+        <section id="case-questions">
+
+            <h2>Explore the Five Case Study Questions</h2>
+
+            <p>Choose a question to access the relevant learning materials.</p>
+
+            <div class="question-grid">
+
+                <a href="case-hub.html" class="question-card">
+                    <span>QUESTION 01</span>
+                    <h3>Maju Mampan Sdn Bhd</h3>
+                    <p>Corporate Tax Computation</p>
+                    <span class="question-link">Explore Case →</span>
+                </a>
+
+                <a href="legal-explorer.html" class="question-card">
+                    <span>QUESTION 02</span>
+                    <h3>Withholding Tax</h3>
+                    <p>Agricultural and Capital Allowances</p>
+                    <span class="question-link">Explore Topic →</span>
+                </a>
+
+                <a href="legal-explorer.html" class="question-card">
+                    <span>QUESTION 03</span>
+                    <h3>Partnership Income</h3>
+                    <p>Partnership Income and Basis Period</p>
+                    <span class="question-link">Explore Topic →</span>
+                </a>
+
+                <a href="legal-explorer.html" class="question-card">
+                    <span>QUESTION 04</span>
+                    <h3>Additional Assessment</h3>
+                    <p>Appeals, Time Bar and DG Powers</p>
+                    <span class="question-link">Explore Topic →</span>
+                </a>
+
+                <a href="legal-explorer.html" class="question-card">
+                    <span>QUESTION 05</span>
+                    <h3>Tax Estimates</h3>
+                    <p>Instalments, Penalties and Catering Expenses</p>
+                    <span class="question-link">Explore Topic →</span>
+                </a>
+
+            </div>
+
+        </section>
+
 
         <!-- Quick Access -->
         <section id="quick-access">
-            <h2>Quick Access</h2>
+
+            <h2>Ready to Test Your Knowledge?</h2>
 
             <p>
-                <a href="case-hub.html">START LEARNING</a>
+                Start exploring corporate taxation through our interactive
+                learning activities and practical case study.
             </p>
 
-            <p>Select a module to explore the relevant case study questions.</p>
+            <a href="calculator.html" class="main-button">
+                TRY THE TAX CALCULATOR →
+            </a>
+
         </section>
 
     </main>
 
+
     <!-- Website Footer -->
     <footer>
         <p>Prepared by: Group 4(B) Corporate Taxation 2.</p>
+        <p>PAT3024 | Corporate Tax Interactive Learning Hub</p>
     </footer>
+
+
+    <!-- Homepage Learning Progress Script -->
+    <script>
+
+        function updateProgress() {
+
+            let completed = JSON.parse(
+                localStorage.getItem("pat3024_completed_modules") || "[]"
+            );
+
+            completed = completed.filter(
+                (module, index, array) =>
+                    ["module1", "module2", "module3", "module4"].includes(module)
+                    && array.indexOf(module) === index
+            );
+
+            const totalModules = 4;
+
+            const percentage = (completed.length / totalModules) * 100;
+
+            document.getElementById("completed-count").textContent =
+                completed.length + " / " + totalModules;
+
+            document.getElementById("progress-fill").style.width =
+                percentage + "%";
+
+            document.getElementById("progress-message").textContent =
+                completed.length === 4
+                    ? "Congratulations! You have completed all four modules!"
+                    : "You have completed " + completed.length +
+                      " out of 4 modules. Keep learning!";
+
+        }
+
+        updateProgress();
+
+    </script>
 
 </body>
 </html>
