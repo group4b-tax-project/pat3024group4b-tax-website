@@ -50,6 +50,50 @@
         <p><strong>Company Status:</strong> Malaysian Resident Company</p>
     </section>
 
+    <section id="tax-input">
+        <h2>Tax Computation Input Form</h2>
+
+        <p>
+            Enter the relevant financial information to calculate
+            the company's adjusted business income and chargeable income.
+        </p>
+
+        <h3>1. Business Income</h3>
+
+        <label for="profit-before-tax">Profit Before Tax (RM)</label>
+        <input type="number" id="profit-before-tax"
+               placeholder="Enter profit before tax">
+
+        <h3>2. Tax Adjustments</h3>
+
+        <label for="add-back">Add Back: Non-Allowable Expenses (RM)</label>
+        <input type="number" id="add-back"
+               placeholder="Enter non-allowable expenses">
+
+        <label for="deductions">Less: Allowable Deductions (RM)</label>
+        <input type="number" id="deductions"
+               placeholder="Enter allowable deductions">
+
+        <h3>3. Capital Allowances and Balancing Adjustments</h3>
+
+        <label for="balancing-charge">Balancing Charge (RM)</label>
+        <input type="number" id="balancing-charge"
+               placeholder="Enter balancing charge">
+
+        <label for="capital-allowance">Capital Allowances (RM)</label>
+        <input type="number" id="capital-allowance"
+               placeholder="Enter capital allowances">
+
+        <button type="button" onclick="calculateTax()">
+            CALCULATE TAX
+        </button>
+
+        <div id="calculation-result">
+            <h3>Calculation Results</h3>
+            <p>Your tax computation results will appear here.</p>
+        </div>
+    </section>
+
 </main>
 
 <footer>
