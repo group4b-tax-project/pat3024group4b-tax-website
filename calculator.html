@@ -143,9 +143,10 @@
 
 
 <script>
+
 function calculateTax() {
 
-    // 1. Retrieve the original tax inputs
+    // 1. Retrieve original tax inputs
     const profitBeforeTax =
         Number(document.getElementById("profit-before-tax").value) || 0;
 
@@ -230,20 +231,19 @@ function calculateTax() {
         };
     }
 
-    // 4. Unoptimized scenario
+    // 4. Calculate both scenarios
     const unoptimized = calculateScenario(0, 0);
 
-    // 5. AaDab-optimized scenario
     const optimized = calculateScenario(
         optimizedDeductions,
         optimizedCapitalAllowance
     );
 
-    // 6. Calculate estimated tax savings
+    // 5. Calculate tax savings
     const taxSavings =
         unoptimized.estimatedTax - optimized.estimatedTax;
 
-    // 7. Format amounts in Malaysian Ringgit
+    // 6. Format Malaysian Ringgit
     function formatRM(amount) {
         return "RM " + amount.toLocaleString("en-MY", {
             minimumFractionDigits: 2,
@@ -251,14 +251,67 @@ function calculateTax() {
         });
     }
 
-    // 8. Display the comparison
+    // 7. Display all calculation results
     document.getElementById("calculation-result").innerHTML = `
+
+        <h3>Detailed Calculation Results</h3>
+
+        <p><strong>Profit Before Tax:</strong> ${formatRM(profitBeforeTax)}</p>
+
+        <p>Add Back: ${formatRM(addBack)}</p>
+
+        <p>Less: Allowable Deductions: ${formatRM(deductions)}</p>
+
+        <hr>
+
+        <p><strong>Adjusted Business Income:</strong>
+        ${formatRM(unoptimized.adjustedBusinessIncome)}</p>
+
+        <p>Balancing Charge: ${formatRM(balancingCharge)}</p>
+
+        <p>Current Year Capital Allowances:
+        ${formatRM(capitalAllowance)}</p>
+
+        <p>Unabsorbed Capital Allowances Brought Forward:
+        ${formatRM(capitalAllowanceBF)}</p>
+
+        <p><strong>Total Capital Allowances Available:</strong>
+        ${formatRM(unoptimized.totalCapitalAllowances)}</p>
+
+        <p>Capital Allowances Absorbed:
+        ${formatRM(unoptimized.capitalAllowancesAbsorbed)}</p>
+
+        <p><strong>Unabsorbed Capital Allowances Carried Forward:</strong>
+        ${formatRM(unoptimized.unabsorbedCapitalAllowances)}</p>
+
+        <p><strong>Statutory Business Income:</strong>
+        ${formatRM(unoptimized.statutoryBusinessIncome)}</p>
+
+        <hr>
+
+        <p>Other Statutory Income: ${formatRM(otherIncome)}</p>
+
+        <p><strong>Aggregate Income:</strong>
+        ${formatRM(unoptimized.aggregateIncome)}</p>
+
+        <p>Approved Donations: ${formatRM(approvedDonations)}</p>
+
+        <p>Allowable Donations (10% limit):
+        ${formatRM(unoptimized.allowableDonations)}</p>
+
+        <hr>
+
+        <h3>Chargeable Income</h3>
+        <h2>${formatRM(unoptimized.chargeableIncome)}</h2>
+
+        <h3>Estimated Corporate Tax Payable (24%)</h3>
+        <h2>${formatRM(unoptimized.estimatedTax)}</h2>
+
+        <hr>
 
         <h3>Tax Computation Results</h3>
 
-        <p>
-            <strong>Tax Rate Used:</strong> 24%
-        </p>
+        <p><strong>Tax Rate Used:</strong> 24%</p>
 
         <div class="scenario-comparison">
 
@@ -379,6 +432,7 @@ function calculateTax() {
 
     `;
 }
+
 </script>
 
 
