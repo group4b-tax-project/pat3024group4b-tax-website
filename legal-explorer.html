@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4 - Statutory Legal Explorer & Reflective Learning Hub</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* MODULE 4 - GENERAL LAYOUT */
+
+        .module4-intro {
+            text-align: center;
+        }
+
+        .module4-card {
+            background-color: #f4f7fc;
+            border: 1px solid #d5dfed;
+            border-left: 5px solid #16345c;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 18px 0;
+        }
+
+        .module4-card h3 {
+            color: #16345c;
+            margin-top: 0;
+        }
+
+        /* SEARCH AREA */
+
+        .legal-search {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .legal-search input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border: 1px solid #b8c7dc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .legal-search button,
+        .module4-button {
+            background-color: #16345c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 22px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .legal-search button:hover,
+        .module4-button:hover {
+            background-color: #2475c7;
+        }
+
+        .legal-entry {
+            background-color: white;
+            border: 1px solid #d5dce8;
+            border-radius: 7px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        .legal-entry h3 {
+            color: #16345c;
+            margin-top: 0;
+        }
+
+        .legal-entry p {
+            margin-bottom: 8px;
+        }
+
+        .reference-tag {
+            display: inline-block;
+            background-color: #dce6f2;
+            color: #16345c;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .no-results {
+            background-color: #fff4e5;
+            border: 1px solid #f0d4a8;
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        /* FORM DESIGN */
+
+        .module4-form label {
+            display: block;
+            font-weight: bold;
+            color: #16345c;
+            margin-top: 15px;
+            margin-bottom: 7px;
+        }
+
+        .module4-form input,
+        .module4-form select,
+        .module4-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #b8c7dc;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .module4-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .module4-form button {
+            margin-top: 18px;
+        }
+
+        /* SUBMISSION RESULTS */
+
+        .submission-item {
+            background-color: white;
+            border: 1px solid #d5dce8;
+            border-left: 4px solid #2475c7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 12px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .submission-item h4 {
+            color: #16345c;
+            margin-top: 0;
+        }
+
+        .submission-date {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .empty-message {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .module4-note {
+            background-color: #eef4fb;
+            border: 1px solid #d5dfed;
+            border-radius: 8px;
+            padding: 18px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .legal-search {
+                flex-direction: column;
+            }
+
+            .legal-search input,
+            .legal-search button {
+                width: 100%;
+            }
+
+            .module4-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>PAT3024 Corporate Tax Interactive Learning Hub</h1>
+    <p>Module 4 - Statutory Legal Explorer & Reflective Learning Hub</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="case-hub.html">MODULE 1</a>
+    <a href="calculator.html">MODULE 2</a>
+    <a href="risk-scanner.html">MODULE 3</a>
+    <a href="legal-explorer.html">MODULE 4</a>
+</nav>
+
+<main>
+
+    <!-- MODULE INTRODUCTION -->
+
+    <section id="module-intro" class="module4-intro">
+
+        <h2>Statutory Legal Explorer & Reflective Learning Hub</h2>
+
+        <p>
+            This module provides a learning platform for students
+            to explore selected provisions of the Income Tax Act 1967,
+            refer to LHDN Public Rulings, participate in learning
+            discussions and record their reflections on corporate taxation.
+        </p>
+
+    </section>
+
+
+    <!-- STATUTORY LEGAL EXPLORER -->
+
+    <section id="legal-explorer">
+
+        <h2>1. Statutory Legal Explorer</h2>
+
+        <p>
+            Search the selected provisions of the Income Tax Act 1967
+            using a section number or keyword.
+        </p>
+
+        <div class="legal-search">
+
+            <input
+                type="text"
+                id="legal-search-input"
+                placeholder="Search e.g. Section 33, deductions, donations..."
+                oninput="searchLegalReferences()"
+            >
+
+            <button type="button" onclick="searchLegalReferences()">
+                SEARCH
+            </button>
+
+        </div>
+
+        <div id="legal-results">
+
+            <div class="legal-entry" data-search="section 33 deduction expenses wholly exclusively">
+                <span class="reference-tag">ITA 1967</span>
+                <h3>Section 33 - General Deduction</h3>
+                <p>
+                    Explore the general principles relating to the
+                    deduction of expenses incurred in producing gross income.
+                </p>
+                <p><strong>Learning focus:</strong> Deductibility of business expenses.</p>
+            </div>
+
+            <div class="legal-entry" data-search="section 39 non allowable expenses prohibited deductions">
+                <span class="reference-tag">ITA 1967</span>
+                <h3>Section 39 - Non-Allowable Expenses</h3>
+                <p>
+                    Explore expenses that are not deductible when
+                    determining adjusted income under the relevant
+                    provisions of the Income Tax Act 1967.
+                </p>
+                <p><strong>Learning focus:</strong> Tax adjustments and add-backs.</p>
+            </div>
+
+            <div class="legal-entry" data-search="section 44 donations approved donations aggregate income">
+                <span class="reference-tag">ITA 1967</span>
+                <h3>Section 44 - Deductions from Aggregate Income</h3>
+                <p>
+                    Study the provisions relating to deductions from
+                    aggregate income, including qualifying donations
+                    subject to the applicable conditions.
+                </p>
+                <p><strong>Learning focus:</strong> Approved donations and tax deductions.</p>
+            </div>
+
+            <div class="legal-entry" data-search="section 107a contract payments non resident contractor withholding tax">
+                <span class="reference-tag">ITA 1967</span>
+                <h3>Section 107A - Payments to Non-Resident Contractors</h3>
+                <p>
+                    Explore withholding tax considerations relating
+                    to payments made to non-resident contractors.
+                </p>
+                <p><strong>Learning focus:</strong> Withholding tax obligations.</p>
+            </div>
+
+            <div class="legal-entry" data-search="section 109 interest royalty withholding tax non resident">
+                <span class="reference-tag">ITA 1967</span>
+                <h3>Section 109 - Interest and Royalties</h3>
+                <p>
+                    Study withholding tax considerations relating
+                    to interest and royalty payments to non-residents.
+                </p>
+                <p><strong>Learning focus:</strong> Withholding tax compliance.</p>
+            </div>
+
+            <div class="legal-entry" data-search="section 140 anti avoidance tax avoidance director general">
+                <span class="reference-tag">ITA 1967</span>
+                <h3>Section 140 - Anti-Avoidance Provisions</h3>
+                <p>
+                    Explore the Director General's powers in relation
+                    to transactions or arrangements involving tax avoidance.
+                </p>
+                <p><strong>Learning focus:</strong> Tax planning and anti-avoidance.</p>
+            </div>
+
+        </div>
+
+        <p id="legal-no-results" class="no-results" style="display:none;">
+            No matching reference was found. Try another section number or keyword.
+        </p>
+
+    </section>
+
+
+    <!-- LHDN PUBLIC RULINGS -->
+
+    <section id="public-rulings">
+
+        <h2>2. LHDN Public Rulings Repository</h2>
+
+        <p>
+            Public Rulings provide guidance on the interpretation
+            and application of income tax provisions.
+            Use the official LHDN website to locate the relevant
+            ruling and verify its current status.
+        </p>
+
+        <div class="legal-search">
+
+            <input
+                type="text"
+                id="ruling-search-input"
+                placeholder="Search Public Rulings by topic..."
+                oninput="searchPublicRulings()"
+            >
+
+            <button type="button" onclick="searchPublicRulings()">
+                SEARCH
+            </button>
+
+        </div>
+
+        <div id="ruling-results">
+
+            <div class="legal-entry" data-search="business expenses deduction general principles">
+                <span class="reference-tag">PUBLIC RULING TOPIC</span>
+                <h3>Deductibility of Business Expenses</h3>
+                <p>
+                    Learning reference for understanding the tax treatment
+                    of expenses incurred in carrying on a business.
+                </p>
+                <p><strong>Related topic:</strong> General deduction and non-allowable expenses.</p>
+            </div>
+
+            <div class="legal-entry" data-search="capital allowances plant machinery assets">
+                <span class="reference-tag">PUBLIC RULING TOPIC</span>
+                <h3>Capital Allowances</h3>
+                <p>
+                    Learning reference for the treatment of qualifying
+                    capital expenditure and capital allowances.
+                </p>
+                <p><strong>Related topic:</strong> Qualifying plant and machinery expenditure.</p>
+            </div>
+
+            <div class="legal-entry" data-search="withholding tax non resident payments">
+                <span class="reference-tag">PUBLIC RULING TOPIC</span>
+                <h3>Withholding Tax</h3>
+                <p>
+                    Learning reference for understanding withholding
+                    tax obligations involving payments to non-residents.
+                </p>
+                <p><strong>Related topic:</strong> Sections 107A and 109.</p>
+            </div>
+
+            <div class="legal-entry" data-search="deduction donations gifts approved institutions">
+                <span class="reference-tag">PUBLIC RULING TOPIC</span>
+                <h3>Deduction for Donations and Gifts</h3>
+                <p>
+                    Learning reference for the tax treatment of qualifying
+                    donations and gifts under the applicable provisions.
+                </p>
+                <p><strong>Related topic:</strong> Section 44 of the ITA 1967.</p>
+            </div>
+
+        </div>
+
+        <p id="ruling-no-results" class="no-results" style="display:none;">
+            No matching topic was found. Try another keyword.
+        </p>
+
+        <div class="module4-note">
+
+            <h3>Official LHDN Reference</h3>
+
+            <p>
+                Visit the Inland Revenue Board of Malaysia website
+                to obtain the official legislation, Public Rulings
+                and latest tax guidance.
+            </p>
+
+            <p>
+                <a href="https://www.hasil.gov.my/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Visit the Official LHDN Website
+                </a>
+            </p>
+
+            <p>
+                <strong>Important:</strong> The topics above are learning
+                categories, not official Public Ruling titles or ruling
+                numbers. Add the verified ruling number, title and
+                publication details when the official documents are selected.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDENT Q&A FORUM -->
+
+    <section id="student-forum">
+
+        <h2>3. Interactive Student Q&A Forum</h2>
+
+        <p>
+            Students can submit questions about corporate taxation,
+            share learning difficulties and record discussion topics.
+        </p>
+
+        <form id="question-form" class="module4-form">
+
+            <label for="student-name">Student Name</label>
+            <input
+                type="text"
+                id="student-name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <label for="question-topic">Question Topic</label>
+            <select id="question-topic" required>
+                <option value="">Select a topic</option>
+                <option value="Corporate Tax Computation">Corporate Tax Computation</option>
+                <option value="Capital Allowances">Capital Allowances</option>
+                <option value="Withholding Tax">Withholding Tax</option>
+                <option value="Tax Planning">Tax Planning</option>
+                <option value="Section 140">Section 140</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="student-question">Your Question</label>
+            <textarea
+                id="student-question"
+                placeholder="Type your question here..."
+                required
+            ></textarea>
+
+            <button type="submit" class="module4-button">
+                SUBMIT QUESTION
+            </button>
+
+        </form>
+
+        <div id="question-status" aria-live="polite"></div>
+
+        <h3>Submitted Questions</h3>
+
+        <div id="question-list">
+            <p class="empty-message">No questions have been submitted yet.</p>
+        </div>
+
+    </section>
+
+
+    <!-- REFLECTIVE LEARNING HUB -->
+
+    <section id="reflection-hub">
+
+        <h2>4. Reflective Learning Hub</h2>
+
+        <p>
+            Students can reflect on their understanding of corporate
+            taxation, identify challenges and explain how the learning
+            activities improve their knowledge and professional awareness.
+        </p>
+
+        <form id="reflection-form" class="module4-form">
+
+            <label for="reflection-name">Student Name</label>
+            <input
+                type="text"
+                id="reflection-name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <label for="reflection-topic">Reflection Topic</label>
+            <select id="reflection-topic" required>
+                <option value="">Select a topic</option>
+                <option value="Corporate Tax Computation">Corporate Tax Computation</option>
+                <option value="Capital Allowances">Capital Allowances</option>
+                <option value="Withholding Tax">Withholding Tax</option>
+                <option value="Tax Planning and Ethics">Tax Planning and Ethics</option>
+                <option value="Section 140 ITA 1967">Section 140 ITA 1967</option>
+                <option value="Overall Learning Experience">Overall Learning Experience</option>
+            </select>
+
+            <label for="reflection-content">Your Reflection</label>
+            <textarea
+                id="reflection-content"
+                placeholder="What have you learned? What challenges did you face? How can you apply this knowledge?"
+                required
+            ></textarea>
+
+            <button type="submit" class="module4-button">
+                SUBMIT REFLECTION
+            </button>
+
+        </form>
+
+        <div id="reflection-status" aria-live="polite"></div>
+
+        <h3>Reflection Submission Log</h3>
+
+        <div id="reflection-list">
+            <p class="empty-message">No reflections have been submitted yet.</p>
+        </div>
+
+    </section>
+
+
+    <!-- LEARNING NOTE -->
+
+    <section id="module4-learning-note">
+
+        <h2>Important Learning Note</h2>
+
+        <p>
+            The legal references and learning topics provided in this
+            module are intended for educational purposes. Students
+            should consult the official Income Tax Act 1967 and the
+            latest LHDN publications when completing tax research
+            and assignments.
+        </p>
+
+        <p>
+            Questions and reflections submitted in this version are
+            stored locally in the browser. They are not automatically
+            transmitted to a lecturer, other students or Google Sheets.
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>Prepared by: Group 4(B) Corporate Taxation 2.</p>
+</footer>
+
+
+<script>
+
+/* =====================================
+   MODULE 4 - LEGAL REFERENCE SEARCH
+===================================== */
+
+function searchLegalReferences() {
+
+    const searchValue = document
+        .getElementById("legal-search-input")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const entries = document.querySelectorAll(
+        "#legal-results .legal-entry"
+    );
+
+    let visibleCount = 0;
+
+    entries.forEach(entry => {
+
+        const searchableText =
+            entry.innerText.toLowerCase() + " " +
+            entry.dataset.search.toLowerCase();
+
+        const matches = searchableText.includes(searchValue);
+
+        entry.style.display = matches ? "block" : "none";
+
+        if (matches) {
+            visibleCount++;
+        }
+
+    });
+
+    document.getElementById("legal-no-results").style.display =
+        visibleCount === 0 ? "block" : "none";
+
+}
+
+
+/* =====================================
+   MODULE 4 - PUBLIC RULINGS SEARCH
+===================================== */
+
+function searchPublicRulings() {
+
+    const searchValue = document
+        .getElementById("ruling-search-input")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const entries = document.querySelectorAll(
+        "#ruling-results .legal-entry"
+    );
+
+    let visibleCount = 0;
+
+    entries.forEach(entry => {
+
+        const searchableText =
+            entry.innerText.toLowerCase() + " " +
+            entry.dataset.search.toLowerCase();
+
+        const matches = searchableText.includes(searchValue);
+
+        entry.style.display = matches ? "block" : "none";
+
+        if (matches) {
+            visibleCount++;
+        }
+
+    });
+
+    document.getElementById("ruling-no-results").style.display =
+        visibleCount === 0 ? "block" : "none";
+
+}
+
+
+/* =====================================
+   MODULE 4 - LOCAL STORAGE FUNCTIONS
+===================================== */
+
+function getSavedEntries(storageKey) {
+
+    try {
+
+        const savedData = localStorage.getItem(storageKey);
+
+        return savedData ? JSON.parse(savedData) : [];
+
+    } catch (error) {
+
+        return [];
+
+    }
+
+}
+
+function saveEntries(storageKey, entries) {
+
+    try {
+
+        localStorage.setItem(
+            storageKey,
+            JSON.stringify(entries)
+        );
+
+        return true;
+
+    } catch (error) {
+
+        alert("Unable to save the entry in this browser.");
+
+        return false;
+
+    }
+
+}
+
+
+/* =====================================
+   MODULE 4 - STUDENT Q&A FORUM
+===================================== */
+
+function displayQuestions() {
+
+    const questions = getSavedEntries("pat3024_questions");
+
+    const questionList = document.getElementById("question-list");
+
+    if (questions.length === 0) {
+
+        questionList.innerHTML =
+            '<p class="empty-message">No questions have been submitted yet.</p>';
+
+        return;
+
+    }
+
+    questionList.innerHTML = "";
+
+    questions.forEach(question => {
+
+        const item = document.createElement("div");
+
+        item.className = "submission-item";
+
+        const title = document.createElement("h4");
+        title.textContent = question.topic;
+
+        const name = document.createElement("p");
+        name.textContent = "Submitted by: " + question.name;
+
+        const content = document.createElement("p");
+        content.textContent = question.question;
+
+        const date = document.createElement("p");
+        date.className = "submission-date";
+        date.textContent = question.date;
+
+        item.appendChild(title);
+        item.appendChild(name);
+        item.appendChild(content);
+        item.appendChild(date);
+
+        questionList.appendChild(item);
+
+    });
+
+}
+
+
+document.getElementById("question-form").addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById("student-name").value.trim();
+        const topic = document.getElementById("question-topic").value;
+        const question = document.getElementById("student-question").value.trim();
+
+        if (!name || !topic || !question) {
+
+            alert("Please complete all fields before submitting.");
+
+            return;
+
+        }
+
+        const questions = getSavedEntries("pat3024_questions");
+
+        questions.unshift({
+
+            name: name,
+            topic: topic,
+            question: question,
+            date: new Date().toLocaleString()
+
+        });
+
+        if (saveEntries("pat3024_questions", questions)) {
+
+            displayQuestions();
+
+            document.getElementById("question-status").textContent =
+                "Your question has been saved successfully in this browser.";
+
+            document.getElementById("question-form").reset();
+
+        }
+
+    }
+
+);
+
+
+/* =====================================
+   MODULE 4 - REFLECTIVE LEARNING HUB
+===================================== */
+
+function displayReflections() {
+
+    const reflections = getSavedEntries("pat3024_reflections");
+
+    const reflectionList = document.getElementById("reflection-list");
+
+    if (reflections.length === 0) {
+
+        reflectionList.innerHTML =
+            '<p class="empty-message">No reflections have been submitted yet.</p>';
+
+        return;
+
+    }
+
+    reflectionList.innerHTML = "";
+
+    reflections.forEach(reflection => {
+
+        const item = document.createElement("div");
+
+        item.className = "submission-item";
+
+        const title = document.createElement("h4");
+        title.textContent = reflection.topic;
+
+        const name = document.createElement("p");
+        name.textContent = "Submitted by: " + reflection.name;
+
+        const content = document.createElement("p");
+        content.textContent = reflection.content;
+
+        const date = document.createElement("p");
+        date.className = "submission-date";
+        date.textContent = reflection.date;
+
+        item.appendChild(title);
+        item.appendChild(name);
+        item.appendChild(content);
+        item.appendChild(date);
+
+        reflectionList.appendChild(item);
+
+    });
+
+}
+
+
+document.getElementById("reflection-form").addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById("reflection-name").value.trim();
+        const topic = document.getElementById("reflection-topic").value;
+        const content = document.getElementById("reflection-content").value.trim();
+
+        if (!name || !topic || !content) {
+
+            alert("Please complete all fields before submitting.");
+
+            return;
+
+        }
+
+        const reflections = getSavedEntries("pat3024_reflections");
+
+        reflections.unshift({
+
+            name: name,
+            topic: topic,
+            content: content,
+            date: new Date().toLocaleString()
+
+        });
+
+        if (saveEntries("pat3024_reflections", reflections)) {
+
+            displayReflections();
+
+            document.getElementById("reflection-status").textContent =
+                "Your reflection has been saved successfully in this browser.";
+
+            document.getElementById("reflection-form").reset();
+
+        }
+
+    }
+
+);
+
+
+/* =====================================
+   LOAD SAVED SUBMISSIONS
+===================================== */
+
+displayQuestions();
+displayReflections();
+
+</script>
+
+</body>
+</html>
