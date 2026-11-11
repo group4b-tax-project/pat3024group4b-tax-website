@@ -188,3 +188,50 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* INTERACTIVE FINANCIAL STATEMENT */
+
+.document-card summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.document-card summary::-webkit-details-marker {
+    display: none;
+}
+
+.document-card summary h3 {
+    margin-top: 0;
+}
+
+.document-card summary:hover h3 {
+    color: #2475c7;
+}
+
+.document-card[open] {
+    grid-column: 1 / -1;
+}
+
+.financial-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: white;
+}
+
+.financial-table th,
+.financial-table td {
+    border: 1px solid #d5dce8;
+    padding: 10px;
+    text-align: left;
+}
+
+.financial-table th {
+    background-color: #16345c;
+    color: white;
+}
+
+.financial-table td:last-child,
+.financial-table th:last-child {
+    text-align: right;
+}
