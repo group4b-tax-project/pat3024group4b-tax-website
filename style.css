@@ -283,3 +283,49 @@ footer {
 .financial-table th:last-child {
     text-align: right;
 }
+
+
+/* MODULE 2 - TAX SCENARIO COMPARISON */
+
+.scenario-comparison {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    align-items: stretch;
+}
+
+.scenario-card {
+    background-color: #ffffff;
+    border: 1px solid #d5dce8;
+    border-top: 5px solid #16345c;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    min-width: 0;
+}
+
+.scenario-card h3 {
+    color: #16345c;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.scenario-card h2 {
+    color: #16345c;
+    font-size: 24px;
+}
+
+.scenario-card hr {
+    border: 0;
+    border-top: 1px solid #d5dce8;
+    margin: 20px 0;
+}
+
+/* Mobile layout */
+@media screen and (max-width: 768px) {
+    .scenario-comparison {
+        grid-template-columns: 1fr;
+    }
+}
+
