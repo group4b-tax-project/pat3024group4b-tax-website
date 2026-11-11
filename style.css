@@ -231,6 +231,54 @@ footer {
     color: white;
 }
 
+/* MODULE 2 - TAX CALCULATOR */
+
+#tax-input label {
+    display: block;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+#tax-input input {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+#tax-input h3 {
+    margin-top: 28px;
+    color: #16345c;
+}
+
+#tax-input button {
+    margin-top: 25px;
+    padding: 13px 25px;
+    background-color: #16345c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#tax-input button:hover {
+    background-color: #2475c7;
+}
+
+#calculation-result {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #eef4fb;
+    border-radius: 8px;
+}
+
+
 .financial-table td:last-child,
 .financial-table th:last-child {
     text-align: right;
