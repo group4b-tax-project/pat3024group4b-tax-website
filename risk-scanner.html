@@ -1,10 +1,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Module 3 - AaDab Integrity & Section 140 Risk Scanner</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,7 +28,10 @@
 
 <main>
 
+    <!-- MODULE INTRODUCTION -->
+
     <section id="module-intro">
+
         <h2>AaDab Integrity & Section 140 Risk Scanner</h2>
 
         <p>
@@ -40,9 +46,14 @@
             of Inland Revenue powers to address certain arrangements
             involving tax avoidance.
         </p>
+
     </section>
 
+
+    <!-- SECTION 140 EXPLANATION -->
+
     <section id="section-140">
+
         <h2>Understanding Section 140(1) ITA 1967</h2>
 
         <p>
@@ -57,174 +68,247 @@
             have genuine commercial purposes, proper documentation
             and comply with the relevant tax laws.
         </p>
+
     </section>
 
-<section id="risk-assessment">
 
-    <h2>Interactive Tax Planning Risk Assessment</h2>
+    <!-- TAX PLANNING RISK ASSESSMENT -->
 
-    <p>
-        Answer the following questions based on the company's
-        proposed tax planning arrangement.
-    </p>
+    <section id="risk-assessment">
 
-    <div class="risk-question">
-        <label for="commercial-purpose">
-            1. Does the arrangement have a genuine commercial purpose
-            apart from obtaining tax benefits?
-        </label>
-        <select id="commercial-purpose">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
+        <h2>Interactive Tax Planning Risk Assessment</h2>
 
-    <div class="risk-question">
-        <label for="documentation">
-            2. Is the arrangement supported by proper documents
-            and evidence?
-        </label>
-        <select id="documentation">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
-
-    <div class="risk-question">
-        <label for="compliance">
-            3. Does the arrangement comply with the relevant
-            provisions of the Income Tax Act 1967?
-        </label>
-        <select id="compliance">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
-
-    <div class="risk-question">
-        <label for="transparency">
-            4. Are the transactions transparent and accurately
-            disclosed in the company's tax records?
-        </label>
-        <select id="transparency">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
-
-    <div class="risk-question">
-        <label for="arm-length">
-            5. Are related-party transactions conducted on
-            commercially justifiable terms?
-        </label>
-        <select id="arm-length">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
-
-    <button type="button" onclick="assessRisk()">
-        ASSESS TAX PLANNING RISK
-    </button>
-
-    <div id="risk-result">
-        <h3>Assessment Results</h3>
-        <p>Your assessment results will appear here.</p>
-    </div>
-
-</section>
-
-
-  
-<section id="ethical-index">
-
-    <h2>AaDab Ethical Index</h2>
-
-    <p>
-        The AaDab Ethical Index evaluates the ethical responsibility
-        of the company's tax planning arrangements through four
-        assessment dimensions.
-    </p>
-
-    <p>
-        Answer the following questions to calculate the company's
-        Ethical Index Score. Each dimension carries a maximum of
-        25 marks.
-    </p>
-
-    <div class="risk-question">
-        <label for="ethical-transparency">
-            1. Transparency (25 marks)
-        </label>
         <p>
-            Does the company provide honest disclosure and maintain
-            accurate records of its tax planning arrangements?
+            Answer the following questions based on the company's
+            proposed tax planning arrangement.
         </p>
-        <select id="ethical-transparency">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
 
-    <div class="risk-question">
-        <label for="ethical-equity">
-            2. Social Equity (25 marks)
-        </label>
+        <div class="risk-question">
+
+            <label for="commercial-purpose">
+                1. Does the arrangement have a genuine commercial purpose
+                apart from obtaining tax benefits?
+            </label>
+
+            <select id="commercial-purpose">
+                <option value="">Select an answer</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        </div>
+
+
+        <div class="risk-question">
+
+            <label for="documentation">
+                2. Is the arrangement supported by proper documents
+                and evidence?
+            </label>
+
+            <select id="documentation">
+                <option value="">Select an answer</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        </div>
+
+
+        <div class="risk-question">
+
+            <label for="compliance">
+                3. Does the arrangement comply with the relevant
+                provisions of the Income Tax Act 1967?
+            </label>
+
+            <select id="compliance">
+                <option value="">Select an answer</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        </div>
+
+
+        <div class="risk-question">
+
+            <label for="transparency">
+                4. Are the transactions transparent and accurately
+                disclosed in the company's tax records?
+            </label>
+
+            <select id="transparency">
+                <option value="">Select an answer</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        </div>
+
+
+        <div class="risk-question">
+
+            <label for="arm-length">
+                5. Are related-party transactions conducted on
+                commercially justifiable terms?
+            </label>
+
+            <select id="arm-length">
+                <option value="">Select an answer</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        </div>
+
+
+        <button type="button" onclick="assessRisk()">
+            ASSESS TAX PLANNING RISK
+        </button>
+
+
+        <div id="risk-result">
+
+            <h3>Assessment Results</h3>
+
+            <p>Your assessment results will appear here.</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- AaDab ETHICAL INDEX -->
+
+    <section id="ethical-index">
+
+        <h2>AaDab Ethical Index</h2>
+
         <p>
-            Does the company's tax planning approach demonstrate
-            fairness and avoid arrangements that shift an unfair
-            tax burden to others?
+            The AaDab Ethical Index evaluates the ethical responsibility
+            of the company's tax planning arrangements through four
+            assessment dimensions.
         </p>
-        <select id="ethical-equity">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
 
-    <div class="risk-question">
-        <label for="ethical-compliance">
-            3. Compliance Discipline (25 marks)
-        </label>
         <p>
-            Does the company comply with applicable tax laws and
-            maintain proper supporting documentation?
+            Answer the following questions to calculate the company's
+            Ethical Index Score. Each dimension carries a maximum of
+            25 marks.
         </p>
-        <select id="ethical-compliance">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
 
-    <div class="risk-question">
-        <label for="ethical-welfare">
-            4. Public Welfare Contributions (25 marks)
-        </label>
-        <p>
-            Does the company demonstrate responsibility towards
-            society through genuine contributions to public welfare?
-        </p>
-        <select id="ethical-welfare">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
 
-    <div id="ethical-result">
-        <h3>Ethical Index Score</h3>
-        <p>Complete the assessment to generate your score.</p>
-    </div>
+        <!-- DIMENSION 1: TRANSPARENCY -->
 
-</section>
+        <div class="risk-question">
 
+            <label for="ethical-transparency">
+                1. Transparency (25 marks)
+            </label>
+
+            <p>
+                Does the company provide honest disclosure and maintain
+                accurate records of its tax planning arrangements?
+            </p>
+
+            <select id="ethical-transparency">
+                <option value="">Select an answer</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        </div>
+
+
+        <!-- DIMENSION 2: SOCIAL EQUITY -->
+
+        <div class="risk-question">
+
+            <label for="ethical-equity">
+                2. Social Equity (25 marks)
+            </label>
+
+            <p>
+                Does the company's tax planning approach demonstrate
+                fairness and avoid arrangements that shift an unfair
+                tax burden to others?
+            </p>
+
+            <select id="ethical-equity">
+                <option value="">Select an answer</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        </div>
+
+
+        <!-- DIMENSION 3: COMPLIANCE DISCIPLINE -->
+
+        <div class="risk-question">
+
+            <label for="ethical-compliance">
+                3. Compliance Discipline (25 marks)
+            </label>
+
+            <p>
+                Does the company comply with applicable tax laws and
+                maintain proper supporting documentation?
+            </p>
+
+            <select id="ethical-compliance">
+                <option value="">Select an answer</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        </div>
+
+
+        <!-- DIMENSION 4: PUBLIC WELFARE CONTRIBUTIONS -->
+
+        <div class="risk-question">
+
+            <label for="ethical-welfare">
+                4. Public Welfare Contributions (25 marks)
+            </label>
+
+            <p>
+                Does the company demonstrate responsibility towards
+                society through genuine contributions to public welfare?
+            </p>
+
+            <select id="ethical-welfare">
+                <option value="">Select an answer</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        </div>
+
+
+        <button type="button" onclick="calculateEthicalIndex()">
+            CALCULATE AaDab ETHICAL INDEX
+        </button>
+
+
+        <!-- ETHICAL INDEX RESULTS -->
+
+        <div id="ethical-result">
+
+            <h3>Ethical Index Score</h3>
+
+            <p>
+                Complete the four assessment questions to generate
+                your score.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT LEARNING NOTE -->
 
     <section id="learning-note">
 
@@ -246,11 +330,22 @@
 
 </main>
 
+
+<!-- FOOTER -->
+
 <footer>
+
     <p>Prepared by: Group 4(B) Corporate Taxation 2.</p>
+
 </footer>
 
+
+<!-- JAVASCRIPT FUNCTIONS -->
+
 <script>
+
+
+// FUNCTION 1: TAX PLANNING RISK ASSESSMENT
 
 function assessRisk() {
 
@@ -267,56 +362,201 @@ function assessRisk() {
     );
 
     if (answers.includes("")) {
+
         alert("Please answer all five questions before submitting.");
+
         return;
     }
+
 
     const positiveAnswers = answers.filter(
         answer => answer === "yes"
     ).length;
 
-    const ethicalScore = Math.round(
-        (positiveAnswers / questions.length) * 100
+
+    const riskScore = Math.round(
+        ((questions.length - positiveAnswers) / questions.length) * 100
     );
 
-    const riskScore = 100 - ethicalScore;
 
     let riskLevel;
     let riskExplanation;
 
+
     if (riskScore <= 20) {
+
         riskLevel = "Low Risk";
+
         riskExplanation =
             "The arrangement demonstrates positive indicators of tax compliance and ethical tax planning.";
+
     } else if (riskScore <= 40) {
+
         riskLevel = "Moderate Risk";
+
         riskExplanation =
             "Some aspects of the arrangement require further review and supporting evidence.";
+
     } else {
+
         riskLevel = "High Risk";
+
         riskExplanation =
             "Several risk indicators have been identified. The arrangement requires careful review before implementation.";
+
     }
 
-    document.getElementById("risk-result").innerHTML = `
-        <h3>Tax Planning Risk Assessment</h3>
-        <p><strong>Risk Score:</strong> ${riskScore}/100</p>
-        <p><strong>Risk Level:</strong> ${riskLevel}</p>
-        <p>${riskExplanation}</p>
-    `;
 
-    document.getElementById("ethical-result").innerHTML = `
-        <h3>AaDab Ethical Index</h3>
-        <h2>${ethicalScore}/100</h2>
-        <p><strong>Positive Assessment Indicators:</strong>
-        ${positiveAnswers} out of 5</p>
-        <p>This score reflects the answers provided in this
-        preliminary educational assessment.</p>
+    document.getElementById("risk-result").innerHTML = `
+
+        <h3>Tax Planning Risk Assessment</h3>
+
+        <h2>${riskScore}/100</h2>
+
+        <p>
+            <strong>Risk Level:</strong> ${riskLevel}
+        </p>
+
+        <p>${riskExplanation}</p>
+
+        <p>
+            <strong>Positive Assessment Indicators:</strong>
+            ${positiveAnswers} out of 5
+        </p>
+
     `;
 
 }
 
+
+
+// FUNCTION 2: AaDab ETHICAL INDEX CALCULATION
+
+function calculateEthicalIndex() {
+
+    const dimensions = [
+
+        {
+            id: "ethical-transparency",
+            name: "Transparency"
+        },
+
+        {
+            id: "ethical-equity",
+            name: "Social Equity"
+        },
+
+        {
+            id: "ethical-compliance",
+            name: "Compliance Discipline"
+        },
+
+        {
+            id: "ethical-welfare",
+            name: "Public Welfare Contributions"
+        }
+
+    ];
+
+
+    const answers = dimensions.map(dimension =>
+
+        document.getElementById(dimension.id).value
+
+    );
+
+
+    if (answers.includes("")) {
+
+        alert("Please answer all four Ethical Index questions.");
+
+        return;
+    }
+
+
+    let totalScore = 0;
+
+    let resultsHTML = "";
+
+
+    dimensions.forEach((dimension, index) => {
+
+        const score = answers[index] === "yes" ? 25 : 0;
+
+        totalScore += score;
+
+
+        resultsHTML += `
+
+            <div class="ethical-dimension">
+
+                <p>
+                    <strong>${dimension.name}</strong>
+                </p>
+
+                <p>${score}/25 marks</p>
+
+                <div class="ethical-progress">
+
+                    <div class="ethical-progress-fill"
+                         style="width: ${score / 25 * 100}%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    let ethicalRating;
+
+
+    if (totalScore >= 80) {
+
+        ethicalRating = "Strong Ethical Performance";
+
+    } else if (totalScore >= 50) {
+
+        ethicalRating = "Moderate Ethical Performance";
+
+    } else {
+
+        ethicalRating = "Needs Ethical Improvement";
+
+    }
+
+
+    document.getElementById("ethical-result").innerHTML = `
+
+        <h3>AaDab Ethical Index Results</h3>
+
+        <h2>${totalScore}/100</h2>
+
+        <p>
+            <strong>Overall Ethical Rating:</strong>
+            ${ethicalRating}
+        </p>
+
+        <h3>Individual Assessment Scores</h3>
+
+        ${resultsHTML}
+
+        <p>
+            The score is based on the four educational assessment
+            dimensions and the answers provided.
+        </p>
+
+    `;
+
+}
+
+
 </script>
 
 </body>
+
 </html>
+
