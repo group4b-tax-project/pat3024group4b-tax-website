@@ -35,7 +35,21 @@
                 Explore the company background and supporting documents
                 relevant to the corporate tax case study.
             </p>
-        </section>
+
+            <div class="completion-control">
+                 <button
+                     class="completion-button"
+                     id="complete-module-1"
+                     onclick="toggleModuleCompletion('module1')">
+                     Mark Module 1 as Completed
+                </button>
+
+    <p id="module1-status">
+        You have not completed this module yet.
+    </p>
+</div>
+
+</section>
 
         <!-- Case Study Question 1 -->
         <section id="company-background">
@@ -328,6 +342,36 @@
     <footer>
         <p>Prepared by: Group 4(B) Corporate Taxation 2.</p>
     </footer>
+
+<script>
+function toggleModuleCompletion(moduleId) {
+    let completedModules = JSON.parse(
+        localStorage.getItem("pat3024_completed_modules") || "[]"
+    );
+
+    const button = document.getElementById("complete-module-1");
+    const status = document.getElementById("module1-status");
+
+    if (completedModules.includes(moduleId)) {
+        completedModules = completedModules.filter(
+            id => id !== moduleId
+        );
+
+        button.textContent = "Mark Module 1 as Completed";
+        status.textContent = "You have not completed this module yet.";
+    } else {
+        completedModules.push(moduleId);
+
+        button.textContent = "Mark as Not Completed";
+        status.textContent = "Congratulations! You have completed Module 1.";
+    }
+
+    localStorage.setItem(
+        "pat3024_completed_modules",
+        JSON.stringify(completedModules)
+    );
+}
+</script>
 
 </body>
 </html>
