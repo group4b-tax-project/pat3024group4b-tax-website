@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3 - AaDab Integrity & Section 140 Risk Scanner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>PAT3024 Corporate Tax Interactive Learning Hub</h1>
+    <p>Module 3 - AaDab Integrity & Section 140 Risk Scanner</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="case-hub.html">MODULE 1</a>
+    <a href="calculator.html">MODULE 2</a>
+    <a href="risk-scanner.html">MODULE 3</a>
+    <a href="legal-explorer.html">MODULE 4</a>
+</nav>
+
+<main>
+
+    <section id="module-intro">
+        <h2>AaDab Integrity & Section 140 Risk Scanner</h2>
+
+        <p>
+            This module provides an interactive educational tool
+            to evaluate the ethical and compliance risks of corporate
+            tax planning strategies.
+        </p>
+
+        <p>
+            The assessment is based on the principles of Section 140(1)
+            of the Income Tax Act 1967, which gives the Director General
+            of Inland Revenue powers to address certain arrangements
+            involving tax avoidance.
+        </p>
+    </section>
+
+    <section id="section-140">
+        <h2>Understanding Section 140(1) ITA 1967</h2>
+
+        <p>
+            Section 140(1) provides powers to the Director General
+            of Inland Revenue to disregard or vary certain transactions
+            or arrangements where the provision applies to tax avoidance
+            or tax evasion.
+        </p>
+
+        <p>
+            Companies should ensure that their tax planning arrangements
+            have genuine commercial purposes, proper documentation
+            and comply with the relevant tax laws.
+        </p>
+    </section>
+
+    <section id="risk-assessment">
+
+        <h2>Interactive Tax Planning Risk Assessment</h2>
+
+        <p>
+            Answer the following questions based on the company's
+            proposed tax planning arrangement.
+        </p>
+
+        <label for="commercial-purpose">
+            1. Does the arrangement have a genuine commercial purpose
+            apart from obtaining tax benefits?
+        </label>
+        <select id="commercial-purpose">
+            <option value="">Select an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="documentation">
+            2. Is the arrangement supported by proper documents
+            and evidence?
+        </label>
+        <select id="documentation">
+            <option value="">Select an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="compliance">
+            3. Does the arrangement comply with the relevant
+            provisions of the Income Tax Act 1967?
+        </label>
+        <select id="compliance">
+            <option value="">Select an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="transparency">
+            4. Are the transactions transparent and accurately
+            disclosed in the company's tax records?
+        </label>
+        <select id="transparency">
+            <option value="">Select an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="arm-length">
+            5. Are related-party transactions conducted on
+            commercially justifiable terms?
+        </label>
+        <select id="arm-length">
+            <option value="">Select an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <button type="button" onclick="assessRisk()">
+            ASSESS TAX PLANNING RISK
+        </button>
+
+        <div id="risk-result">
+            <h3>Assessment Results</h3>
+            <p>Your assessment results will appear here.</p>
+        </div>
+
+    </section>
+
+    <section id="ethical-index">
+
+        <h2>AaDab Ethical Index</h2>
+
+        <p>
+            The AaDab Ethical Index provides an educational score
+            reflecting the ethical and compliance considerations
+            of the proposed tax planning arrangement.
+        </p>
+
+        <div id="ethical-result">
+            <h3>Ethical Index Score</h3>
+            <p>Complete the assessment to generate your score.</p>
+        </div>
+
+        <p><strong>Assessment dimensions:</strong></p>
+
+        <ul>
+            <li>Transparency</li>
+            <li>Social Equity</li>
+            <li>Compliance Discipline</li>
+            <li>Public Welfare Contributions</li>
+        </ul>
+
+    </section>
+
+    <section id="learning-note">
+
+        <h2>Important Learning Note</h2>
+
+        <p>
+            This scanner is designed for educational purposes.
+            Its results are preliminary risk indicators and do not
+            constitute a legal opinion or determine whether an
+            arrangement falls within Section 140(1).
+        </p>
+
+        <p>
+            Actual tax treatment depends on the facts, circumstances
+            and applicable provisions of the Income Tax Act 1967.
+        </p>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>Prepared by: Group 4(B) Corporate Taxation 2.</p>
+</footer>
+
+<script>
+
+function assessRisk() {
+
+    const questions = [
+        "commercial-purpose",
+        "documentation",
+        "compliance",
+        "transparency",
+        "arm-length"
+    ];
+
+    const answers = questions.map(id =>
+        document.getElementById(id).value
+    );
+
+    if (answers.includes("")) {
+        alert("Please answer all five questions before submitting.");
+        return;
+    }
+
+    const positiveAnswers = answers.filter(
+        answer => answer === "yes"
+    ).length;
+
+    const ethicalScore = Math.round(
+        (positiveAnswers / questions.length) * 100
+    );
+
+    const riskScore = 100 - ethicalScore;
+
+    let riskLevel;
+    let riskExplanation;
+
+    if (riskScore <= 20) {
+        riskLevel = "Low Risk";
+        riskExplanation =
+            "The arrangement demonstrates positive indicators of tax compliance and ethical tax planning.";
+    } else if (riskScore <= 40) {
+        riskLevel = "Moderate Risk";
+        riskExplanation =
+            "Some aspects of the arrangement require further review and supporting evidence.";
+    } else {
+        riskLevel = "High Risk";
+        riskExplanation =
+            "Several risk indicators have been identified. The arrangement requires careful review before implementation.";
+    }
+
+    document.getElementById("risk-result").innerHTML = `
+        <h3>Tax Planning Risk Assessment</h3>
+        <p><strong>Risk Score:</strong> ${riskScore}/100</p>
+        <p><strong>Risk Level:</strong> ${riskLevel}</p>
+        <p>${riskExplanation}</p>
+    `;
+
+    document.getElementById("ethical-result").innerHTML = `
+        <h3>AaDab Ethical Index</h3>
+        <h2>${ethicalScore}/100</h2>
+        <p><strong>Positive Assessment Indicators:</strong>
+        ${positiveAnswers} out of 5</p>
+        <p>This score reflects the answers provided in this
+        preliminary educational assessment.</p>
+    `;
+
+}
+
+</script>
+
+</body>
+</html>
