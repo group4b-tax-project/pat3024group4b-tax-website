@@ -493,3 +493,126 @@ footer {
     margin-top: 25px;
     border: 1px solid #d5dfed;
 }
+
+/* =====================================
+   MODULE 3 - AADAB ETHICAL INDEX
+===================================== */
+
+/* Ethical Index Section */
+#ethical-index {
+    margin-top: 25px;
+}
+
+#ethical-index h2 {
+    color: #16345c;
+}
+
+#ethical-index > p {
+    line-height: 1.7;
+}
+
+/* Ethical Index Questions */
+#ethical-index .risk-question {
+    background-color: #f4f7fc;
+    border: 1px solid #d5dfed;
+    border-left: 5px solid #2475c7;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 18px 0;
+}
+
+#ethical-index .risk-question label {
+    display: block;
+    font-weight: bold;
+    color: #16345c;
+    margin-bottom: 8px;
+}
+
+#ethical-index .risk-question p {
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+#ethical-index .risk-question select {
+    width: 100%;
+    max-width: 250px;
+    padding: 10px;
+    border: 1px solid #b8c7dc;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 15px;
+}
+
+/* Ethical Index Button */
+#ethical-index button {
+    background-color: #16345c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 13px 25px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#ethical-index button:hover {
+    background-color: #2475c7;
+}
+
+/* Risk Assessment Results */
+#risk-result,
+#ethical-result {
+    background-color: #eef4fb;
+    border: 1px solid #d5dfed;
+    border-radius: 8px;
+    padding: 22px;
+    margin-top: 25px;
+}
+
+#risk-result h3,
+#ethical-result h3 {
+    color: #16345c;
+    margin-top: 0;
+}
+
+/* Ethical Index Main Score */
+#ethical-result h2 {
+    color: #16345c;
+    font-size: 36px;
+    margin: 15px 0;
+}
+
+/* Result Text */
+#risk-result p,
+#ethical-result p {
+    line-height: 1.7;
+}
+
+/* Module 3 Responsive Design */
+@media screen and (max-width: 600px) {
+
+    .risk-question {
+        padding: 15px;
+    }
+
+    .risk-question select {
+        width: 100%;
+    }
+
+    #risk-assessment button,
+    #ethical-index button {
+        width: 100%;
+    }
+
+    #risk-result,
+    #ethical-result {
+        padding: 16px;
+    }
+
+    #ethical-result h2 {
+        font-size: 30px;
+    }
+}
+
