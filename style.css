@@ -329,3 +329,114 @@ footer {
     }
 }
 
+
+/* =====================================
+   MODULE 2 - ACCOUNTING STYLE TAX TABLE
+===================================== */
+
+/* Side-by-side scenario layout */
+.scenario-comparison {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* Scenario cards */
+.scenario-card {
+    background-color: #ffffff;
+    border: 1px solid #d5dce8;
+    border-top: 5px solid #16345c;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    min-width: 0;
+    overflow: hidden;
+}
+
+.scenario-card h3 {
+    color: #16345c;
+    margin-bottom: 25px;
+}
+
+/* Tax computation table */
+.tax-computation-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: #ffffff;
+    margin-top: 15px;
+}
+
+/* Column widths */
+.tax-computation-table th:first-child,
+.tax-computation-table td:first-child {
+    width: 68%;
+    text-align: left;
+    overflow-wrap: break-word;
+}
+
+.tax-computation-table th:last-child,
+.tax-computation-table td:last-child {
+    width: 32%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* Table headings */
+.tax-computation-table th {
+    background-color: #e8eef7;
+    color: #16345c;
+    padding: 12px 8px;
+    border-bottom: 2px solid #16345c;
+}
+
+/* Table cells */
+.tax-computation-table td {
+    padding: 11px 8px;
+    border-bottom: 1px solid #d5dce8;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+/* Subtotals */
+.tax-computation-table .subtotal-row td {
+    border-top: 1px solid #16345c;
+    font-weight: bold;
+}
+
+/* Important totals */
+.tax-computation-table .total-row td {
+    font-weight: bold;
+    border-top: 1px solid #16345c;
+}
+
+/* Final tax figures */
+.tax-computation-table .final-row td {
+    font-weight: bold;
+    background-color: #e8eef7;
+    border-top: 2px solid #16345c;
+    border-bottom: 2px solid #16345c;
+}
+
+/* Responsive layout for smaller screens */
+@media screen and (max-width: 850px) {
+    .scenario-comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .scenario-card {
+        padding: 18px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tax-computation-table {
+        font-size: 13px;
+    }
+
+    .tax-computation-table th,
+    .tax-computation-table td {
+        padding: 8px 5px;
+    }
+}
