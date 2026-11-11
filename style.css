@@ -611,6 +611,261 @@ footer {
         padding: 16px;
     }
 
+}
+
+/* =========================================
+   HOMEPAGE - INTERACTIVE LEARNING DASHBOARD
+========================================= */
+
+/* Welcome Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #16345c, #2475c7);
+    color: white;
+    text-align: center;
+    padding: 55px 35px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+}
+
+.hero-section .welcome-label {
+    color: #c8e2ff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.hero-section h2 {
+    color: white;
+    font-size: 30px;
+    margin: 15px auto;
+    max-width: 750px;
+}
+
+.hero-section p {
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 15px auto;
+}
+
+.main-button {
+    display: inline-block;
+    background-color: white;
+    color: #16345c;
+    padding: 13px 25px;
+    margin-top: 15px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.main-button:hover {
+    background-color: #dcecff;
+    transform: translateY(-3px);
+}
+
+
+/* Learning Progress Dashboard */
+.progress-summary {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: #eef5fc;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.progress-number {
+    min-width: 140px;
+    text-align: center;
+    color: #16345c;
+}
+
+.progress-number h3 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.progress-number p {
+    margin-bottom: 0;
+}
+
+.progress-details {
+    flex: 1;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 13px;
+    background-color: #d3dfed;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #2475c7, #55a6e8);
+    border-radius: 20px;
+    transition: width 0.6s ease;
+}
+
+#progress-message {
+    color: #42546b;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+
+/* Interactive Module Cards */
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.module-card {
+    display: block;
+    background-color: #f0f6fd;
+    border: 1px solid #d6e4f3;
+    border-left: 5px solid #16345c;
+    border-radius: 10px;
+    padding: 25px;
+    text-decoration: none;
+    color: #26374b;
+    transition: 0.3s ease;
+}
+
+.module-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(22, 52, 92, 0.15);
+    border-left-color: #2475c7;
+    background-color: #e4f0fc;
+}
+
+.module-icon {
+    font-size: 32px;
+}
+
+.module-card h3 {
+    color: #2475c7;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.module-card h4 {
+    color: #16345c;
+    font-size: 19px;
+    margin: 10px 0;
+}
+
+.module-card p {
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.module-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #16345c;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+/* Case Study Question Cards */
+.question-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.question-card {
+    display: block;
+    background-color: white;
+    border: 1px solid #d5dfeb;
+    border-radius: 10px;
+    padding: 22px;
+    text-decoration: none;
+    color: #26374b;
+    transition: 0.3s ease;
+}
+
+.question-card:hover {
+    background-color: #eef5fc;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(22, 52, 92, 0.12);
+}
+
+.question-card > span:first-child {
+    color: #2475c7;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.question-card h3 {
+    color: #16345c;
+    margin-bottom: 8px;
+}
+
+.question-card p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.question-link {
+    display: inline-block;
+    color: #2475c7;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+
+/* Homepage Quick Access */
+#quick-access {
+    text-align: center;
+    background-color: #eaf2fc;
+    border-radius: 12px;
+    padding: 35px 20px;
+}
+
+#quick-access h2 {
+    color: #16345c;
+}
+
+
+/* Homepage Responsive Design */
+@media screen and (max-width: 700px) {
+
+    .hero-section {
+        padding: 35px 20px;
+    }
+
+    .hero-section h2 {
+        font-size: 23px;
+    }
+
+    .progress-summary {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .progress-details {
+        width: 100%;
+    }
+
+    .module-grid,
+    .question-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
     #ethical-result h2 {
         font-size: 30px;
     }
