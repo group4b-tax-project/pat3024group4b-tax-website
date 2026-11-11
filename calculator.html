@@ -150,30 +150,36 @@
 
     </div> 
 
-<div class="guided-practice">
 
-    <h3>Test Your Understanding</h3>
+<div class="guided-practice" id="guided-practice">
 
-    <p>
+    <h3 id="practice-title">Test Your Understanding</h3>
+
+    <p id="practice-question">
         Based on the audited income statement of
         Maju Mampan Sdn Bhd, enter the Profit Before Tax.
     </p>
 
-    <label for="guided-pbt-answer">
-        Profit Before Tax (RM)
-    </label>
+    <div id="practice-input-area">
 
-    <input type="number"
-        id="guided-pbt-answer"
-        placeholder="Enter your answer">
+        <label for="guided-pbt-answer">
+            Profit Before Tax (RM)
+        </label>
 
-    <button type="button" onclick="checkGuidedPBT()">
-        CHECK MY ANSWER
-    </button>
+        <input type="number"
+            id="guided-pbt-answer"
+            placeholder="Enter your answer">
 
-    <p id="guided-pbt-feedback"></p>
+        <button type="button" onclick="checkGuidedPBT()">
+            CHECK MY ANSWER
+        </button>
+
+        <p id="guided-pbt-feedback"></p>
+
+    </div>
 
 </div>
+
 
     <div class="guided-navigation">
 
@@ -327,6 +333,54 @@ function displayGuidedStep() {
 
     document.getElementById("guided-step-tip").textContent =
         step.tip;
+
+// Change the practice activity according to the current step
+
+const practiceTitle = document.getElementById("practice-title");
+const practiceQuestion = document.getElementById("practice-question");
+const practiceArea = document.getElementById("practice-input-area");
+
+const practiceActivities = [
+    {
+        title: "Test Your Understanding",
+        question: "Based on the audited income statement of Maju Mampan Sdn Bhd, enter the Profit Before Tax.",
+        content: `
+            <label for="guided-pbt-answer">Profit Before Tax (RM)</label>
+            <input type="number" id="guided-pbt-answer"
+                placeholder="Enter your answer">
+            <button type="button" onclick="checkGuidedPBT()">
+                CHECK MY ANSWER
+            </button>
+            <p id="guided-pbt-feedback"></p>
+        `
+    },
+    {
+        title: "Tax Adjustment Activity",
+        question: "Review the company's expenses and identify which items require tax adjustment. We will examine the case details and tax treatment in this step.",
+        content: "<p>Learning activity: Identify non-allowable expenses and allowable deductions.</p>"
+    },
+    {
+        title: "Capital Allowance Activity",
+        question: "Review the capital allowance information provided in Note 14 of the case study.",
+        content: "<p>Learning activity: Examine the current year capital allowances and balancing charge.</p>"
+    },
+    {
+        title: "Other Income and Donations Activity",
+        question: "Review Note 2 and Note 12 of the case study.",
+        content: "<p>Learning activity: Examine dividend income and donation information before determining their tax treatment.</p>"
+    },
+    {
+        title: "AaDab Optimization Activity",
+        question: "Consider how legally eligible tax deductions and capital allowances can affect the company's tax liability.",
+        content: "<p>Learning activity: Review the eligibility and supporting documentation for proposed tax optimization strategies.</p>"
+    }
+];
+
+const activity = practiceActivities[currentGuidedStep];
+
+practiceTitle.textContent = activity.title;
+practiceQuestion.textContent = activity.question;
+practiceArea.innerHTML = activity.content;
 
     document.getElementById("guided-progress-fill").style.width =
         ((currentGuidedStep + 1) / 5 * 100) + "%";
