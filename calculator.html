@@ -52,7 +52,51 @@
 </div>
     </section>
 
-    <section id="company-information">
+<!-- CALCULATOR MODE SELECTION -->
+<section id="calculator-mode-selection">
+
+    <h2>Choose Your Learning Mode</h2>
+
+    <p>
+        Select how you would like to complete the
+        corporate tax computation for Maju Mampan Sdn Bhd.
+    </p>
+
+    <div class="mode-selection-container">
+
+        <div class="mode-card">
+            <h3>Guided Learning Mode</h3>
+
+            <p>
+                Learn corporate tax computation step by step
+                with explanations, hints and learning activities.
+            </p>
+
+            <button type="button"
+                onclick="selectCalculatorMode('guided')">
+                START GUIDED LEARNING
+            </button>
+        </div>
+
+        <div class="mode-card">
+            <h3>Free Calculation Mode</h3>
+
+            <p>
+                Enter your own financial figures, calculate
+                tax independently and compare both scenarios.
+            </p>
+
+            <button type="button"
+                onclick="selectCalculatorMode('free')">
+                START FREE CALCULATION
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+    <section id="company-information" hidden>
         <h2>Company Information</h2>
 
         <p><strong>Company:</strong> Maju Mampan Sdn Bhd</p>
@@ -61,7 +105,7 @@
         <p><strong>Company Status:</strong> Malaysian Resident Company</p>
     </section>
 
-    <section id="tax-input">
+    <section id="tax-input" hidden>
         <h2>Tax Computation Input Form</h2>
 
         <p>
@@ -389,6 +433,33 @@ function calculateTax() {
 
     `;
 }
+    
+function selectCalculatorMode(mode) {
+
+    const companyInfo = document.getElementById("company-information");
+    const taxInput = document.getElementById("tax-input");
+    const modeSelection = document.getElementById("calculator-mode-selection");
+
+    if (mode !== "guided" && mode !== "free") {
+        return;
+    }
+
+    modeSelection.hidden = true;
+    companyInfo.hidden = false;
+    taxInput.hidden = false;
+
+    if (mode === "guided") {
+        alert("Welcome to Guided Learning Mode! Step-by-step guidance will be introduced next.");
+    } else {
+        alert("Welcome to Free Calculation Mode! You can now enter your own tax figures.");
+    }
+
+    taxInput.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
 function toggleModuleCompletion(moduleId) {
     let completedModules = JSON.parse(
         localStorage.getItem("pat3024_completed_modules") || "[]"
