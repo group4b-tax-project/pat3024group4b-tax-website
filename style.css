@@ -1,0 +1,136 @@
+
+/* GENERAL WEBSITE DESIGN */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f5fa;
+    color: #263449;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* WEBSITE HEADER */
+header {
+    background-color: #16345c;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+/* NAVIGATION MENU */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    background-color: white;
+}
+
+nav a {
+    background-color: #dce6f2;
+    color: #16345c;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 5px;
+    flex: 1;
+    max-width: 180px;
+}
+
+nav a:hover {
+    background-color: #2475c7;
+    color: white;
+}
+
+/* MAIN CONTENT */
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+section {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px #d5dce8;
+}
+
+h2 {
+    color: #16345c;
+    margin-top: 0;
+}
+
+/* CASE STUDY AND MODULE LISTS */
+ul {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 12px;
+}
+
+/* QUICK ACCESS */
+#quick-access {
+    background-color: #eaf0f8;
+    text-align: center;
+}
+
+#quick-access a {
+    display: inline-block;
+    background-color: #16345c;
+    color: white;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#quick-access a:hover {
+    background-color: #2475c7;
+}
+
+/* WEBSITE FOOTER */
+footer {
+    background-color: #16345c;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+/* MOBILE RESPONSIVE DESIGN */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 21px;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    nav a {
+        max-width: none;
+    }
+
+    main {
+        padding: 0 12px;
+    }
+
+    section {
+        padding: 18px;
+    }
+}
