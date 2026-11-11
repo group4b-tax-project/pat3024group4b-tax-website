@@ -148,7 +148,32 @@
             </p>
         </div>
 
-    </div>
+    </div> 
+
+<div class="guided-practice">
+
+    <h3>Test Your Understanding</h3>
+
+    <p>
+        Based on the audited income statement of
+        Maju Mampan Sdn Bhd, enter the Profit Before Tax.
+    </p>
+
+    <label for="guided-pbt-answer">
+        Profit Before Tax (RM)
+    </label>
+
+    <input type="number"
+        id="guided-pbt-answer"
+        placeholder="Enter your answer">
+
+    <button type="button" onclick="checkGuidedPBT()">
+        CHECK MY ANSWER
+    </button>
+
+    <p id="guided-pbt-feedback"></p>
+
+</div>
 
     <div class="guided-navigation">
 
@@ -326,6 +351,38 @@ function changeGuidedStep(direction) {
     );
 
     displayGuidedStep();
+}
+
+function checkGuidedPBT() {
+
+    const answer = Number(
+        document.getElementById("guided-pbt-answer").value
+    );
+
+    const feedback = document.getElementById("guided-pbt-feedback");
+
+    if (document.getElementById("guided-pbt-answer").value === "") {
+        feedback.textContent = "Please enter your answer first.";
+        feedback.style.color = "#d97706";
+        return;
+    }
+
+    if (answer === 1069000) {
+
+        feedback.textContent =
+            "Correct! Excellent work. The Profit Before Tax is RM1,069,000.";
+
+        feedback.style.color = "green";
+
+        document.getElementById("profit-before-tax").value = 1069000;
+
+    } else {
+
+        feedback.textContent =
+            "Not quite. Review the audited income statement and try again.";
+
+        feedback.style.color = "red";
+    }
 }
 
 function calculateTax() {
