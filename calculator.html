@@ -39,6 +39,17 @@
             business income and chargeable income, and compare
             different tax computation scenarios.
         </p>
+
+        <div class="completion-control">
+    <button class="completion-button" id="complete-module-2"
+        onclick="toggleModuleCompletion('module2')">
+        Mark Module 2 as Completed
+    </button>
+
+    <p id="module2-status">
+        You have not completed this module yet.
+    </p>
+</div>
     </section>
 
     <section id="company-information">
@@ -378,7 +389,33 @@ function calculateTax() {
 
     `;
 }
+function toggleModuleCompletion(moduleId) {
+    let completedModules = JSON.parse(
+        localStorage.getItem("pat3024_completed_modules") || "[]"
+    );
 
+    const button = document.getElementById("complete-module-2");
+    const status = document.getElementById("module2-status");
+
+    if (completedModules.includes(moduleId)) {
+        completedModules = completedModules.filter(
+            module => module !== moduleId
+        );
+
+        button.textContent = "Mark Module 2 as Completed";
+        status.textContent = "You have not completed this module yet.";
+    } else {
+        completedModules.push(moduleId);
+
+        button.textContent = "Mark as Not Completed";
+        status.textContent = "Congratulations! You have completed Module 2.";
+    }
+
+    localStorage.setItem(
+        "pat3024_completed_modules",
+        JSON.stringify(completedModules)
+    );
+}
 </script>
 
 
