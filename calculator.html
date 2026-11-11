@@ -98,7 +98,67 @@
 
 <footer>
     <p>Prepared by: Group 4(B) Corporate Taxation 2.</p>
+
 </footer>
+
+<script>
+function calculateTax() {
+
+    const profitBeforeTax =
+        Number(document.getElementById("profit-before-tax").value) || 0;
+
+    const addBack =
+        Number(document.getElementById("add-back").value) || 0;
+
+    const deductions =
+        Number(document.getElementById("deductions").value) || 0;
+
+    const balancingCharge =
+        Number(document.getElementById("balancing-charge").value) || 0;
+
+    const capitalAllowance =
+        Number(document.getElementById("capital-allowance").value) || 0;
+
+    const adjustedBusinessIncome =
+        profitBeforeTax + addBack - deductions;
+
+    const adjustedIncomeAfterBC =
+        adjustedBusinessIncome + balancingCharge;
+
+    const statutoryBusinessIncome =
+        Math.max(0, adjustedIncomeAfterBC - capitalAllowance);
+
+    document.getElementById("calculation-result").innerHTML = `
+        <h3>Calculation Results</h3>
+
+        <p>Profit Before Tax: RM ${profitBeforeTax.toLocaleString("en-MY")}</p>
+        <p>Add Back: RM ${addBack.toLocaleString("en-MY")}</p>
+        <p>Less: Allowable Deductions: RM ${deductions.toLocaleString("en-MY")}</p>
+
+        <hr>
+
+        <p><strong>Adjusted Business Income:</strong>
+        RM ${adjustedBusinessIncome.toLocaleString("en-MY")}</p>
+
+        <p>Balancing Charge:
+        RM ${balancingCharge.toLocaleString("en-MY")}</p>
+
+        <p><strong>Adjusted Income After Balancing Charge:</strong>
+        RM ${adjustedIncomeAfterBC.toLocaleString("en-MY")}</p>
+
+        <p>Less: Capital Allowances:
+        RM ${capitalAllowance.toLocaleString("en-MY")}</p>
+
+        <hr>
+
+        <h3>Statutory Business Income</h3>
+        <h2>RM ${statutoryBusinessIncome.toLocaleString("en-MY")}</h2>
+
+        <p><em>Simplified learning calculation only. Not final chargeable income or tax payable.</em></p>
+    `;
+}
+</script>
 
 </body>
 </html>
+
