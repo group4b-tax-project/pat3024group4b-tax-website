@@ -142,41 +142,23 @@
 
 
 
-<script>
 
+<script>
 function calculateTax() {
 
     // 1. Retrieve original tax inputs
-    const profitBeforeTax =
-        Number(document.getElementById("profit-before-tax").value) || 0;
-
-    const addBack =
-        Number(document.getElementById("add-back").value) || 0;
-
-    const deductions =
-        Number(document.getElementById("deductions").value) || 0;
-
-    const balancingCharge =
-        Number(document.getElementById("balancing-charge").value) || 0;
-
-    const capitalAllowance =
-        Number(document.getElementById("capital-allowance").value) || 0;
-
-    const capitalAllowanceBF =
-        Number(document.getElementById("capital-allowance-bf").value) || 0;
-
-    const otherIncome =
-        Number(document.getElementById("other-income").value) || 0;
-
-    const approvedDonations =
-        Number(document.getElementById("approved-donations").value) || 0;
+    const profitBeforeTax = Number(document.getElementById("profit-before-tax").value) || 0;
+    const addBack = Number(document.getElementById("add-back").value) || 0;
+    const deductions = Number(document.getElementById("deductions").value) || 0;
+    const balancingCharge = Number(document.getElementById("balancing-charge").value) || 0;
+    const capitalAllowance = Number(document.getElementById("capital-allowance").value) || 0;
+    const capitalAllowanceBF = Number(document.getElementById("capital-allowance-bf").value) || 0;
+    const otherIncome = Number(document.getElementById("other-income").value) || 0;
+    const approvedDonations = Number(document.getElementById("approved-donations").value) || 0;
 
     // 2. Retrieve AaDab optimization inputs
-    const optimizedDeductions =
-        Number(document.getElementById("optimized-deductions").value) || 0;
-
-    const optimizedCapitalAllowance =
-        Number(document.getElementById("optimized-capital-allowance").value) || 0;
+    const optimizedDeductions = Number(document.getElementById("optimized-deductions").value) || 0;
+    const optimizedCapitalAllowance = Number(document.getElementById("optimized-capital-allowance").value) || 0;
 
     // 3. Calculate each scenario
     function calculateScenario(extraDeductions, extraCapitalAllowances) {
@@ -190,8 +172,7 @@ function calculateTax() {
         const totalCapitalAllowances =
             capitalAllowance + capitalAllowanceBF + extraCapitalAllowances;
 
-        const availableIncomeForCA =
-            Math.max(0, adjustedIncomeAfterBC);
+        const availableIncomeForCA = Math.max(0, adjustedIncomeAfterBC);
 
         const capitalAllowancesAbsorbed =
             Math.min(totalCapitalAllowances, availableIncomeForCA);
@@ -205,8 +186,7 @@ function calculateTax() {
         const aggregateIncome =
             statutoryBusinessIncome + otherIncome;
 
-        const donationLimit =
-            aggregateIncome * 0.10;
+        const donationLimit = aggregateIncome * 0.10;
 
         const allowableDonations =
             Math.min(approvedDonations, donationLimit);
@@ -214,8 +194,7 @@ function calculateTax() {
         const chargeableIncome =
             Math.max(0, aggregateIncome - allowableDonations);
 
-        const estimatedTax =
-            chargeableIncome * 0.24;
+        const estimatedTax = chargeableIncome * 0.24;
 
         return {
             adjustedBusinessIncome,
@@ -240,8 +219,7 @@ function calculateTax() {
     );
 
     // 5. Calculate tax savings
-    const taxSavings =
-        unoptimized.estimatedTax - optimized.estimatedTax;
+    const taxSavings = unoptimized.estimatedTax - optimized.estimatedTax;
 
     // 6. Format Malaysian Ringgit
     function formatRM(amount) {
@@ -251,165 +229,148 @@ function calculateTax() {
         });
     }
 
-    // 7. Display all calculation results
+    // 7. Display results in tables
     document.getElementById("calculation-result").innerHTML = `
 
-        <h3>Detailed Calculation Results</h3>
+        <h3>Detailed Tax Calculation Results</h3>
 
-        <p><strong>Profit Before Tax:</strong> ${formatRM(profitBeforeTax)}</p>
+        <p><strong>Tax Rate Used:</strong> 24% (Illustrative)</p>
 
-        <p>Add Back: ${formatRM(addBack)}</p>
+        <h3>1. Input Summary</h3>
 
-        <p>Less: Allowable Deductions: ${formatRM(deductions)}</p>
-
-        <hr>
-
-        <p><strong>Adjusted Business Income:</strong>
-        ${formatRM(unoptimized.adjustedBusinessIncome)}</p>
-
-        <p>Balancing Charge: ${formatRM(balancingCharge)}</p>
-
-        <p>Current Year Capital Allowances:
-        ${formatRM(capitalAllowance)}</p>
-
-        <p>Unabsorbed Capital Allowances Brought Forward:
-        ${formatRM(capitalAllowanceBF)}</p>
-
-        <p><strong>Total Capital Allowances Available:</strong>
-        ${formatRM(unoptimized.totalCapitalAllowances)}</p>
-
-        <p>Capital Allowances Absorbed:
-        ${formatRM(unoptimized.capitalAllowancesAbsorbed)}</p>
-
-        <p><strong>Unabsorbed Capital Allowances Carried Forward:</strong>
-        ${formatRM(unoptimized.unabsorbedCapitalAllowances)}</p>
-
-        <p><strong>Statutory Business Income:</strong>
-        ${formatRM(unoptimized.statutoryBusinessIncome)}</p>
-
-        <hr>
-
-        <p>Other Statutory Income: ${formatRM(otherIncome)}</p>
-
-        <p><strong>Aggregate Income:</strong>
-        ${formatRM(unoptimized.aggregateIncome)}</p>
-
-        <p>Approved Donations: ${formatRM(approvedDonations)}</p>
-
-        <p>Allowable Donations (10% limit):
-        ${formatRM(unoptimized.allowableDonations)}</p>
-
-        <hr>
-
-        <h3>Chargeable Income</h3>
-        <h2>${formatRM(unoptimized.chargeableIncome)}</h2>
-
-        <h3>Estimated Corporate Tax Payable (24%)</h3>
-        <h2>${formatRM(unoptimized.estimatedTax)}</h2>
-
-        <hr>
-
-        <h3>Tax Computation Results</h3>
-
-        <p><strong>Tax Rate Used:</strong> 24%</p>
-
-        <div class="scenario-comparison">
-
-            <div class="scenario-card">
-
-                <h3>Unoptimized Scenario</h3>
-
-                <p>Adjusted Business Income:
-                ${formatRM(unoptimized.adjustedBusinessIncome)}</p>
-
-                <p>Adjusted Income After Balancing Charge:
-                ${formatRM(unoptimized.adjustedIncomeAfterBC)}</p>
-
-                <p>Total Capital Allowances Available:
-                ${formatRM(unoptimized.totalCapitalAllowances)}</p>
-
-                <p>Capital Allowances Absorbed:
-                ${formatRM(unoptimized.capitalAllowancesAbsorbed)}</p>
-
-                <p>Unabsorbed Capital Allowances:
-                ${formatRM(unoptimized.unabsorbedCapitalAllowances)}</p>
-
-                <p>Statutory Business Income:
-                ${formatRM(unoptimized.statutoryBusinessIncome)}</p>
-
-                <p>Aggregate Income:
-                ${formatRM(unoptimized.aggregateIncome)}</p>
-
-                <p>Allowable Donations:
-                ${formatRM(unoptimized.allowableDonations)}</p>
-
-                <hr>
-
-                <h4>Chargeable Income</h4>
-                <h2>${formatRM(unoptimized.chargeableIncome)}</h2>
-
-                <h4>Estimated Corporate Tax</h4>
-                <h2>${formatRM(unoptimized.estimatedTax)}</h2>
-
-            </div>
-
-            <div class="scenario-card">
-
-                <h3>AaDab-Optimized Scenario</h3>
-
-                <p>Additional Allowable Deductions:
-                ${formatRM(optimizedDeductions)}</p>
-
-                <p>Additional Eligible Capital Allowances:
-                ${formatRM(optimizedCapitalAllowance)}</p>
-
-                <p>Adjusted Business Income:
-                ${formatRM(optimized.adjustedBusinessIncome)}</p>
-
-                <p>Adjusted Income After Balancing Charge:
-                ${formatRM(optimized.adjustedIncomeAfterBC)}</p>
-
-                <p>Total Capital Allowances Available:
-                ${formatRM(optimized.totalCapitalAllowances)}</p>
-
-                <p>Capital Allowances Absorbed:
-                ${formatRM(optimized.capitalAllowancesAbsorbed)}</p>
-
-                <p>Unabsorbed Capital Allowances:
-                ${formatRM(optimized.unabsorbedCapitalAllowances)}</p>
-
-                <p>Statutory Business Income:
-                ${formatRM(optimized.statutoryBusinessIncome)}</p>
-
-                <p>Aggregate Income:
-                ${formatRM(optimized.aggregateIncome)}</p>
-
-                <p>Allowable Donations:
-                ${formatRM(optimized.allowableDonations)}</p>
-
-                <hr>
-
-                <h4>Chargeable Income</h4>
-                <h2>${formatRM(optimized.chargeableIncome)}</h2>
-
-                <h4>Estimated Corporate Tax</h4>
-                <h2>${formatRM(optimized.estimatedTax)}</h2>
-
-            </div>
-
+        <div class="table-responsive">
+        <table class="tax-result-table">
+            <thead>
+                <tr>
+                    <th>Input</th>
+                    <th>Amount (RM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Profit Before Tax</td><td>${formatRM(profitBeforeTax)}</td></tr>
+                <tr><td>Add Back</td><td>${formatRM(addBack)}</td></tr>
+                <tr><td>Allowable Deductions</td><td>${formatRM(deductions)}</td></tr>
+                <tr><td>Balancing Charge</td><td>${formatRM(balancingCharge)}</td></tr>
+                <tr><td>Current Year Capital Allowances</td><td>${formatRM(capitalAllowance)}</td></tr>
+                <tr><td>Capital Allowances Brought Forward</td><td>${formatRM(capitalAllowanceBF)}</td></tr>
+                <tr><td>Other Statutory Income</td><td>${formatRM(otherIncome)}</td></tr>
+                <tr><td>Approved Donations</td><td>${formatRM(approvedDonations)}</td></tr>
+                <tr><td>Additional AaDab Deductions</td><td>${formatRM(optimizedDeductions)}</td></tr>
+                <tr><td>Additional AaDab Capital Allowances</td><td>${formatRM(optimizedCapitalAllowance)}</td></tr>
+            </tbody>
+        </table>
         </div>
 
-        <hr>
+        <h3>2. Detailed Tax Computation Comparison</h3>
 
-        <h3>AaDab Optimization Summary</h3>
+        <div class="table-responsive">
+        <table class="tax-result-table">
+            <thead>
+                <tr>
+                    <th>Particulars</th>
+                    <th>Unoptimized (RM)</th>
+                    <th>AaDab-Optimized (RM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Adjusted Business Income</td>
+                    <td>${formatRM(unoptimized.adjustedBusinessIncome)}</td>
+                    <td>${formatRM(optimized.adjustedBusinessIncome)}</td>
+                </tr>
+                <tr>
+                    <td>Balancing Charge</td>
+                    <td>${formatRM(balancingCharge)}</td>
+                    <td>${formatRM(balancingCharge)}</td>
+                </tr>
+                <tr>
+                    <td>Adjusted Income After Balancing Charge</td>
+                    <td>${formatRM(unoptimized.adjustedIncomeAfterBC)}</td>
+                    <td>${formatRM(optimized.adjustedIncomeAfterBC)}</td>
+                </tr>
+                <tr>
+                    <td>Total Capital Allowances Available</td>
+                    <td>${formatRM(unoptimized.totalCapitalAllowances)}</td>
+                    <td>${formatRM(optimized.totalCapitalAllowances)}</td>
+                </tr>
+                <tr>
+                    <td>Capital Allowances Absorbed</td>
+                    <td>${formatRM(unoptimized.capitalAllowancesAbsorbed)}</td>
+                    <td>${formatRM(optimized.capitalAllowancesAbsorbed)}</td>
+                </tr>
+                <tr>
+                    <td>Unabsorbed Capital Allowances</td>
+                    <td>${formatRM(unoptimized.unabsorbedCapitalAllowances)}</td>
+                    <td>${formatRM(optimized.unabsorbedCapitalAllowances)}</td>
+                </tr>
+                <tr>
+                    <td>Statutory Business Income</td>
+                    <td>${formatRM(unoptimized.statutoryBusinessIncome)}</td>
+                    <td>${formatRM(optimized.statutoryBusinessIncome)}</td>
+                </tr>
+                <tr>
+                    <td>Other Statutory Income</td>
+                    <td>${formatRM(otherIncome)}</td>
+                    <td>${formatRM(otherIncome)}</td>
+                </tr>
+                <tr>
+                    <td>Aggregate Income</td>
+                    <td>${formatRM(unoptimized.aggregateIncome)}</td>
+                    <td>${formatRM(optimized.aggregateIncome)}</td>
+                </tr>
+                <tr>
+                    <td>Allowable Donations</td>
+                    <td>${formatRM(unoptimized.allowableDonations)}</td>
+                    <td>${formatRM(optimized.allowableDonations)}</td>
+                </tr>
+                <tr class="total-row">
+                    <td>Chargeable Income</td>
+                    <td>${formatRM(unoptimized.chargeableIncome)}</td>
+                    <td>${formatRM(optimized.chargeableIncome)}</td>
+                </tr>
+                <tr class="total-row">
+                    <td>Estimated Corporate Tax (24%)</td>
+                    <td>${formatRM(unoptimized.estimatedTax)}</td>
+                    <td>${formatRM(optimized.estimatedTax)}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
 
-        <p><strong>Unoptimized Tax:</strong>
-        ${formatRM(unoptimized.estimatedTax)}</p>
+        <h3>3. AaDab Optimization Summary</h3>
 
-        <p><strong>AaDab-Optimized Tax:</strong>
-        ${formatRM(optimized.estimatedTax)}</p>
-
-        <h2>Estimated Tax Savings: ${formatRM(taxSavings)}</h2>
+        <div class="table-responsive">
+        <table class="tax-result-table">
+            <thead>
+                <tr>
+                    <th>Particulars</th>
+                    <th>Amount (RM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Unoptimized Chargeable Income</td>
+                    <td>${formatRM(unoptimized.chargeableIncome)}</td>
+                </tr>
+                <tr>
+                    <td>AaDab-Optimized Chargeable Income</td>
+                    <td>${formatRM(optimized.chargeableIncome)}</td>
+                </tr>
+                <tr>
+                    <td>Unoptimized Tax</td>
+                    <td>${formatRM(unoptimized.estimatedTax)}</td>
+                </tr>
+                <tr>
+                    <td>AaDab-Optimized Tax</td>
+                    <td>${formatRM(optimized.estimatedTax)}</td>
+                </tr>
+                <tr class="total-row">
+                    <td>Estimated Tax Savings</td>
+                    <td>${formatRM(taxSavings)}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
 
         <p>
             ${
@@ -423,17 +384,15 @@ function calculateTax() {
 
         <p><em>
             Simplified educational calculation only.
-            Additional deductions and capital allowances must be
-            legally eligible, properly supported and subject to
-            the relevant provisions of the Income Tax Act 1967.
-            The 24% tax rate is an illustrative assumption, not
-            a determination of the company's actual tax rate.
+            Additional deductions and capital allowances must be legally eligible,
+            properly supported and subject to the relevant provisions of the
+            Income Tax Act 1967. The 24% tax rate is an illustrative assumption,
+            not a determination of the company's actual tax rate.
         </em></p>
-
     `;
 }
-
 </script>
+
 
 
 
