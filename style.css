@@ -1155,3 +1155,185 @@ footer {
         width: 100%;
     }
 }
+
+/* =========================================
+   MODULE 2 - DYNAMIC FORM C DESIGN
+========================================= */
+
+/* Module 2 Introduction */
+#module-intro {
+    background: linear-gradient(135deg, #16345c, #2475c7);
+    color: white;
+    text-align: center;
+    padding: 45px 30px;
+    border-radius: 14px;
+}
+
+#module-intro h2 {
+    color: white;
+    font-size: 28px;
+}
+
+#module-intro p {
+    color: #e8f2ff;
+    max-width: 750px;
+    margin: 12px auto;
+    line-height: 1.8;
+}
+
+/* Company Information */
+#company-information {
+    background: linear-gradient(135deg, #ffffff, #eef5fc);
+    border-top: 5px solid #2475c7;
+}
+
+#company-information h2 {
+    color: #16345c;
+    margin-bottom: 20px;
+}
+
+#company-information p {
+    padding: 10px 15px;
+    margin: 8px 0;
+    background-color: #f2f6fc;
+    border-radius: 6px;
+}
+
+/* Tax Input Form */
+#tax-input {
+    border-top: 5px solid #16345c;
+}
+
+#tax-input > p {
+    color: #52647a;
+    margin-bottom: 25px;
+}
+
+#tax-input h3 {
+    background-color: #eaf2fc;
+    color: #16345c;
+    padding: 13px 16px;
+    border-left: 5px solid #2475c7;
+    border-radius: 6px;
+    margin-top: 30px;
+    margin-bottom: 18px;
+}
+
+#tax-input label {
+    color: #263449;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#tax-input input {
+    max-width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background-color: #f8fafc;
+    transition: 0.3s ease;
+}
+
+#tax-input input:focus {
+    outline: none;
+    border-color: #2475c7;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(36, 117, 199, 0.12);
+}
+
+#tax-input input::placeholder {
+    color: #94a3b8;
+}
+
+/* Calculate Tax Button */
+#tax-input > button {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #16345c, #2475c7);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#tax-input > button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(22, 52, 92, 0.2);
+}
+
+/* Calculation Results */
+#calculation-result {
+    background-color: #f2f6fc;
+    border: 1px solid #d5dce8;
+    border-top: 5px solid #2475c7;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+#calculation-result > h3 {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #16345c;
+    font-size: 23px;
+}
+
+#calculation-result > p {
+    line-height: 1.7;
+}
+
+/* Scenario Comparison */
+.scenario-comparison {
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.scenario-card {
+    border-top: 5px solid #2475c7;
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.scenario-card:hover {
+    box-shadow: 0 8px 20px rgba(22, 52, 92, 0.12);
+}
+
+.scenario-card h3 {
+    color: #16345c;
+    font-size: 19px;
+}
+
+/* Optimization Summary */
+#calculation-result hr {
+    border: none;
+    border-top: 2px solid #d5dce8;
+    margin: 30px 0;
+}
+
+/* Module 2 Mobile Design */
+@media screen and (max-width: 700px) {
+    #module-intro {
+        padding: 30px 20px;
+    }
+
+    #module-intro h2 {
+        font-size: 23px;
+    }
+
+    #company-information p {
+        padding: 10px;
+    }
+
+    #calculation-result {
+        padding: 16px;
+    }
+
+    #tax-input > button {
+        padding: 14px;
+    }
+}
