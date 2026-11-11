@@ -112,6 +112,61 @@
             Enter the relevant financial information to calculate
             the company's adjusted business income and chargeable income.
         </p>
+        
+<!-- GUIDED LEARNING PANEL -->
+<div id="guided-learning-panel" hidden>
+
+    <h2>Guided Learning Journey</h2>
+
+    <p>
+        Follow the five steps below to understand how to
+        complete the corporate tax computation.
+    </p>
+
+    <div class="guided-progress">
+        <p id="guided-step-counter">Step 1 of 5</p>
+
+        <div class="guided-progress-track">
+            <div id="guided-progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="guided-step-content">
+
+        <h3 id="guided-step-title">1. Business Income</h3>
+
+        <p id="guided-step-explanation">
+            Start with the company's Profit Before Tax (PBT)
+            based on its audited income statement.
+        </p>
+
+        <div class="guided-tip">
+            <strong>Learning Tip:</strong>
+            <p id="guided-step-tip">
+                Profit Before Tax is the starting point
+                for the corporate tax computation.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="guided-navigation">
+
+        <button type="button" id="guided-previous"
+            onclick="changeGuidedStep(-1)" disabled>
+            ← Previous
+        </button>
+
+        <button type="button" id="guided-next"
+            onclick="changeGuidedStep(1)">
+            Next Step →
+        </button>
+
+    </div>
+
+</div>
+<!-- END GUIDED LEARNING PANEL -->
+
 
         <h3>1. Business Income</h3>
 
@@ -199,6 +254,79 @@
 
 
 <script>
+
+// GUIDED LEARNING STEP CONTENT
+
+const guidedSteps = [
+    {
+        title: "1. Business Income",
+        explanation: "Start with the company's Profit Before Tax (PBT) based on its audited income statement.",
+        tip: "Profit Before Tax is the starting point for the corporate tax computation."
+    },
+    {
+        title: "2. Tax Adjustments",
+        explanation: "Identify non-allowable expenses that must be added back and allowable deductions that can be deducted.",
+        tip: "Only expenses and deductions that satisfy the relevant tax rules should be included."
+    },
+    {
+        title: "3. Capital Allowances and Balancing Adjustments",
+        explanation: "Consider balancing charges, current year capital allowances and unabsorbed capital allowances brought forward.",
+        tip: "Capital allowances are considered separately from accounting depreciation."
+    },
+    {
+        title: "4. Other Income and Donations",
+        explanation: "Review other statutory income and approved donations relevant to the company's tax computation.",
+        tip: "Check the tax treatment and applicable limits before entering these amounts."
+    },
+    {
+        title: "5. AaDab Optimization Inputs",
+        explanation: "Consider additional deductions and capital allowances that are legally eligible and supported by documentation.",
+        tip: "Tax optimization must follow the Income Tax Act 1967 and must not involve artificial arrangements."
+    }
+];
+
+let currentGuidedStep = 0;
+
+function displayGuidedStep() {
+
+    const step = guidedSteps[currentGuidedStep];
+
+    document.getElementById("guided-step-counter").textContent =
+        "Step " + (currentGuidedStep + 1) + " of 5";
+
+    document.getElementById("guided-step-title").textContent =
+        step.title;
+
+    document.getElementById("guided-step-explanation").textContent =
+        step.explanation;
+
+    document.getElementById("guided-step-tip").textContent =
+        step.tip;
+
+    document.getElementById("guided-progress-fill").style.width =
+        ((currentGuidedStep + 1) / 5 * 100) + "%";
+
+    document.getElementById("guided-previous").disabled =
+        currentGuidedStep === 0;
+
+    document.getElementById("guided-next").textContent =
+        currentGuidedStep === 4 ? "Finish Guidance" : "Next Step →";
+}
+
+function changeGuidedStep(direction) {
+
+    if (currentGuidedStep === 4 && direction === 1) {
+        alert("Congratulations! You have completed the five guided learning steps.");
+        return;
+    }
+
+    currentGuidedStep = Math.max(
+        0,
+        Math.min(4, currentGuidedStep + direction)
+    );
+
+    displayGuidedStep();
+}
 
 function calculateTax() {
 
@@ -434,11 +562,13 @@ function calculateTax() {
     `;
 }
     
+
 function selectCalculatorMode(mode) {
 
     const companyInfo = document.getElementById("company-information");
     const taxInput = document.getElementById("tax-input");
     const modeSelection = document.getElementById("calculator-mode-selection");
+    const guidedPanel = document.getElementById("guided-learning-panel");
 
     if (mode !== "guided" && mode !== "free") {
         return;
@@ -448,10 +578,11 @@ function selectCalculatorMode(mode) {
     companyInfo.hidden = false;
     taxInput.hidden = false;
 
+    guidedPanel.hidden = (mode !== "guided");
+
     if (mode === "guided") {
-        alert("Welcome to Guided Learning Mode! Step-by-step guidance will be introduced next.");
-    } else {
-        alert("Welcome to Free Calculation Mode! You can now enter your own tax figures.");
+        currentGuidedStep = 0;
+        displayGuidedStep();
     }
 
     taxInput.scrollIntoView({
