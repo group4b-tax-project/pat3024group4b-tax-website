@@ -102,6 +102,27 @@
 <input type="number" id="approved-donations"
        placeholder="Enter approved donations">
 
+<h3>5. AaDab Optimization Inputs</h3>
+
+<p>
+    Enter any additional deductions or capital allowances
+    that are legally eligible and supported by documentation.
+</p>
+
+<label for="optimized-deductions">
+    Additional Allowable Deductions - AaDab Scenario (RM)
+</label>
+<input type="number" id="optimized-deductions"
+       min="0" step="0.01"
+       placeholder="Enter additional allowable deductions">
+
+<label for="optimized-capital-allowance">
+    Additional Eligible Capital Allowances - AaDab Scenario (RM)
+</label>
+<input type="number" id="optimized-capital-allowance"
+       min="0" step="0.01"
+       placeholder="Enter additional eligible capital allowances">
+
         <button type="button" onclick="calculateTax()">
             CALCULATE TAX
         </button>
@@ -120,9 +141,11 @@
 </footer>
 
 
+
 <script>
 function calculateTax() {
 
+    // 1. Retrieve the original tax inputs
     const profitBeforeTax =
         Number(document.getElementById("profit-before-tax").value) || 0;
 
@@ -136,10 +159,10 @@ function calculateTax() {
         Number(document.getElementById("balancing-charge").value) || 0;
 
     const capitalAllowance =
-    Number(document.getElementById("capital-allowance").value) || 0;
+        Number(document.getElementById("capital-allowance").value) || 0;
 
     const capitalAllowanceBF =
-    Number(document.getElementById("capital-allowance-bf").value) || 0;
+        Number(document.getElementById("capital-allowance-bf").value) || 0;
 
     const otherIncome =
         Number(document.getElementById("other-income").value) || 0;
@@ -147,110 +170,217 @@ function calculateTax() {
     const approvedDonations =
         Number(document.getElementById("approved-donations").value) || 0;
 
-    // Step 1: Adjusted Business Income
-    const adjustedBusinessIncome =
-        profitBeforeTax + addBack - deductions;
+    // 2. Retrieve AaDab optimization inputs
+    const optimizedDeductions =
+        Number(document.getElementById("optimized-deductions").value) || 0;
 
-    // Step 2: Adjusted Income After Balancing Charge
-    const adjustedIncomeAfterBC =
-        adjustedBusinessIncome + balancingCharge;
+    const optimizedCapitalAllowance =
+        Number(document.getElementById("optimized-capital-allowance").value) || 0;
 
-    // Step 3: Capital Allowances
-    const totalCapitalAllowances =
-        capitalAllowance + capitalAllowanceBF;
+    // 3. Calculate each scenario
+    function calculateScenario(extraDeductions, extraCapitalAllowances) {
 
-    const availableIncomeForCA =
-        Math.max(0, adjustedIncomeAfterBC);
+        const adjustedBusinessIncome =
+            profitBeforeTax + addBack - deductions - extraDeductions;
 
-    const capitalAllowancesAbsorbed =
-        Math.min(totalCapitalAllowances, availableIncomeForCA);
+        const adjustedIncomeAfterBC =
+            adjustedBusinessIncome + balancingCharge;
 
-    const unabsorbedCapitalAllowances =
-        totalCapitalAllowances - capitalAllowancesAbsorbed;
+        const totalCapitalAllowances =
+            capitalAllowance + capitalAllowanceBF + extraCapitalAllowances;
 
-// Step 4: Statutory Business Income
-const statutoryBusinessIncome =
-    Math.max(0, adjustedIncomeAfterBC - capitalAllowancesAbsorbed);
+        const availableIncomeForCA =
+            Math.max(0, adjustedIncomeAfterBC);
 
-    // Step 4: Aggregate Income
-    const aggregateIncome =
-        statutoryBusinessIncome + otherIncome;
+        const capitalAllowancesAbsorbed =
+            Math.min(totalCapitalAllowances, availableIncomeForCA);
 
-    // Step 5: Approved Donations (maximum 10%)
-    const donationLimit = aggregateIncome * 0.10;
+        const unabsorbedCapitalAllowances =
+            totalCapitalAllowances - capitalAllowancesAbsorbed;
 
-    const allowableDonations =
-        Math.min(approvedDonations, donationLimit);
+        const statutoryBusinessIncome =
+            Math.max(0, adjustedIncomeAfterBC - capitalAllowancesAbsorbed);
 
-    // Step 6: Simplified Chargeable Income
-    const chargeableIncome =
-        Math.max(0, aggregateIncome - allowableDonations);
+        const aggregateIncome =
+            statutoryBusinessIncome + otherIncome;
 
-    // Step 7: Estimated Corporate Tax at 24%
-    const taxRate = 0.24;
+        const donationLimit =
+            aggregateIncome * 0.10;
 
-    const estimatedTax =
-        chargeableIncome * taxRate;
+        const allowableDonations =
+            Math.min(approvedDonations, donationLimit);
 
+        const chargeableIncome =
+            Math.max(0, aggregateIncome - allowableDonations);
+
+        const estimatedTax =
+            chargeableIncome * 0.24;
+
+        return {
+            adjustedBusinessIncome,
+            adjustedIncomeAfterBC,
+            totalCapitalAllowances,
+            capitalAllowancesAbsorbed,
+            unabsorbedCapitalAllowances,
+            statutoryBusinessIncome,
+            aggregateIncome,
+            allowableDonations,
+            chargeableIncome,
+            estimatedTax
+        };
+    }
+
+    // 4. Unoptimized scenario
+    const unoptimized = calculateScenario(0, 0);
+
+    // 5. AaDab-optimized scenario
+    const optimized = calculateScenario(
+        optimizedDeductions,
+        optimizedCapitalAllowance
+    );
+
+    // 6. Calculate estimated tax savings
+    const taxSavings =
+        unoptimized.estimatedTax - optimized.estimatedTax;
+
+    // 7. Format amounts in Malaysian Ringgit
+    function formatRM(amount) {
+        return "RM " + amount.toLocaleString("en-MY", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+
+    // 8. Display the comparison
     document.getElementById("calculation-result").innerHTML = `
-        <h3>Calculation Results</h3>
 
-        <p>Profit Before Tax: RM ${profitBeforeTax.toLocaleString("en-MY")}</p>
-        <p>Add Back: RM ${addBack.toLocaleString("en-MY")}</p>
-        <p>Less: Allowable Deductions: RM ${deductions.toLocaleString("en-MY")}</p>
+        <h3>Tax Computation Results</h3>
+
+        <p>
+            <strong>Tax Rate Used:</strong> 24%
+        </p>
+
+        <div class="scenario-comparison">
+
+            <div class="scenario-card">
+
+                <h3>Unoptimized Scenario</h3>
+
+                <p>Adjusted Business Income:
+                ${formatRM(unoptimized.adjustedBusinessIncome)}</p>
+
+                <p>Adjusted Income After Balancing Charge:
+                ${formatRM(unoptimized.adjustedIncomeAfterBC)}</p>
+
+                <p>Total Capital Allowances Available:
+                ${formatRM(unoptimized.totalCapitalAllowances)}</p>
+
+                <p>Capital Allowances Absorbed:
+                ${formatRM(unoptimized.capitalAllowancesAbsorbed)}</p>
+
+                <p>Unabsorbed Capital Allowances:
+                ${formatRM(unoptimized.unabsorbedCapitalAllowances)}</p>
+
+                <p>Statutory Business Income:
+                ${formatRM(unoptimized.statutoryBusinessIncome)}</p>
+
+                <p>Aggregate Income:
+                ${formatRM(unoptimized.aggregateIncome)}</p>
+
+                <p>Allowable Donations:
+                ${formatRM(unoptimized.allowableDonations)}</p>
+
+                <hr>
+
+                <h4>Chargeable Income</h4>
+                <h2>${formatRM(unoptimized.chargeableIncome)}</h2>
+
+                <h4>Estimated Corporate Tax</h4>
+                <h2>${formatRM(unoptimized.estimatedTax)}</h2>
+
+            </div>
+
+            <div class="scenario-card">
+
+                <h3>AaDab-Optimized Scenario</h3>
+
+                <p>Additional Allowable Deductions:
+                ${formatRM(optimizedDeductions)}</p>
+
+                <p>Additional Eligible Capital Allowances:
+                ${formatRM(optimizedCapitalAllowance)}</p>
+
+                <p>Adjusted Business Income:
+                ${formatRM(optimized.adjustedBusinessIncome)}</p>
+
+                <p>Adjusted Income After Balancing Charge:
+                ${formatRM(optimized.adjustedIncomeAfterBC)}</p>
+
+                <p>Total Capital Allowances Available:
+                ${formatRM(optimized.totalCapitalAllowances)}</p>
+
+                <p>Capital Allowances Absorbed:
+                ${formatRM(optimized.capitalAllowancesAbsorbed)}</p>
+
+                <p>Unabsorbed Capital Allowances:
+                ${formatRM(optimized.unabsorbedCapitalAllowances)}</p>
+
+                <p>Statutory Business Income:
+                ${formatRM(optimized.statutoryBusinessIncome)}</p>
+
+                <p>Aggregate Income:
+                ${formatRM(optimized.aggregateIncome)}</p>
+
+                <p>Allowable Donations:
+                ${formatRM(optimized.allowableDonations)}</p>
+
+                <hr>
+
+                <h4>Chargeable Income</h4>
+                <h2>${formatRM(optimized.chargeableIncome)}</h2>
+
+                <h4>Estimated Corporate Tax</h4>
+                <h2>${formatRM(optimized.estimatedTax)}</h2>
+
+            </div>
+
+        </div>
 
         <hr>
 
-        <p><strong>Adjusted Business Income:</strong>
-        RM ${adjustedBusinessIncome.toLocaleString("en-MY")}</p>
+        <h3>AaDab Optimization Summary</h3>
 
-        <p>Balancing Charge:
-        RM ${balancingCharge.toLocaleString("en-MY")}</p>
+        <p><strong>Unoptimized Tax:</strong>
+        ${formatRM(unoptimized.estimatedTax)}</p>
 
-        <p>Current Year Capital Allowances:
-        RM ${capitalAllowance.toLocaleString("en-MY")}</p>
+        <p><strong>AaDab-Optimized Tax:</strong>
+        ${formatRM(optimized.estimatedTax)}</p>
 
-        <p>Unabsorbed Capital Allowances Brought Forward:
-        RM ${capitalAllowanceBF.toLocaleString("en-MY")}</p>
+        <h2>Estimated Tax Savings: ${formatRM(taxSavings)}</h2>
 
-        <p><strong>Total Capital Allowances Available:</strong>
-        RM ${totalCapitalAllowances.toLocaleString("en-MY")}</p>
+        <p>
+            ${
+                taxSavings > 0
+                ? "The AaDab scenario produces lower estimated tax based on the additional eligible deductions and capital allowances entered."
+                : taxSavings < 0
+                ? "The AaDab scenario produces higher estimated tax. Review the inputs and eligibility of the proposed adjustments."
+                : "There is no difference in estimated tax between the two scenarios."
+            }
+        </p>
 
-        <p>Capital Allowances Absorbed:
-        RM ${capitalAllowancesAbsorbed.toLocaleString("en-MY")}</p>
+        <p><em>
+            Simplified educational calculation only.
+            Additional deductions and capital allowances must be
+            legally eligible, properly supported and subject to
+            the relevant provisions of the Income Tax Act 1967.
+            The 24% tax rate is an illustrative assumption, not
+            a determination of the company's actual tax rate.
+        </em></p>
 
-        <p><strong>Unabsorbed Capital Allowances Carried Forward:</strong>
-        RM ${unabsorbedCapitalAllowances.toLocaleString("en-MY")}</p>
-
-        <p><strong>Statutory Business Income:</strong>
-        RM ${statutoryBusinessIncome.toLocaleString("en-MY")}</p>
-
-        <hr>
-
-        <p>Other Statutory Income:
-        RM ${otherIncome.toLocaleString("en-MY")}</p>
-
-        <p><strong>Aggregate Income:</strong>
-        RM ${aggregateIncome.toLocaleString("en-MY")}</p>
-
-        <p>Approved Donations:
-        RM ${approvedDonations.toLocaleString("en-MY")}</p>
-
-        <p>Allowable Donations (10% limit):
-        RM ${allowableDonations.toLocaleString("en-MY")}</p>
-
-        <hr>
-
-        <h3>Chargeable Income</h3>
-        <h2>RM ${chargeableIncome.toLocaleString("en-MY")}</h2>
-
-        <h3>Estimated Corporate Tax Payable (24%)</h3>
-        <h2>RM ${estimatedTax.toLocaleString("en-MY")}</h2>
-
-        <p><em>Simplified learning calculation only. Actual tax computation may require further adjustments, exemptions and deductions.</em></p>
     `;
 }
 </script>
+
 
 
 </body>
