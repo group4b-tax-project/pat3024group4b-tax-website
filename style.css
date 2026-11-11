@@ -839,7 +839,11 @@ footer {
 }
 
 
-/* Homepage Responsive Design */
+
+/* =========================================
+   HOMEPAGE RESPONSIVE DESIGN
+========================================= */
+
 @media screen and (max-width: 700px) {
 
     .hero-section {
@@ -864,10 +868,235 @@ footer {
         grid-template-columns: 1fr;
     }
 
-}
-
     #ethical-result h2 {
         font-size: 30px;
     }
 }
 
+
+/* =========================================
+   MODULE 1 - CORPORATE CASE HUB DESIGN
+========================================= */
+
+/* Module Introduction */
+#module-intro {
+    background: linear-gradient(135deg, #16345c, #2475c7);
+    color: white;
+    text-align: center;
+    padding: 45px 30px;
+    border-radius: 14px;
+}
+
+#module-intro h2 {
+    color: white;
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+#module-intro p {
+    color: #e8f2ff;
+    max-width: 750px;
+    margin: 0 auto 20px;
+}
+
+
+/* Module Completion Button */
+.completion-control {
+    margin-top: 25px;
+}
+
+.completion-button {
+    background-color: white;
+    color: #16345c;
+    border: none;
+    border-radius: 7px;
+    padding: 13px 25px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.completion-button:hover {
+    background-color: #dcecff;
+    transform: translateY(-2px);
+}
+
+#module1-status {
+    color: #e8f2ff;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+
+/* Case Study 2 - Company Profile */
+#company-background {
+    border-top: 5px solid #2475c7;
+}
+
+#company-background h2 {
+    font-size: 25px;
+}
+
+#company-background h3 {
+    color: #2475c7;
+    font-size: 21px;
+    margin-top: 15px;
+}
+
+#company-background p {
+    line-height: 1.8;
+}
+
+
+/* Primary Audit Documents */
+#audit-documents {
+    border-top: 5px solid #16345c;
+}
+
+#audit-documents > p {
+    color: #52647a;
+    margin-bottom: 20px;
+}
+
+
+/* Document Card Hover Effect */
+.document-card {
+    transition: 0.3s ease;
+}
+
+.document-card:hover {
+    box-shadow: 0 6px 16px rgba(22, 52, 92, 0.10);
+    border-left-color: #2475c7;
+}
+
+.document-card summary {
+    padding: 5px;
+}
+
+.document-card summary h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.document-card summary p {
+    margin-bottom: 10px;
+}
+
+
+/* Expandable Document Details */
+.document-card[open] {
+    background-color: #f7faff;
+}
+
+.document-card[open] summary {
+    border-bottom: 1px solid #d5dce8;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+
+/* Supporting Notes 1-14 */
+#supporting-notes {
+    border-top: 5px solid #2475c7;
+}
+
+#supporting-notes > p {
+    color: #52647a;
+    margin-bottom: 20px;
+}
+
+#supporting-notes .document-card {
+    display: block;
+    margin-bottom: 12px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f2f6fc;
+    border: 1px solid #d5dce8;
+    border-left: 5px solid #16345c;
+    border-radius: 8px;
+}
+
+#supporting-notes .document-card summary {
+    padding: 17px 20px;
+    color: #16345c;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#supporting-notes .document-card summary:hover {
+    background-color: #e4effc;
+    color: #2475c7;
+}
+
+#supporting-notes .document-card[open] {
+    background-color: white;
+    border-left-color: #2475c7;
+}
+
+#supporting-notes .document-card[open] summary {
+    background-color: #eaf2fc;
+    border-bottom: 1px solid #d5dce8;
+    margin-bottom: 15px;
+}
+
+#supporting-notes .document-card > p,
+#supporting-notes .document-card > table {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#supporting-notes .document-card > p:last-child {
+    margin-bottom: 20px;
+}
+
+#supporting-notes .financial-table {
+    width: calc(100% - 40px);
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+
+/* Case Study Question Index */
+#question-index {
+    border-top: 5px solid #16345c;
+}
+
+#question-index li {
+    padding: 8px 0;
+    border-bottom: 1px solid #e5eaf1;
+}
+
+
+/* Module 1 Responsive Design */
+@media screen and (max-width: 700px) {
+
+    #module-intro {
+        padding: 30px 20px;
+    }
+
+    #module-intro h2 {
+        font-size: 22px;
+    }
+
+    .completion-button {
+        width: 100%;
+    }
+
+    #supporting-notes .document-card summary {
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    #supporting-notes .financial-table {
+        font-size: 13px;
+    }
+
+    #supporting-notes .financial-table th,
+    #supporting-notes .financial-table td {
+        padding: 8px 6px;
+    }
+
+}
