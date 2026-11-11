@@ -111,6 +111,7 @@
 
 </footer>
 
+
 <script>
 function calculateTax() {
 
@@ -129,14 +130,43 @@ function calculateTax() {
     const capitalAllowance =
         Number(document.getElementById("capital-allowance").value) || 0;
 
+    const otherIncome =
+        Number(document.getElementById("other-income").value) || 0;
+
+    const approvedDonations =
+        Number(document.getElementById("approved-donations").value) || 0;
+
+    // Step 1: Adjusted Business Income
     const adjustedBusinessIncome =
         profitBeforeTax + addBack - deductions;
 
+    // Step 2: Adjusted Income After Balancing Charge
     const adjustedIncomeAfterBC =
         adjustedBusinessIncome + balancingCharge;
 
+    // Step 3: Statutory Business Income
     const statutoryBusinessIncome =
         Math.max(0, adjustedIncomeAfterBC - capitalAllowance);
+
+    // Step 4: Aggregate Income
+    const aggregateIncome =
+        statutoryBusinessIncome + otherIncome;
+
+    // Step 5: Approved Donations (maximum 10%)
+    const donationLimit = aggregateIncome * 0.10;
+
+    const allowableDonations =
+        Math.min(approvedDonations, donationLimit);
+
+    // Step 6: Simplified Chargeable Income
+    const chargeableIncome =
+        Math.max(0, aggregateIncome - allowableDonations);
+
+    // Step 7: Estimated Corporate Tax at 24%
+    const taxRate = 0.24;
+
+    const estimatedTax =
+        chargeableIncome * taxRate;
 
     document.getElementById("calculation-result").innerHTML = `
         <h3>Calculation Results</h3>
@@ -153,21 +183,39 @@ function calculateTax() {
         <p>Balancing Charge:
         RM ${balancingCharge.toLocaleString("en-MY")}</p>
 
-        <p><strong>Adjusted Income After Balancing Charge:</strong>
-        RM ${adjustedIncomeAfterBC.toLocaleString("en-MY")}</p>
-
-        <p>Less: Capital Allowances:
+        <p>Capital Allowances:
         RM ${capitalAllowance.toLocaleString("en-MY")}</p>
+
+        <p><strong>Statutory Business Income:</strong>
+        RM ${statutoryBusinessIncome.toLocaleString("en-MY")}</p>
 
         <hr>
 
-        <h3>Statutory Business Income</h3>
-        <h2>RM ${statutoryBusinessIncome.toLocaleString("en-MY")}</h2>
+        <p>Other Statutory Income:
+        RM ${otherIncome.toLocaleString("en-MY")}</p>
 
-        <p><em>Simplified learning calculation only. Not final chargeable income or tax payable.</em></p>
+        <p><strong>Aggregate Income:</strong>
+        RM ${aggregateIncome.toLocaleString("en-MY")}</p>
+
+        <p>Approved Donations:
+        RM ${approvedDonations.toLocaleString("en-MY")}</p>
+
+        <p>Allowable Donations (10% limit):
+        RM ${allowableDonations.toLocaleString("en-MY")}</p>
+
+        <hr>
+
+        <h3>Chargeable Income</h3>
+        <h2>RM ${chargeableIncome.toLocaleString("en-MY")}</h2>
+
+        <h3>Estimated Corporate Tax Payable (24%)</h3>
+        <h2>RM ${estimatedTax.toLocaleString("en-MY")}</h2>
+
+        <p><em>Simplified learning calculation only. Actual tax computation may require further adjustments, exemptions and deductions.</em></p>
     `;
 }
 </script>
+
 
 </body>
 </html>
