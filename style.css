@@ -1337,3 +1337,238 @@ footer {
         padding: 14px;
     }
 }
+
+
+/* =========================================
+   MODULE 1 - INTERACTIVE LEARNING UPGRADE
+========================================= */
+
+.interactive-panel {
+    background: linear-gradient(135deg, #ffffff, #f2f7fd);
+    border: 1px solid #d7e3f1;
+    border-top: 5px solid #2475c7;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 25px;
+}
+
+.section-kicker {
+    color: #2475c7;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    margin-bottom: 8px;
+}
+
+.interactive-panel h2 {
+    color: #16345c;
+    margin-bottom: 10px;
+}
+
+.interactive-panel > p {
+    color: #52647a;
+    line-height: 1.7;
+}
+
+.review-progress-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 22px;
+    color: #16345c;
+}
+
+#review-percent {
+    font-weight: 800;
+    color: #2475c7;
+}
+
+.review-progress-track {
+    height: 14px;
+    width: 100%;
+    background: #dce6f2;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+#review-progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #2475c7, #62afea);
+    border-radius: inherit;
+    transition: width .35s ease;
+}
+
+.review-message {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.review-message.is-complete {
+    color: #176b48;
+    font-weight: 700;
+}
+
+.review-document-button {
+    display: inline-block;
+    margin: 18px 0 5px;
+    padding: 11px 16px;
+    border: 1px solid #16345c;
+    border-radius: 7px;
+    background: #16345c;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.review-document-button:hover {
+    background: #2475c7;
+    border-color: #2475c7;
+}
+
+.review-document-button.is-reviewed {
+    color: #176b48;
+    background: #e8f6ef;
+    border-color: #9bcfb5;
+}
+
+#module1-knowledge-check {
+    border-top-color: #16345c;
+}
+
+.quiz-question {
+    border: 1px solid #d5dfeb;
+    border-left: 4px solid #2475c7;
+    border-radius: 9px;
+    padding: 18px 20px;
+    margin: 18px 0;
+    min-width: 0;
+}
+
+.quiz-question legend {
+    color: #16345c;
+    font-weight: 700;
+    padding: 0 6px;
+    line-height: 1.6;
+}
+
+.quiz-question label {
+    display: block;
+    padding: 9px 10px;
+    margin-top: 7px;
+    background: #f3f7fc;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.quiz-question label:hover {
+    background: #e6f0fb;
+}
+
+.quiz-question input {
+    margin-right: 8px;
+    accent-color: #2475c7;
+}
+
+.quiz-submit,
+.quiz-reset {
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 8px 8px 0 0;
+}
+
+.quiz-submit {
+    background: #16345c;
+    color: white;
+    border: 1px solid #16345c;
+}
+
+.quiz-submit:hover {
+    background: #2475c7;
+}
+
+.quiz-reset {
+    background: white;
+    color: #16345c;
+    border: 1px solid #b8c7dc;
+}
+
+.quiz-reset:hover {
+    background: #eaf2fc;
+}
+
+.quiz-result {
+    margin-top: 20px;
+    padding: 18px 20px;
+    border-radius: 9px;
+    border: 1px solid #c9d9ea;
+    background: #f2f7fd;
+    line-height: 1.7;
+}
+
+.quiz-result p {
+    margin-bottom: 8px;
+}
+
+.quiz-result ol {
+    margin-bottom: 0;
+}
+
+.quiz-perfect {
+    background: #edf8f1;
+    border-color: #b8dec8;
+}
+
+.quiz-incomplete {
+    background: #fff8e8;
+    border-color: #ead49c;
+}
+
+#audit-documents .document-card {
+    min-width: 0;
+}
+
+#audit-documents .financial-table,
+#supporting-notes .financial-table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#audit-documents .document-card summary:focus-visible,
+#supporting-notes .document-card summary:focus-visible,
+.review-document-button:focus-visible,
+.quiz-submit:focus-visible,
+.quiz-reset:focus-visible {
+    outline: 3px solid #62afea;
+    outline-offset: 3px;
+}
+
+@media screen and (max-width: 700px) {
+    .interactive-panel {
+        padding: 20px 16px;
+    }
+
+    .review-progress-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .review-document-button,
+    .quiz-submit,
+    .quiz-reset {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .quiz-question {
+        padding: 15px 12px;
+    }
+}
