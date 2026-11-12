@@ -951,9 +951,65 @@ function saveEntries(storageKey, entries) {
 ===================================== */
 
 
+async function submitModule4Comment(
+    event,
+    postId,
+    postType,
+    nameInput,
+    commentInput
+) {
+    event.preventDefault();
+
+    const name = nameInput.value.trim();
+    const content = commentInput.value.trim();
+
+    if (!name || !content) {
+        alert("Please enter your name and comment.");
+        return;
+    }
+
+    const button = event.submitter;
+    button.disabled = true;
+    button.textContent = "POSTING...";
+
+    try {
+        await fetch(MODULE4_API_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                action: "comment",
+                postId: postId,
+                postType: postType,
+                name: name,
+                content: content
+            })
+        });
+
+        commentInput.value = "";
+        nameInput.value = "";
+
+        button.textContent = "POST COMMENT";
+
+        setTimeout(function() {
+            loadModule4SharedData();
+        }, 1500);
+
+    } catch (error) {
+        button.disabled = false;
+        button.textContent = "POST COMMENT";
+        alert("Unable to submit your comment. Please try again.");
+        console.error(error);
+    }
+}
+
+
 function displayQuestions() {
     const questionList = document.getElementById("question-list");
     const questions = window.module4Questions || [];
+    const comments = window.module4Comments || [];
 
     if (questions.length === 0) {
         questionList.innerHTML =
@@ -981,6 +1037,78 @@ function displayQuestions() {
         date.textContent = new Date(question.Date).toLocaleString();
 
         item.append(title, name, content, date);
+
+        // Display comments belonging to this question
+        const commentSection = document.createElement("div");
+        commentSection.className = "comment-section";
+
+        const commentHeading = document.createElement("h4");
+        commentHeading.textContent = "Comments";
+
+        commentSection.appendChild(commentHeading);
+
+        const questionComments = comments.filter(comment =>
+            String(comment.PostID) === String(question.QuestionID) &&
+            comment.PostType === "question"
+        );
+
+        if (questionComments.length === 0) {
+            const empty = document.createElement("p");
+            empty.className = "empty-message";
+            empty.textContent = "No comments yet. Start the discussion!";
+            commentSection.appendChild(empty);
+        }
+
+        questionComments.forEach(comment => {
+            const commentItem = document.createElement("div");
+            commentItem.className = "comment-item";
+
+            const commentName = document.createElement("strong");
+            commentName.textContent = comment.StudentName;
+
+            const commentText = document.createElement("p");
+            commentText.textContent = comment.Comment;
+
+            const commentDate = document.createElement("small");
+            commentDate.textContent =
+                new Date(comment.Date).toLocaleString();
+
+            commentItem.append(commentName, commentText, commentDate);
+            commentSection.appendChild(commentItem);
+        });
+
+        // Comment submission form
+        const commentForm = document.createElement("form");
+        commentForm.className = "comment-form";
+
+        const nameInput = document.createElement("input");
+        nameInput.type = "text";
+        nameInput.placeholder = "Enter your name";
+        nameInput.required = true;
+
+        const commentInput = document.createElement("textarea");
+        commentInput.placeholder = "Write your comment...";
+        commentInput.required = true;
+
+        const submitButton = document.createElement("button");
+        submitButton.type = "submit";
+        submitButton.className = "module4-button";
+        submitButton.textContent = "POST COMMENT";
+
+        commentForm.append(nameInput, commentInput, submitButton);
+
+        commentForm.addEventListener("submit", function(event) {
+            submitModule4Comment(
+                event,
+                question.QuestionID,
+                "question",
+                nameInput,
+                commentInput
+            );
+        });
+
+        commentSection.appendChild(commentForm);
+        item.appendChild(commentSection);
         questionList.appendChild(item);
     });
 }
