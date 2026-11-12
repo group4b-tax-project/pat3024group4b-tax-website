@@ -1891,3 +1891,334 @@ footer {
         font-size: 24px;
     }
 }
+
+/* =========================================
+   MODULE 2 - GUIDED LEARNING DESIGN
+========================================= */
+
+.guided-learning-panel {
+    background: #f4f8ff;
+    border: 1px solid #dce7f8;
+    border-radius: 20px;
+    padding: 35px;
+    margin: 30px 0;
+}
+
+/* Header */
+
+.guided-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.guided-label {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    margin-bottom: 14px;
+}
+
+.guided-header h2 {
+    color: #12345b;
+    font-size: 29px;
+    margin-bottom: 12px;
+}
+
+.guided-header p {
+    color: #52647b;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* Progress card */
+
+.guided-progress-card {
+    background: white;
+    border: 1px solid #dce6f5;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 18px rgba(22, 58, 105, 0.05);
+}
+
+.guided-progress-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.guided-small-label {
+    display: block;
+    color: #2563eb;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    margin-bottom: 7px;
+}
+
+.guided-progress-heading h3 {
+    color: #12345b;
+    font-size: 20px;
+    margin: 0;
+}
+
+.guided-progress-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eaf2ff;
+    border-radius: 13px;
+    font-size: 23px;
+}
+
+.guided-progress-track {
+    width: 100%;
+    height: 10px;
+    background: #e5edf8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#guided-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+/* Learning content */
+
+.guided-step-content {
+    background: white;
+    border: 1px solid #dce6f5;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 18px rgba(22, 58, 105, 0.05);
+}
+
+.guided-content-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.guided-content-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf2ff;
+    border-radius: 14px;
+    font-size: 23px;
+}
+
+.guided-content-heading h3 {
+    color: #12345b;
+    font-size: 21px;
+    margin: 0;
+}
+
+.guided-step-content > p {
+    color: #52647b;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 22px;
+}
+
+/* Learning tip */
+
+.guided-tip {
+    background: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    border-radius: 10px;
+    padding: 18px 20px;
+}
+
+.guided-tip-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #174ea6;
+    margin-bottom: 8px;
+}
+
+.guided-tip p {
+    color: #52647b;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Practice activity */
+
+.guided-practice {
+    background: white;
+    border: 1px solid #dce6f5;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 18px rgba(22, 58, 105, 0.05);
+}
+
+.guided-practice-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.guided-practice-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eaf2ff;
+    border-radius: 13px;
+    font-size: 22px;
+}
+
+.guided-practice-header h3 {
+    color: #12345b;
+    font-size: 20px;
+    margin: 0;
+}
+
+.guided-practice > p {
+    color: #52647b;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.guided-practice label {
+    display: block;
+    color: #12345b;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.guided-practice input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    border: 1px solid #cbd8e9;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.guided-practice input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.guided-check-button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #2563eb, #174ea6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.guided-check-button:hover {
+    background: #174ea6;
+    transform: translateY(-2px);
+}
+
+#guided-pbt-feedback {
+    margin-top: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+/* Navigation */
+
+.guided-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.guided-nav-button {
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.guided-previous-button {
+    background: white;
+    color: #174ea6;
+    border: 1px solid #b8c9e0;
+}
+
+.guided-next-button {
+    background: linear-gradient(135deg, #2563eb, #174ea6);
+    color: white;
+    border: none;
+}
+
+.guided-nav-button:not(:disabled):hover {
+    transform: translateY(-2px);
+}
+
+.guided-nav-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Hidden state */
+
+#guided-learning-panel[hidden] {
+    display: none !important;
+}
+
+/* Mobile responsive */
+
+@media (max-width: 768px) {
+
+    .guided-learning-panel {
+        padding: 20px 15px;
+    }
+
+    .guided-header h2 {
+        font-size: 23px;
+    }
+
+    .guided-progress-card,
+    .guided-step-content,
+    .guided-practice {
+        padding: 20px;
+    }
+
+    .guided-navigation {
+        flex-direction: column;
+    }
+
+    .guided-nav-button {
+        width: 100%;
+    }
+}
