@@ -552,62 +552,49 @@ let ethicalBarChartInstance = null;
 
 // FUNCTION 2: AaDab ETHICAL INDEX CALCULATION
 
+
 function calculateEthicalIndex() {
 
     const dimensions = [
-
         {
             id: "ethical-transparency",
             name: "Transparency"
         },
-
         {
             id: "ethical-equity",
             name: "Social Equity"
         },
-
         {
             id: "ethical-compliance",
             name: "Compliance Discipline"
         },
-
         {
             id: "ethical-welfare",
             name: "Public Welfare Contributions"
         }
-
     ];
 
-
     const answers = dimensions.map(dimension =>
-
         document.getElementById(dimension.id).value
-
     );
 
-
     if (answers.includes("")) {
-
         alert("Please answer all four Ethical Index questions.");
-
         return;
     }
 
-
     let totalScore = 0;
-
     let resultsHTML = "";
-
+    let scores = [];
 
     dimensions.forEach((dimension, index) => {
 
         const score = answers[index] === "yes" ? 25 : 0;
 
         totalScore += score;
-
+        scores.push(score);
 
         resultsHTML += `
-
             <div class="ethical-dimension">
 
                 <p>
@@ -617,37 +604,24 @@ function calculateEthicalIndex() {
                 <p>${score}/25 marks</p>
 
                 <div class="ethical-progress">
-
                     <div class="ethical-progress-fill"
                          style="width: ${score / 25 * 100}%;">
                     </div>
-
                 </div>
 
             </div>
-
         `;
-
     });
-
 
     let ethicalRating;
 
-
     if (totalScore >= 80) {
-
         ethicalRating = "Strong Ethical Performance";
-
     } else if (totalScore >= 50) {
-
         ethicalRating = "Moderate Ethical Performance";
-
     } else {
-
         ethicalRating = "Needs Ethical Improvement";
-
     }
-
 
     document.getElementById("ethical-result").innerHTML = `
 
@@ -669,7 +643,149 @@ function calculateEthicalIndex() {
             dimensions and the answers provided.
         </p>
 
+        <div class="risk-chart-card">
+
+            <h3>Ethical Performance Radar Chart</h3>
+
+            <p>Overview of the company's performance across four dimensions.</p>
+
+            <div class="risk-chart-container">
+                <canvas id="ethicalRadarChart"></canvas>
+            </div>
+
+        </div>
+
+        <div class="risk-chart-card">
+
+            <h3>Ethical Dimension Comparison</h3>
+
+            <p>Comparison of marks obtained for each ethical dimension.</p>
+
+            <div class="risk-chart-container">
+                <canvas id="ethicalBarChart"></canvas>
+            </div>
+
+        </div>
+
     `;
+
+    // Destroy previous charts before creating new ones
+
+    if (ethicalRadarChartInstance) {
+        ethicalRadarChartInstance.destroy();
+    }
+
+    if (ethicalBarChartInstance) {
+        ethicalBarChartInstance.destroy();
+    }
+
+    // RADAR CHART
+
+    const radarCtx = document
+        .getElementById("ethicalRadarChart")
+        .getContext("2d");
+
+    ethicalRadarChartInstance = new Chart(radarCtx, {
+
+        type: "radar",
+
+        data: {
+            labels: dimensions.map(dimension => dimension.name),
+
+            datasets: [{
+                label: "Ethical Performance",
+                data: scores,
+                backgroundColor: "rgba(37, 99, 235, 0.2)",
+                borderColor: "#2563eb",
+                pointBackgroundColor: "#2563eb",
+                pointBorderColor: "#ffffff",
+                pointHoverBackgroundColor: "#ffffff",
+                pointHoverBorderColor: "#2563eb",
+                borderWidth: 2
+            }]
+        },
+
+        options: {
+
+            responsive: true,
+            maintainAspectRatio: false,
+
+            scales: {
+                r: {
+                    min: 0,
+                    max: 25,
+
+                    ticks: {
+                        stepSize: 5
+                    }
+                }
+            },
+
+            plugins: {
+                legend: {
+                    position: "bottom"
+                }
+            }
+        }
+    });
+
+    // HORIZONTAL BAR CHART
+
+    const barCtx = document
+        .getElementById("ethicalBarChart")
+        .getContext("2d");
+
+    ethicalBarChartInstance = new Chart(barCtx, {
+
+        type: "bar",
+
+        data: {
+            labels: dimensions.map(dimension => dimension.name),
+
+            datasets: [{
+                label: "Marks Obtained",
+                data: scores,
+                backgroundColor: [
+                    "#2563eb",
+                    "#0d9488",
+                    "#7c3aed",
+                    "#f59e0b"
+                ],
+                borderRadius: 8,
+                borderWidth: 0
+            }]
+        },
+
+        options: {
+
+            indexAxis: "y",
+
+            responsive: true,
+            maintainAspectRatio: false,
+
+            scales: {
+                x: {
+                    min: 0,
+                    max: 25,
+
+                    ticks: {
+                        stepSize: 5
+                    },
+
+                    title: {
+                        display: true,
+                        text: "Marks (out of 25)"
+                    }
+                }
+            },
+
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
 
 }
 
