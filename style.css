@@ -3895,3 +3895,77 @@ footer {
     text-align: center;
     margin-top: 8px;
 }
+
+/* MODULE 4 - INDIVIDUAL COMMENT SECTIONS */
+
+.comment-section {
+    margin-top: 22px;
+    padding: 18px;
+    background: #f3f7fc;
+    border: 1px solid #dce7f5;
+    border-radius: 12px;
+}
+
+.comment-section h4 {
+    color: #16345c;
+    margin-bottom: 14px;
+}
+
+.comment-item {
+    background: #ffffff;
+    border: 1px solid #dce7f5;
+    border-radius: 9px;
+    padding: 13px;
+    margin: 10px 0;
+}
+
+.comment-item strong {
+    color: #16345c;
+}
+
+.comment-item p {
+    color: #42566f;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+.comment-item small {
+    color: #77869a;
+    font-size: 12px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #c5d5e8;
+    border-radius: 8px;
+    font: 14px Arial, sans-serif;
+}
+
+.comment-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.comment-form button {
+    align-self: flex-start;
+}
+
+@media screen and (max-width: 600px) {
+    .comment-section {
+        padding: 13px;
+    }
+
+    .comment-form button {
+        width: 100%;
+    }
+}
