@@ -912,15 +912,90 @@ const taxReductionPercentage =
             </tbody>
         </table>
 
-        <p>
-            ${
-                taxSavings > 0
-                ? "The AaDab scenario produces lower estimated tax based on the additional eligible deductions and capital allowances entered."
-                : taxSavings < 0
-                ? "The AaDab scenario produces higher estimated tax. Review the inputs and eligibility of the proposed adjustments."
-                : "There is no difference in estimated tax between the two scenarios."
-            }
-        </p>
+        
+<div class="aadab-result-explanation">
+
+    <h3>Understanding Your AaDab Results</h3>
+
+    ${
+        taxSavings > 0
+        ? `
+            <p class="result-success">
+                <strong>Tax Reduction Achieved!</strong>
+            </p>
+
+            <p>
+                The AaDab-Optimized Scenario produces a lower
+                estimated tax liability than the Unoptimized
+                Scenario.
+            </p>
+
+            <p>
+                The estimated tax decreases from
+                <strong>${formatRM(unoptimized.estimatedTax)}</strong>
+                to
+                <strong>${formatRM(optimized.estimatedTax)}</strong>.
+            </p>
+
+            <p>
+                This represents estimated tax savings of
+                <strong>${formatRM(taxSavings)}</strong>
+                (${taxReductionPercentage.toFixed(2)}%).
+            </p>
+
+            <p>
+                Review the additional deductions and capital
+                allowances entered to ensure that each item
+                is legally eligible and properly documented.
+            </p>
+        `
+        : taxSavings < 0
+        ? `
+            <p class="result-warning">
+                <strong>Higher Estimated Tax Liability</strong>
+            </p>
+
+            <p>
+                The AaDab-Optimized Scenario produces a higher
+                estimated tax liability. Review the figures
+                and calculation inputs.
+            </p>
+        `
+        : `
+            <p class="result-neutral">
+                <strong>No Change in Estimated Tax</strong>
+            </p>
+
+            <p>
+                Both scenarios produce the same estimated
+                corporate tax liability.
+            </p>
+
+            <p>
+                This may occur when no additional optimization
+                inputs are entered, or when the additional
+                amounts do not reduce chargeable income under
+                the calculator's current assumptions.
+            </p>
+
+            <p>
+                Review the inputs and check whether the proposed
+                deductions or capital allowances can be utilized.
+            </p>
+        `
+    }
+
+    <p class="result-disclaimer">
+        <em>
+            This comparison is an educational illustration
+            based on the inputs provided. It does not establish
+            that a proposed deduction or capital allowance
+            qualifies under the Income Tax Act 1967.
+        </em>
+    </p>
+
+</div>
+
 
         <p><em>
             Simplified educational calculation only.
