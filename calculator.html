@@ -448,10 +448,40 @@ const practiceActivities = [
     `
 },
     {
-        title: "AaDab Optimization Activity",
-        question: "Consider how legally eligible tax deductions and capital allowances can affect the company's tax liability.",
-        content: "<p>Learning activity: Review the eligibility and supporting documentation for proposed tax optimization strategies.</p>"
-    }
+    title: "AaDab Optimization Activity",
+    question: "AaDab Optimization allows students to consider additional eligible deductions and capital allowances. Identify the TWO optimization inputs available in the calculator.",
+    content: `
+        <div class="guided-quiz">
+            <p><strong>Question 1: Select the TWO correct inputs.</strong></p>
+
+            <label class="guided-option">
+                <input type="checkbox" name="optimization-answer" value="a">
+                A. Additional Allowable Deductions
+            </label>
+
+            <label class="guided-option">
+                <input type="checkbox" name="optimization-answer" value="b">
+                B. Additional Eligible Capital Allowances
+            </label>
+
+            <label class="guided-option">
+                <input type="checkbox" name="optimization-answer" value="c">
+                C. Personal Household Expenses
+            </label>
+
+            <label class="guided-option">
+                <input type="checkbox" name="optimization-answer" value="d">
+                D. Personal Entertainment Expenses
+            </label>
+
+            <button type="button" onclick="checkGuidedOptimization()">
+                CHECK MY ANSWER
+            </button>
+
+            <p id="guided-optimization-feedback"></p>
+        </div>
+    `
+},
 ];
 
 const activity = practiceActivities[currentGuidedStep];
@@ -847,6 +877,55 @@ function checkGuidedTaxAdjustment() {
             Add RM141,000 and RM52,000 to calculate
             the total dividend income.
         `;
+        feedback.style.color = "#dc2626";
+    }
+}
+function checkGuidedOptimization() {
+    const selectedAnswers = Array.from(
+        document.querySelectorAll(
+            'input[name="optimization-answer"]:checked'
+        )
+    ).map(input => input.value);
+
+    const feedback = document.getElementById(
+        "guided-optimization-feedback"
+    );
+
+    if (selectedAnswers.length === 0) {
+        feedback.textContent = "Please select your answers first.";
+        feedback.style.color = "#d97706";
+        return;
+    }
+
+    const correctAnswers = ["a", "b"];
+
+    const isCorrect =
+        selectedAnswers.length === 2 &&
+        correctAnswers.every(answer =>
+            selectedAnswers.includes(answer)
+        );
+
+    if (isCorrect) {
+        feedback.innerHTML = `
+            <strong>Excellent! Correct answer!</strong><br>
+            The two optimization inputs are:
+            <br>1. Additional Allowable Deductions.
+            <br>2. Additional Eligible Capital Allowances.
+            <br><br>
+            These inputs are used in the AaDab-Optimized
+            scenario for comparison with the Unoptimized
+            scenario.
+        `;
+
+        feedback.style.color = "#15803d";
+    } else {
+        feedback.innerHTML = `
+            <strong>Not quite. Try again!</strong><br>
+            Select exactly TWO answers that represent
+            the additional deduction and capital allowance
+            inputs in the calculator.
+        `;
+
         feedback.style.color = "#dc2626";
     }
 }
