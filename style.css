@@ -2976,3 +2976,43 @@ footer {
     display: block;
     margin: 15px auto 0;
 }
+/* STANDARDISE MODULE 3 HERO DESIGN */
+
+#module-intro.risk-hero .risk-hero-content {
+    text-align: center !important;
+}
+
+#module-intro.risk-hero h2,
+#module-intro.risk-hero p {
+    color: #ffffff !important;
+    text-align: center !important;
+}
+
+#module-intro.risk-hero .risk-hero-highlights {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+#module-intro.risk-hero .module3-hero-completion {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#module-intro.risk-hero #module3-status {
+    color: #ffffff !important;
+    text-align: center;
+}
+
+#module-intro.risk-hero #complete-module-3 {
+    display: block;
+    margin: 15px auto 0;
+    background: #ffffff !important;
+    color: #1d4ed8 !important;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-weight: bold;
+}
