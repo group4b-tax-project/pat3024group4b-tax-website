@@ -550,7 +550,58 @@ function checkGuidedPBT() {
 }
 
 function calculateTax() {
+    // CHECK REQUIRED INPUTS BEFORE CALCULATION
 
+    const requiredFields = [
+        {
+            id: "profit-before-tax",
+            name: "Profit Before Tax"
+        },
+        {
+            id: "add-back",
+            name: "Non-Allowable Expenses"
+        },
+        {
+            id: "deductions",
+            name: "Allowable Deductions"
+        },
+        {
+            id: "balancing-charge",
+            name: "Balancing Charge"
+        },
+        {
+            id: "capital-allowance",
+            name: "Current Year Capital Allowances"
+        },
+        {
+            id: "capital-allowance-bf",
+            name: "Unabsorbed Capital Allowances Brought Forward"
+        },
+        {
+            id: "other-income",
+            name: "Other Statutory Income"
+        },
+        {
+            id: "approved-donations",
+            name: "Approved Donations"
+        }
+    ];
+
+    const missingFields = requiredFields.filter(field =>
+        document.getElementById(field.id).value.trim() === ""
+    );
+
+    if (missingFields.length > 0) {
+
+        alert(
+            "Please complete the following fields. Enter 0 if the amount is NIL:\n\n" +
+            missingFields.map(field => "- " + field.name).join("\n")
+        );
+
+        document.getElementById(missingFields[0].id).focus();
+
+        return;
+    }
     // 1. Retrieve original tax inputs
     const profitBeforeTax =
         Number(document.getElementById("profit-before-tax").value) || 0;
