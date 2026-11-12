@@ -880,7 +880,9 @@ const taxReductionPercentage =
 
                     <tbody>
                         ${tableRow("Less: Allowable Deductions", deductions)}
-                        ${tableRow("Less: Special Deduction - Secretarial and Tax Filing Fees", extraSpecialDeduction)}
+                    ${extraSpecialDeduction > 0
+                        ? tableRow("Less: Special Deduction - Secretarial and Tax Filing Fees", extraSpecialDeduction)
+                        : ""}
                         ${tableRow("Less: Additional AaDab Deductions", extraDeductions)}
                         ${tableRow("Less: Non-taxable Income", nonTaxableIncome)}
 
