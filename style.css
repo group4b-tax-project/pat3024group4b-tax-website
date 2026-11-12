@@ -3349,6 +3349,10 @@ footer {
 
 /* SECTION HEADINGS */
 
+/* CONSISTENT MODULE 4 SECTION HEADINGS */
+
+#legal-explorer > h2,
+#public-rulings > h2,
 #student-forum > h2,
 #reflection-hub > h2 {
     color: #16345c;
@@ -3357,6 +3361,7 @@ footer {
     padding-left: 14px;
     margin-bottom: 15px;
 }
+
 
 /* SECTION DESCRIPTIONS */
 
