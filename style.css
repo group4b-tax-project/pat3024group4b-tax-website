@@ -2637,3 +2637,224 @@ footer {
         flex-direction: column !important;
     }
 }
+
+/* =========================================
+   MODULE 3 - PREMIUM RISK ASSESSMENT DESIGN
+========================================= */
+
+/* Main assessment sections */
+
+#risk-assessment,
+#ethical-index {
+    background: linear-gradient(145deg, #ffffff, #f5f8ff);
+    border: 1px solid #dce7f8;
+    border-radius: 22px;
+    padding: 35px;
+    margin: 28px 0;
+    box-shadow: 0 10px 30px rgba(22, 58, 105, 0.07);
+}
+
+/* Section headings */
+
+#risk-assessment > h2,
+#ethical-index > h2 {
+    color: #12345b;
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+#risk-assessment > p,
+#ethical-index > p {
+    color: #64748b;
+    line-height: 1.8;
+}
+
+/* Question cards */
+
+#risk-assessment .risk-question,
+#ethical-index .risk-question {
+    background: #ffffff;
+    border: 1px solid #dce6f5;
+    border-radius: 15px;
+    padding: 24px;
+    margin: 18px 0;
+    box-shadow: 0 4px 14px rgba(22, 58, 105, 0.04);
+    transition: 0.25s ease;
+}
+
+#risk-assessment .risk-question:hover,
+#ethical-index .risk-question:hover {
+    transform: translateY(-2px);
+    border-color: #93b4ed;
+    box-shadow: 0 9px 20px rgba(37, 99, 235, 0.09);
+}
+
+/* Question labels */
+
+#risk-assessment .risk-question label,
+#ethical-index .risk-question label {
+    color: #12345b;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+/* Dropdown fields */
+
+#risk-assessment select,
+#ethical-index select {
+    width: 100%;
+    max-width: 450px;
+    padding: 14px 16px;
+    margin-top: 12px;
+    background: #f8fbff;
+    border: 1px solid #cbd8e9;
+    border-radius: 11px;
+    color: #12345b;
+    font-size: 15px;
+}
+
+#risk-assessment select:focus,
+#ethical-index select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+}
+
+/* Assessment action buttons */
+
+#risk-assessment > button,
+#ethical-index > button {
+    width: 100%;
+    padding: 17px;
+    margin-top: 20px;
+    background: linear-gradient(110deg, #2563eb, #174ea6);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.18);
+    transition: 0.25s ease;
+}
+
+#risk-assessment > button:hover,
+#ethical-index > button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.25);
+}
+
+/* Risk result panel */
+
+#risk-result {
+    background: linear-gradient(145deg, #eff6ff, #e5efff);
+    border: 1px solid #c8dcff;
+    border-radius: 18px;
+    padding: 30px;
+    margin-top: 28px;
+}
+
+#risk-result h3 {
+    color: #12345b;
+    font-size: 21px;
+}
+
+#risk-result h2 {
+    color: #2563eb;
+    font-size: 46px;
+    font-weight: 800;
+    margin: 18px 0;
+}
+
+#risk-result p {
+    color: #405570;
+    line-height: 1.8;
+    margin: 12px 0;
+}
+
+/* Ethical Index result panel */
+
+#ethical-result {
+    background: linear-gradient(145deg, #eff6ff, #e5efff);
+    border: 1px solid #c8dcff;
+    border-radius: 18px;
+    padding: 30px;
+    margin-top: 28px;
+}
+
+#ethical-result h3 {
+    color: #12345b;
+    font-size: 21px;
+}
+
+#ethical-result h2 {
+    color: #2563eb;
+    font-size: 48px;
+    font-weight: 800;
+    margin: 18px 0;
+}
+
+#ethical-result p {
+    color: #405570;
+    line-height: 1.8;
+}
+
+/* Ethical score cards */
+
+#ethical-result .ethical-dimension {
+    background: #ffffff;
+    border: 1px solid #dce6f5;
+    border-radius: 14px;
+    padding: 21px;
+    margin: 16px 0;
+    box-shadow: 0 4px 12px rgba(22, 58, 105, 0.04);
+}
+
+#ethical-result .ethical-dimension strong {
+    color: #12345b;
+    font-size: 16px;
+}
+
+/* Ethical progress bars */
+
+#ethical-result .ethical-progress {
+    height: 12px;
+    background: #e5edf8;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+#ethical-result .ethical-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+/* Mobile layout */
+
+@media (max-width: 768px) {
+
+    #risk-assessment,
+    #ethical-index {
+        padding: 21px;
+    }
+
+    #risk-result,
+    #ethical-result {
+        padding: 22px;
+    }
+
+    #risk-result h2,
+    #ethical-result h2 {
+        font-size: 38px;
+    }
+
+    #risk-assessment .risk-question,
+    #ethical-index .risk-question {
+        padding: 19px;
+    }
+}
