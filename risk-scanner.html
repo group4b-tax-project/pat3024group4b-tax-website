@@ -95,11 +95,67 @@
 </section>
 
 
+<!-- MODULE 3 LEARNING MODE MENU -->
+
+<section id="module3-menu" class="module-learning-menu">
+
+    <div class="learning-menu-heading">
+        <span class="learning-menu-label">CHOOSE YOUR LEARNING ACTIVITY</span>
+        <h2>Explore Module 3</h2>
+        <p>Select an activity below to begin your learning journey.</p>
+    </div>
+
+    <div class="learning-activity-grid">
+
+        <div class="learning-activity-card">
+            <div class="learning-activity-icon">⚖️</div>
+            <span class="learning-activity-label">ACTIVITY 01</span>
+            <h3>Section 140 Learning</h3>
+            <p>Understand tax avoidance and the anti-avoidance provisions under Section 140(1) ITA 1967.</p>
+            <button type="button" onclick="showModule3Activity('section-140')">
+                Explore Section 140 →
+            </button>
+        </div>
+
+        <div class="learning-activity-card">
+            <div class="learning-activity-icon">📊</div>
+            <span class="learning-activity-label">ACTIVITY 02</span>
+            <h3>Tax Planning Risk Assessment</h3>
+            <p>Evaluate a company's tax planning arrangements through five interactive risk questions.</p>
+            <button type="button" onclick="showModule3Activity('risk-assessment')">
+                Start Assessment →
+            </button>
+        </div>
+
+        <div class="learning-activity-card">
+            <div class="learning-activity-icon">🛡️</div>
+            <span class="learning-activity-label">ACTIVITY 03</span>
+            <h3>AaDab Ethical Index</h3>
+            <p>Assess transparency, social equity, compliance discipline and public welfare contributions.</p>
+            <button type="button" onclick="showModule3Activity('ethical-index')">
+                Calculate Ethical Index →
+            </button>
+        </div>
+
+        <div class="learning-activity-card">
+            <div class="learning-activity-icon">💡</div>
+            <span class="learning-activity-label">ACTIVITY 04</span>
+            <h3>Important Learning Note</h3>
+            <p>Review the educational purpose and limitations of the Section 140 risk scanner.</p>
+            <button type="button" onclick="showModule3Activity('learning-note')">
+                View Learning Note →
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
 
 
 <!-- SECTION 140 EXPLANATION -->
 
-<section id="section-140" class="section-140-card">
+<section id="section-140" class="section-140-card" style="display:none;">
 
     <div class="section-140-heading">
 
@@ -146,8 +202,8 @@
 
     <!-- TAX PLANNING RISK ASSESSMENT -->
 
-    <section id="risk-assessment">
-
+<section id="risk-assessment" style="display:none;">
+    
         <h2>Interactive Tax Planning Risk Assessment</h2>
 
         <p>
@@ -253,7 +309,7 @@
 
     <!-- AaDab ETHICAL INDEX -->
 
-    <section id="ethical-index">
+<section id="ethical-index" style="display:none;">
 
         <h2>AaDab Ethical Index</h2>
 
@@ -382,7 +438,7 @@
 
     <!-- IMPORTANT LEARNING NOTE -->
 
-    <section id="learning-note">
+<section id="learning-note" style="display:none;">
 
         <h2>Important Learning Note</h2>
 
@@ -881,6 +937,84 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 </script>
+
+
+// MODULE 3 ACTIVITY NAVIGATION
+
+function showModule3Activity(activityId) {
+
+    const menu = document.getElementById("module3-menu");
+
+    const activities = [
+        "section-140",
+        "risk-assessment",
+        "ethical-index",
+        "learning-note"
+    ];
+
+    // Hide the activity menu
+    menu.style.display = "none";
+
+    // Hide all activities
+    activities.forEach(id => {
+        document.getElementById(id).style.display = "none";
+    });
+
+    // Display the selected activity
+    const selectedActivity = document.getElementById(activityId);
+
+    selectedActivity.style.display = "block";
+
+    // Create a back button if it does not exist
+    let backButton = selectedActivity.querySelector(".module3-back-button");
+
+    if (!backButton) {
+
+        backButton = document.createElement("button");
+
+        backButton.type = "button";
+        backButton.className = "module3-back-button";
+        backButton.textContent = "← Back to Module 3 Activities";
+
+        backButton.onclick = showModule3Menu;
+
+        selectedActivity.insertBefore(
+            backButton,
+            selectedActivity.firstChild
+        );
+    }
+
+    // Move the page to the selected activity
+    selectedActivity.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+// RETURN TO ACTIVITY MENU
+
+function showModule3Menu() {
+
+    const activities = [
+        "section-140",
+        "risk-assessment",
+        "ethical-index",
+        "learning-note"
+    ];
+
+    activities.forEach(id => {
+        document.getElementById(id).style.display = "none";
+    });
+
+    document.getElementById("module3-menu").style.display = "block";
+
+    document.getElementById("module3-menu").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
 
 </body>
 
