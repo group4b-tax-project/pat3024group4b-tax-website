@@ -1260,11 +1260,17 @@ function selectCalculatorMode(mode) {
         document.getElementById("add-back").value = "";
         document.getElementById("deductions").value = "";
         document.getElementById("capital-allowance-bf").value = "";
+        document.getElementById("add-back").value = "";
+        document.getElementById("deductions").value = "";
+        document.getElementById("non-taxable-income").value = "";
+        document.getElementById("capital-allowance-bf").value = "";
+        document.getElementById("industrial-building-allowance").value = "";
         document.getElementById("other-income").value = "";
         document.getElementById("approved-donations").value = "";
         document.getElementById("optimized-deductions").value = "";
         document.getElementById("optimized-capital-allowance").value = "";
-
+        document.getElementById("special-deduction").value = "";
+        
         document.getElementById("calculation-result").innerHTML = `
             <h3>Calculation Results</h3>
             <p>
@@ -1300,8 +1306,11 @@ function resetCalculator() {
     document.getElementById("add-back").value = "";
     document.getElementById("deductions").value = "";
     document.getElementById("capital-allowance-bf").value = "";
+    document.getElementById("non-taxable-income").value = "";
+    document.getElementById("industrial-building-allowance").value = "";
     document.getElementById("other-income").value = "";
     document.getElementById("approved-donations").value = "";
+    document.getElementById("special-deduction").value = "";
 
     // Clear AaDab optimization inputs
     document.getElementById("optimized-deductions").value = "";
