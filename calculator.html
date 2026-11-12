@@ -137,82 +137,133 @@
             the company's adjusted business income and chargeable income.
         </p>
         
+
 <!-- GUIDED LEARNING PANEL -->
-<div id="guided-learning-panel" hidden>
+<div id="guided-learning-panel" class="guided-learning-panel" hidden>
 
-    <h2>Guided Learning Journey</h2>
+    <!-- HEADER -->
+    <div class="guided-header">
 
-    <p>
-        Follow the five steps below to understand how to
-        complete the corporate tax computation.
-    </p>
+        <span class="guided-label">INTERACTIVE LEARNING JOURNEY</span>
 
-    <div class="guided-progress">
-        <p id="guided-step-counter">Step 1 of 5</p>
+        <h2>Corporate Tax Computation</h2>
+
+        <p>
+            Follow five guided learning steps to understand
+            the corporate tax computation of Maju Mampan Sdn Bhd.
+        </p>
+
+    </div>
+
+    <!-- PROGRESS SECTION -->
+    <div class="guided-progress-card">
+
+        <div class="guided-progress-heading">
+            <div>
+                <span class="guided-small-label">YOUR PROGRESS</span>
+                <h3 id="guided-step-counter">Step 1 of 5</h3>
+            </div>
+
+            <div class="guided-progress-icon">📚</div>
+        </div>
 
         <div class="guided-progress-track">
             <div id="guided-progress-fill"></div>
         </div>
+
     </div>
 
+    <!-- LEARNING CONTENT -->
     <div class="guided-step-content">
 
-        <h3 id="guided-step-title">1. Business Income</h3>
+        <div class="guided-content-heading">
+
+            <div class="guided-content-icon">📖</div>
+
+            <div>
+                <span class="guided-small-label">LEARNING MODULE</span>
+                <h3 id="guided-step-title">1. Business Income</h3>
+            </div>
+
+        </div>
 
         <p id="guided-step-explanation">
             Start with the company's Profit Before Tax (PBT)
             based on its audited income statement.
         </p>
 
+        <!-- LEARNING TIP -->
         <div class="guided-tip">
-            <strong>Learning Tip:</strong>
+
+            <div class="guided-tip-heading">
+                <span>💡</span>
+                <strong>Learning Tip</strong>
+            </div>
+
             <p id="guided-step-tip">
                 Profit Before Tax is the starting point
                 for the corporate tax computation.
             </p>
+
         </div>
-
-    </div> 
-
-
-<div class="guided-practice" id="guided-practice">
-
-    <h3 id="practice-title">Test Your Understanding</h3>
-
-    <p id="practice-question">
-        Based on the audited income statement of
-        Maju Mampan Sdn Bhd, enter the Profit Before Tax.
-    </p>
-
-    <div id="practice-input-area">
-
-        <label for="guided-pbt-answer">
-            Profit Before Tax (RM)
-        </label>
-
-        <input type="number"
-            id="guided-pbt-answer"
-            placeholder="Enter your answer">
-
-        <button type="button" onclick="checkGuidedPBT()">
-            CHECK MY ANSWER
-        </button>
-
-        <p id="guided-pbt-feedback"></p>
 
     </div>
 
-</div>
+    <!-- PRACTICE ACTIVITY -->
+    <div class="guided-practice" id="guided-practice">
 
+        <div class="guided-practice-header">
 
+            <div class="guided-practice-icon">✏️</div>
+
+            <div>
+                <span class="guided-small-label">KNOWLEDGE CHECK</span>
+                <h3 id="practice-title">Test Your Understanding</h3>
+            </div>
+
+        </div>
+
+        <p id="practice-question">
+            Based on the audited income statement of
+            Maju Mampan Sdn Bhd, enter the Profit Before Tax.
+        </p>
+
+        <div id="practice-input-area">
+
+            <label for="guided-pbt-answer">
+                Profit Before Tax (RM)
+            </label>
+
+            <input type="number"
+                id="guided-pbt-answer"
+                placeholder="Enter your answer">
+
+            <button type="button"
+                class="guided-check-button"
+                onclick="checkGuidedPBT()">
+                CHECK MY ANSWER →
+            </button>
+
+            <p id="guided-pbt-feedback"></p>
+
+        </div>
+
+    </div>
+
+    <!-- NAVIGATION -->
     <div class="guided-navigation">
 
-        <button type="button" id="guided-previous"
-            onclick="changeGuidedStep(-1)" disabled>
+        <button type="button"
+            id="guided-previous"
+            class="guided-nav-button guided-previous-button"
+            onclick="changeGuidedStep(-1)"
+            disabled>
             ← Previous
         </button>
 
-        <button type="button" id="guided-next"
+        <button type="button"
+            id="guided-next"
+            class="guided-nav-button guided-next-button"
             onclick="changeGuidedStep(1)">
             Next Step →
         </button>
@@ -221,6 +272,7 @@
 
 </div>
 <!-- END GUIDED LEARNING PANEL -->
+
 
 
         <h3>1. Business Income</h3>
