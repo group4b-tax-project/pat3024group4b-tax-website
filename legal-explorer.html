@@ -175,6 +175,130 @@
                 padding: 15px;
             }
         }
+    
+/* =====================================
+   MODULE 4 - ACTIVITY MENU DESIGN
+===================================== */
+
+.module4-menu {
+    background: linear-gradient(135deg, #eef5ff, #ffffff);
+    border: 1px solid #dce7f5;
+    border-radius: 22px;
+    padding: 35px;
+    margin: 30px 0;
+    box-shadow: 0 8px 24px rgba(22, 52, 92, 0.08);
+}
+
+.module4-menu-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.module4-menu-heading h2 {
+    color: #16345c;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.module4-menu-heading p {
+    color: #52657d;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.module4-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.module4-activity-card {
+    background: #ffffff;
+    border: 1px solid #dce7f5;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 5px 18px rgba(22, 52, 92, 0.06);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.module4-activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(22, 52, 92, 0.12);
+}
+
+.module4-activity-number {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    width: fit-content;
+}
+
+.module4-activity-card h3 {
+    color: #16345c;
+    font-size: 20px;
+    margin: 0 0 12px;
+}
+
+.module4-activity-card p {
+    color: #52657d;
+    font-size: 15px;
+    line-height: 1.7;
+    flex-grow: 1;
+}
+
+.module4-activity-button {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #2864ed, #174cae);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.module4-activity-button:hover {
+    background: #16345c;
+    transform: translateY(-2px);
+}
+
+.module4-back-button {
+    background: #e8f1ff;
+    color: #16345c;
+    border: 1px solid #c8dcf8;
+    border-radius: 9px;
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.module4-back-button:hover {
+    background: #d5e6ff;
+}
+
+@media (max-width: 700px) {
+    .module4-activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .module4-menu {
+        padding: 22px;
+    }
+}
+
     </style>
 </head>
 
