@@ -1750,3 +1750,144 @@ footer {
         padding: 17px;
     }
 }
+
+/* ======================================
+   MODULE 2 - LEARNING MODE DESIGN
+====================================== */
+
+.learning-mode-section {
+    padding: 45px 35px;
+    background: linear-gradient(135deg, #f4f8ff, #eaf2ff);
+    border-radius: 20px;
+    margin: 30px 0;
+}
+
+.learning-mode-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.learning-mode-label {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 8px 15px;
+    border-radius: 30px;
+    margin-bottom: 15px;
+}
+
+.learning-mode-heading h2 {
+    color: #12345b;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.learning-mode-heading p {
+    color: #52647b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.learning-mode-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.learning-mode-card {
+    background: white;
+    border: 1px solid #dce6f5;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(22, 58, 105, 0.07);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.learning-mode-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(22, 58, 105, 0.14);
+}
+
+.learning-mode-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    font-size: 30px;
+    background: #eaf2ff;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.learning-mode-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #2563eb;
+    margin-bottom: 10px;
+}
+
+.learning-mode-card h3 {
+    color: #12345b;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.learning-mode-card p {
+    color: #52647b;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.learning-mode-card .learning-mode-button {
+    display: block;
+    width: 100%;
+    padding: 15px 18px;
+    background: linear-gradient(135deg, #2563eb, #174ea6);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.learning-mode-card .learning-mode-button:hover {
+    background: linear-gradient(135deg, #1d4ed8, #123d85);
+    transform: translateY(-2px);
+}
+
+.learning-mode-section[hidden] {
+    display: none !important;
+}
+
+/* Mobile responsive design */
+
+@media (max-width: 768px) {
+
+    .learning-mode-section {
+        padding: 25px 18px;
+    }
+
+    .learning-mode-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .learning-mode-card {
+        padding: 24px;
+    }
+
+    .learning-mode-heading h2 {
+        font-size: 24px;
+    }
+}
