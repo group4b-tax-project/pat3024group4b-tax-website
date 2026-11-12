@@ -949,8 +949,36 @@ function selectCalculatorMode(mode) {
     guidedPanel.hidden = (mode !== "guided");
 
     if (mode === "guided") {
+
         currentGuidedStep = 0;
         displayGuidedStep();
+
+    } else if (mode === "free") {
+
+        // PRE-FILL CONFIRMED CASE STUDY FIGURES
+
+        document.getElementById("profit-before-tax").value = 1069000;
+        document.getElementById("balancing-charge").value = 15000;
+        document.getElementById("capital-allowance").value = 123000;
+
+        // LEAVE ITEMS REQUIRING STUDENT TAX ANALYSIS BLANK
+
+        document.getElementById("add-back").value = "";
+        document.getElementById("deductions").value = "";
+        document.getElementById("capital-allowance-bf").value = "";
+        document.getElementById("other-income").value = "";
+        document.getElementById("approved-donations").value = "";
+        document.getElementById("optimized-deductions").value = "";
+        document.getElementById("optimized-capital-allowance").value = "";
+
+        document.getElementById("calculation-result").innerHTML = `
+            <h3>Calculation Results</h3>
+            <p>
+                Your case-study figures have been pre-filled.
+                Complete the tax adjustment inputs before
+                calculating the company's tax liability.
+            </p>
+        `;
     }
 
     taxInput.scrollIntoView({
