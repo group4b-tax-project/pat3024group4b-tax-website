@@ -136,7 +136,12 @@
             Enter the relevant financial information to calculate
             the company's adjusted business income and chargeable income.
         </p>
-        
+
+        <button type="button"
+        class="learning-mode-button"
+        onclick="backToCalculatorMode()">
+    ← Back to Choose Your Learning Mode
+</button>
 
 <!-- GUIDED LEARNING PANEL -->
 <div id="guided-learning-panel" class="guided-learning-panel" hidden>
@@ -1301,6 +1306,25 @@ function checkGuidedOptimization() {
         feedback.style.color = "#dc2626";
     }
 }
+function backToCalculatorMode() {
+
+    const companyInfo = document.getElementById("company-information");
+    const taxInput = document.getElementById("tax-input");
+    const modeSelection = document.getElementById("calculator-mode-selection");
+    const guidedPanel = document.getElementById("guided-learning-panel");
+
+    companyInfo.hidden = true;
+    taxInput.hidden = true;
+    guidedPanel.hidden = true;
+
+    modeSelection.hidden = false;
+
+    modeSelection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+    
 function selectCalculatorMode(mode) {
 
     const companyInfo = document.getElementById("company-information");
