@@ -53,50 +53,72 @@
     </section>
 
 <!-- CALCULATOR MODE SELECTION -->
-<section id="calculator-mode-selection">
 
-    <h2>Choose Your Learning Mode</h2>
+<section id="calculator-mode-selection" class="learning-mode-section">
 
-    <p>
-        Select how you would like to complete the
-        corporate tax computation for Maju Mampan Sdn Bhd.
-    </p>
+    <div class="learning-mode-heading">
+        <span class="learning-mode-label">PERSONALIZED LEARNING</span>
 
-    <div class="mode-selection-container">
+        <h2>Choose Your Learning Mode</h2>
 
-        <div class="mode-card">
+        <p>
+            Select your preferred learning experience and
+            explore corporate tax computation for
+            Maju Mampan Sdn Bhd.
+        </p>
+    </div>
+
+    <div class="learning-mode-grid">
+
+        <div class="learning-mode-card">
+
+            <div class="learning-mode-icon">🎓</div>
+
+            <span class="learning-mode-tag">STEP-BY-STEP</span>
+
             <h3>Guided Learning Mode</h3>
 
             <p>
-                Learn corporate tax computation step by step
-                with explanations, hints and learning activities.
+                Build your corporate taxation knowledge
+                through structured explanations,
+                helpful hints and interactive activities.
             </p>
 
             <button type="button"
-                onclick="selectCalculatorMode('guided')">
-                START GUIDED LEARNING
+                    class="learning-mode-button"
+                    onclick="selectCalculatorMode('guided')">
+                Start Guided Learning →
             </button>
+
         </div>
 
-        <div class="mode-card">
-    <h3>Free Calculation Mode</h3>
+        <div class="learning-mode-card">
 
-    <p>
-        Use the pre-filled financial information from
-        Maju Mampan Sdn Bhd's case study. Complete the
-        tax adjustments independently and compare
-        both tax computation scenarios.
-    </p>
+            <div class="learning-mode-icon">🧮</div>
 
-    <button type="button"
-        onclick="selectCalculatorMode('free')">
-        START FREE CALCULATION
-    </button>
-</div>
+            <span class="learning-mode-tag">SELF-PACED</span>
+
+            <h3>Free Calculation Mode</h3>
+
+            <p>
+                Apply your knowledge independently using
+                the company's financial information.
+                Calculate tax liabilities and compare
+                optimization scenarios.
+            </p>
+
+            <button type="button"
+                    class="learning-mode-button"
+                    onclick="selectCalculatorMode('free')">
+                Start Free Calculation →
+            </button>
+
+        </div>
 
     </div>
 
 </section>
+
 
     <section id="company-information" hidden>
         <h2>Company Information</h2>
