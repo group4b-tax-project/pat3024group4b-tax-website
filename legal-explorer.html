@@ -782,6 +782,8 @@
 
 <script>
 
+const MODULE4_API_URL = "https://script.google.com/macros/s/AKfycbyuZdfXseBRxmWrAuhp8rTnkuk_LFf5xZjp-5OdWRKwkEK7D1EpbJKmRhO-gBwjS2F6/exec";
+
 /* =====================================
    MODULE 4 - LEGAL REFERENCE SEARCH
 ===================================== */
@@ -863,6 +865,46 @@ function searchPublicRulings() {
 
 
 /* =====================================
+   MODULE 4 - LOAD SHARED DATABASE
+===================================== */
+
+window.module4Questions = [];
+window.module4Reflections = [];
+window.module4Comments = [];
+
+function loadModule4SharedData() {
+    const callbackName = "module4Callback_" + Date.now();
+
+    window[callbackName] = function(data) {
+        window.module4Questions = data.questions || [];
+        window.module4Reflections = data.reflections || [];
+        window.module4Comments = data.comments || [];
+
+        displayQuestions();
+        displayReflections();
+
+        delete window[callbackName];
+        script.remove();
+    };
+
+    const script = document.createElement("script");
+
+    script.src =
+        MODULE4_API_URL +
+        "?action=list&callback=" + callbackName;
+
+    script.onerror = function() {
+        document.getElementById("question-status").textContent =
+            "Unable to load shared questions. Please refresh the page.";
+
+        delete window[callbackName];
+        script.remove();
+    };
+
+    document.body.appendChild(script);
+}
+
+/* =====================================
    MODULE 4 - LOCAL STORAGE FUNCTIONS
 ===================================== */
 
@@ -908,53 +950,40 @@ function saveEntries(storageKey, entries) {
    MODULE 4 - STUDENT Q&A FORUM
 ===================================== */
 
+
 function displayQuestions() {
-
-    const questions = getSavedEntries("pat3024_questions");
-
     const questionList = document.getElementById("question-list");
+    const questions = window.module4Questions || [];
 
     if (questions.length === 0) {
-
         questionList.innerHTML =
-            '<p class="empty-message">No questions have been submitted yet.</p>';
-
+            '<p class="empty-message">No questions have been submitted yet. Be the first to ask!</p>';
         return;
-
     }
 
     questionList.innerHTML = "";
 
-    questions.forEach(question => {
-
+    questions.slice().reverse().forEach(question => {
         const item = document.createElement("div");
-
         item.className = "submission-item";
 
         const title = document.createElement("h4");
-        title.textContent = question.topic;
+        title.textContent = question.Topic;
 
         const name = document.createElement("p");
-        name.textContent = "Submitted by: " + question.name;
+        name.textContent = "Submitted by: " + question.StudentName;
 
         const content = document.createElement("p");
-        content.textContent = question.question;
+        content.textContent = question.Question;
 
         const date = document.createElement("p");
         date.className = "submission-date";
-        date.textContent = question.date;
+        date.textContent = new Date(question.Date).toLocaleString();
 
-        item.appendChild(title);
-        item.appendChild(name);
-        item.appendChild(content);
-        item.appendChild(date);
-
+        item.append(title, name, content, date);
         questionList.appendChild(item);
-
     });
-
 }
-
 
 document.getElementById("question-form").addEventListener(
     "submit",
@@ -1005,52 +1034,41 @@ document.getElementById("question-form").addEventListener(
    MODULE 4 - REFLECTIVE LEARNING HUB
 ===================================== */
 
+
 function displayReflections() {
-
-    const reflections = getSavedEntries("pat3024_reflections");
-
     const reflectionList = document.getElementById("reflection-list");
+    const reflections = window.module4Reflections || [];
 
     if (reflections.length === 0) {
-
         reflectionList.innerHTML =
-            '<p class="empty-message">No reflections have been submitted yet.</p>';
-
+            '<p class="empty-message">No reflections have been submitted yet. Share your learning experience!</p>';
         return;
-
     }
 
     reflectionList.innerHTML = "";
 
-    reflections.forEach(reflection => {
-
+    reflections.slice().reverse().forEach(reflection => {
         const item = document.createElement("div");
-
         item.className = "submission-item";
 
         const title = document.createElement("h4");
-        title.textContent = reflection.topic;
+        title.textContent = reflection.Topic;
 
         const name = document.createElement("p");
-        name.textContent = "Submitted by: " + reflection.name;
+        name.textContent = "Submitted by: " + reflection.StudentName;
 
         const content = document.createElement("p");
-        content.textContent = reflection.content;
+        content.textContent = reflection.Reflection;
 
         const date = document.createElement("p");
         date.className = "submission-date";
-        date.textContent = reflection.date;
+        date.textContent = new Date(reflection.Date).toLocaleString();
 
-        item.appendChild(title);
-        item.appendChild(name);
-        item.appendChild(content);
-        item.appendChild(date);
-
+        item.append(title, name, content, date);
         reflectionList.appendChild(item);
-
     });
-
 }
+
 
 
 document.getElementById("reflection-form").addEventListener(
@@ -1102,8 +1120,7 @@ document.getElementById("reflection-form").addEventListener(
    LOAD SAVED SUBMISSIONS
 ===================================== */
 
-displayQuestions();
-displayReflections();
+loadModule4SharedData();
 /* =====================================
    MODULE 4 - COMPLETION TRACKER
 ===================================== */
