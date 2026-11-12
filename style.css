@@ -3043,3 +3043,286 @@ footer {
     color: #1d4ed8 !important;
     transform: translateY(-2px);
 }
+
+/* =========================================
+   MODULE 3 - RISK ASSESSMENT & ETHICAL INDEX
+   MODERN BLUE AND WHITE DESIGN
+========================================= */
+
+/* SHARED SECTION DESIGN */
+
+#risk-assessment,
+#ethical-index {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%);
+    border: 1px solid #dbe6f5;
+    border-radius: 20px;
+    padding: 38px;
+    margin: 35px 0;
+    box-shadow: 0 8px 28px rgba(30, 64, 120, 0.07);
+    position: relative;
+    overflow: hidden;
+}
+
+/* TOP ACCENT LINE */
+
+#risk-assessment::before,
+#ethical-index::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #2563eb, #0d9488);
+}
+
+/* SECTION HEADINGS */
+
+#risk-assessment > h2,
+#ethical-index > h2 {
+    color: #163b70;
+    font-size: 27px;
+    font-weight: 750;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #e5edfa;
+}
+
+#risk-assessment > p,
+#ethical-index > p {
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+/* QUESTION CARDS */
+
+#risk-assessment .risk-question,
+#ethical-index .risk-question {
+    background: #ffffff;
+    border: 1px solid #dce7f7;
+    border-left: 5px solid #3b82f6;
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin: 20px 0;
+    box-shadow: 0 4px 14px rgba(30, 64, 120, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#risk-assessment .risk-question:hover,
+#ethical-index .risk-question:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.09);
+}
+
+/* QUESTION TITLES */
+
+#risk-assessment .risk-question label,
+#ethical-index .risk-question label {
+    display: block;
+    color: #163b70;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* ETHICAL INDEX QUESTION DESCRIPTION */
+
+#ethical-index .risk-question p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 8px 0 16px;
+}
+
+/* ANSWER DROPDOWNS */
+
+#risk-assessment .risk-question select,
+#ethical-index .risk-question select {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    min-height: 48px;
+    padding: 12px 15px;
+    background: #f8fbff;
+    color: #163b70;
+    border: 1px solid #cbdaf0;
+    border-radius: 9px;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#risk-assessment .risk-question select:focus,
+#ethical-index .risk-question select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    background: #ffffff;
+}
+
+/* ACTION BUTTONS */
+
+#risk-assessment > button,
+#ethical-index > button {
+    display: inline-block;
+    width: 100%;
+    max-width: 360px;
+    min-height: 50px;
+    margin: 18px 0 10px;
+    padding: 14px 22px;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.2);
+    transition: all 0.25s ease;
+}
+
+#risk-assessment > button:hover,
+#ethical-index > button:hover {
+    background: linear-gradient(135deg, #1d4ed8, #16345c);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+}
+
+/* RESULTS PANELS */
+
+#risk-result,
+#ethical-result {
+    background: #ffffff;
+    border: 1px solid #dce7f7;
+    border-radius: 16px;
+    padding: 28px;
+    margin-top: 25px;
+    box-shadow: 0 5px 18px rgba(30, 64, 120, 0.06);
+}
+
+#risk-result > h3,
+#ethical-result > h3 {
+    color: #163b70;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#risk-result > h2,
+#ethical-result > h2 {
+    color: #2563eb;
+    font-size: 38px;
+    font-weight: 800;
+    margin: 15px 0;
+}
+
+#risk-result p,
+#ethical-result p {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+/* ETHICAL INDEX INDIVIDUAL SCORE CARDS */
+
+#ethical-result .ethical-dimension {
+    background: #f8fbff;
+    border: 1px solid #e1eaf7;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 15px 0;
+}
+
+#ethical-result .ethical-dimension p {
+    margin: 5px 0 10px;
+}
+
+#ethical-result .ethical-dimension strong {
+    color: #163b70;
+}
+
+/* ETHICAL SCORE PROGRESS BARS */
+
+#ethical-result .ethical-progress {
+    width: 100%;
+    height: 11px;
+    background: #e2eaf5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+#ethical-result .ethical-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #0d9488);
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+/* CHART CARDS */
+
+#risk-assessment .risk-chart-card,
+#ethical-index .risk-chart-card {
+    background: linear-gradient(180deg, #ffffff, #f5f8ff);
+    border: 1px solid #dce7f7;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 25px;
+    text-align: center;
+    box-shadow: 0 5px 18px rgba(30, 64, 120, 0.06);
+}
+
+.risk-chart-card h3 {
+    color: #163b70;
+    margin-bottom: 10px;
+}
+
+.risk-chart-card p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.risk-chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    height: 320px;
+    margin: 20px auto 0;
+}
+
+/* MOBILE RESPONSIVE DESIGN */
+
+@media (max-width: 600px) {
+
+    #risk-assessment,
+    #ethical-index {
+        padding: 22px 16px;
+        border-radius: 15px;
+    }
+
+    #risk-assessment > h2,
+    #ethical-index > h2 {
+        font-size: 22px;
+    }
+
+    #risk-assessment .risk-question,
+    #ethical-index .risk-question {
+        padding: 18px;
+    }
+
+    #risk-assessment .risk-question select,
+    #ethical-index .risk-question select {
+        max-width: 100%;
+    }
+
+    #risk-result,
+    #ethical-result {
+        padding: 18px;
+    }
+
+    .risk-chart-container {
+        height: 260px;
+    }
+}
