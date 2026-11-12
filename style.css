@@ -2902,3 +2902,47 @@ footer {
     display: block;
     margin: 15px auto 0;
 }
+/* MODULE 1 INTRODUCTION - BLUE HERO STYLE */
+
+#module-intro {
+    background: linear-gradient(135deg, #1d4ed8, #16345c);
+    color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#module-intro h2 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+#module-intro p {
+    color: #ffffff;
+}
+
+#module-intro .completion-control {
+    text-align: center;
+    margin-top: 25px;
+}
+
+#complete-module-1 {
+    background: #ffffff !important;
+    color: #1d4ed8 !important;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#complete-module-1:hover {
+    background: #eaf1ff !important;
+    transform: translateY(-2px);
+}
+
+#module1-status {
+    color: #ffffff;
+    margin-top: 15px;
+}
