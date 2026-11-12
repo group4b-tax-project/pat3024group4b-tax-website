@@ -392,13 +392,16 @@
 
 </footer>
 
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
 <!-- JAVASCRIPT FUNCTIONS -->
 
 <script>
 
-
+let riskChartInstance = null;
+    
 // FUNCTION 1: TAX PLANNING RISK ASSESSMENT
+
 
 function assessRisk() {
 
@@ -415,30 +418,26 @@ function assessRisk() {
     );
 
     if (answers.includes("")) {
-
         alert("Please answer all five questions before submitting.");
-
         return;
     }
-
 
     const positiveAnswers = answers.filter(
         answer => answer === "yes"
     ).length;
 
-
     const riskScore = Math.round(
         ((questions.length - positiveAnswers) / questions.length) * 100
     );
 
-
     let riskLevel;
     let riskExplanation;
-
+    let riskColor;
 
     if (riskScore <= 20) {
 
         riskLevel = "Low Risk";
+        riskColor = "#16a34a";
 
         riskExplanation =
             "The arrangement demonstrates positive indicators of tax compliance and ethical tax planning.";
@@ -446,6 +445,7 @@ function assessRisk() {
     } else if (riskScore <= 40) {
 
         riskLevel = "Moderate Risk";
+        riskColor = "#f59e0b";
 
         riskExplanation =
             "Some aspects of the arrangement require further review and supporting evidence.";
@@ -453,12 +453,12 @@ function assessRisk() {
     } else {
 
         riskLevel = "High Risk";
+        riskColor = "#dc2626";
 
         riskExplanation =
             "Several risk indicators have been identified. The arrangement requires careful review before implementation.";
 
     }
-
 
     document.getElementById("risk-result").innerHTML = `
 
@@ -477,11 +477,75 @@ function assessRisk() {
             ${positiveAnswers} out of 5
         </p>
 
+        <div class="risk-chart-card">
+
+            <h3>Risk Assessment Overview</h3>
+
+            <p>Visual representation of the calculated risk score.</p>
+
+            <div class="risk-chart-container">
+                <canvas id="riskDoughnutChart"></canvas>
+            </div>
+
+        </div>
+
     `;
 
+    // Destroy previous chart before creating a new one
+
+    if (riskChartInstance) {
+        riskChartInstance.destroy();
+    }
+
+    const ctx = document
+        .getElementById("riskDoughnutChart")
+        .getContext("2d");
+
+    riskChartInstance = new Chart(ctx, {
+
+        type: "doughnut",
+
+        data: {
+            labels: ["Risk Score", "Remaining Score"],
+
+            datasets: [{
+                data: [riskScore, 100 - riskScore],
+
+                backgroundColor: [
+                    riskColor,
+                    "#dbeafe"
+                ],
+
+                borderWidth: 0,
+                hoverOffset: 8
+            }]
+        },
+
+        options: {
+
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "72%",
+
+            plugins: {
+
+                legend: {
+                    position: "bottom"
+                },
+
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ": " +
+                                context.raw + "%";
+                        }
+                    }
+                }
+            }
+        }
+    });
+
 }
-
-
 
 // FUNCTION 2: AaDab ETHICAL INDEX CALCULATION
 
