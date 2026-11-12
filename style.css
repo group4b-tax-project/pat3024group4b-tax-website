@@ -2898,3 +2898,7 @@ footer {
         height: 250px;
     }
 }
+.module3-hero-completion button {
+    display: block;
+    margin: 15px auto 0;
+}
