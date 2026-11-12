@@ -299,6 +299,188 @@
     }
 }
 
+/* =====================================
+   MODULE 4 - BEAUTIFUL QUESTION CARDS
+===================================== */
+
+.question-card {
+    background: #ffffff;
+    border: 1px solid #dce6f2;
+    border-left: 5px solid #2563eb;
+    border-radius: 16px;
+    padding: 25px;
+    margin: 22px 0;
+    box-shadow: 0 5px 18px rgba(25, 55, 95, 0.07);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.question-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 24px rgba(25, 55, 95, 0.12);
+}
+
+.question-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.question-card-header h3 {
+    color: #17365d;
+    font-size: 21px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.question-date {
+    color: #8291a5;
+    font-size: 12px;
+}
+
+.question-author {
+    color: #64748b;
+    font-size: 14px;
+    margin: 8px 0 16px;
+}
+
+.question-content {
+    color: #263b53;
+    font-size: 16px;
+    line-height: 1.8;
+    background: #f5f8fc;
+    padding: 16px;
+    border-radius: 10px;
+    margin: 0;
+}
+
+/* COMMENTS AREA */
+
+.question-card .comment-section {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f4f7fc;
+    border: 1px solid #e0e8f3;
+    border-radius: 12px;
+}
+
+.question-card .comment-heading {
+    color: #17365d;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 16px;
+}
+
+.question-card .comment-item {
+    background: #ffffff;
+    border: 1px solid #e1e8f0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 12px 0;
+}
+
+.question-card .comment-item strong {
+    display: block;
+    color: #1d4ed8;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.question-card .comment-item p {
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 5px 0 10px;
+    overflow-wrap: anywhere;
+}
+
+.question-card .comment-item small {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* COMMENT FORM */
+
+.question-card .comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.question-card .comment-form h5 {
+    color: #17365d;
+    font-size: 16px;
+    margin: 0 0 3px;
+}
+
+.question-card .comment-form input,
+.question-card .comment-form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 15px;
+    border: 1px solid #cbd8e8;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #263b53;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.question-card .comment-form input:focus,
+.question-card .comment-form textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.question-card .comment-form textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.question-card .comment-form button {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 9px;
+    background: #17365d;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.question-card .comment-form button:hover {
+    background: #2563eb;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media screen and (max-width: 600px) {
+    .question-card {
+        padding: 16px;
+        margin: 16px 0;
+    }
+
+    .question-card-header {
+        flex-direction: column;
+    }
+
+    .question-card-header h3 {
+        font-size: 19px;
+    }
+
+    .question-card .comment-section {
+        padding: 14px;
+    }
+}
+
     </style>
 </head>
 
@@ -1006,56 +1188,72 @@ async function submitModule4Comment(
 }
 
 
+
 function displayQuestions() {
     const questionList = document.getElementById("question-list");
     const questions = window.module4Questions || [];
     const comments = window.module4Comments || [];
 
+    questionList.innerHTML = "";
+
     if (questions.length === 0) {
-        questionList.innerHTML =
-            '<p class="empty-message">No questions have been submitted yet. Be the first to ask!</p>';
+        const empty = document.createElement("p");
+        empty.className = "empty-message";
+        empty.textContent = "No questions have been submitted yet. Be the first to ask!";
+        questionList.appendChild(empty);
         return;
     }
 
-    questionList.innerHTML = "";
-
     questions.slice().reverse().forEach(question => {
         const item = document.createElement("div");
-        item.className = "submission-item";
+        item.className = "submission-item question-card";
 
-        const title = document.createElement("h4");
+        // Question header
+        const header = document.createElement("div");
+        header.className = "question-card-header";
+
+        const title = document.createElement("h3");
         title.textContent = question.Topic;
 
-        const name = document.createElement("p");
-        name.textContent = "Submitted by: " + question.StudentName;
-
-        const content = document.createElement("p");
-        content.textContent = question.Question;
-
-        const date = document.createElement("p");
-        date.className = "submission-date";
+        const date = document.createElement("span");
+        date.className = "question-date";
         date.textContent = new Date(question.Date).toLocaleString();
 
-        item.append(title, name, content, date);
+        header.append(title, date);
 
-        // Display comments belonging to this question
+        // Student information
+        const author = document.createElement("p");
+        author.className = "question-author";
+        author.textContent = "Asked by " + question.StudentName;
+
+        // Question content
+        const content = document.createElement("p");
+        content.className = "question-content";
+        content.textContent = question.Question;
+
+        item.append(header, author, content);
+
+        // Individual comment section
         const commentSection = document.createElement("div");
         commentSection.className = "comment-section";
-
-        const commentHeading = document.createElement("h4");
-        commentHeading.textContent = "Comments";
-
-        commentSection.appendChild(commentHeading);
 
         const questionComments = comments.filter(comment =>
             String(comment.PostID) === String(question.QuestionID) &&
             comment.PostType === "question"
         );
 
+        const commentHeading = document.createElement("h4");
+        commentHeading.className = "comment-heading";
+        commentHeading.textContent =
+            "Discussion (" + questionComments.length + ")";
+
+        commentSection.appendChild(commentHeading);
+
+        // Display existing comments
         if (questionComments.length === 0) {
             const empty = document.createElement("p");
             empty.className = "empty-message";
-            empty.textContent = "No comments yet. Start the discussion!";
+            empty.textContent = "No comments yet. Be the first to join the discussion!";
             commentSection.appendChild(empty);
         }
 
@@ -1077,9 +1275,12 @@ function displayQuestions() {
             commentSection.appendChild(commentItem);
         });
 
-        // Comment submission form
+        // Comment form
         const commentForm = document.createElement("form");
         commentForm.className = "comment-form";
+
+        const formHeading = document.createElement("h5");
+        formHeading.textContent = "Join the discussion";
 
         const nameInput = document.createElement("input");
         nameInput.type = "text";
@@ -1095,7 +1296,12 @@ function displayQuestions() {
         submitButton.className = "module4-button";
         submitButton.textContent = "POST COMMENT";
 
-        commentForm.append(nameInput, commentInput, submitButton);
+        commentForm.append(
+            formHeading,
+            nameInput,
+            commentInput,
+            submitButton
+        );
 
         commentForm.addEventListener("submit", function(event) {
             submitModule4Comment(
@@ -1112,7 +1318,6 @@ function displayQuestions() {
         questionList.appendChild(item);
     });
 }
-
 
 document.getElementById("question-form").addEventListener(
     "submit",
