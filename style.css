@@ -3708,3 +3708,138 @@ footer {
         padding: 23px;
     }
 }
+
+/* =========================================
+   MODULE 3 - INTERACTIVE LEARNING MENU
+========================================= */
+
+.module-learning-menu {
+    background: linear-gradient(135deg, #ffffff, #eff6ff);
+    border: 1px solid #dce7f5;
+    border-radius: 20px;
+    padding: 35px;
+    margin: 30px auto;
+    box-shadow: 0 8px 24px rgba(22, 52, 92, 0.08);
+}
+
+.learning-menu-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.learning-menu-label {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.learning-menu-heading h2 {
+    color: #16345c;
+    font-size: 30px;
+    margin: 15px 0 10px;
+}
+
+.learning-menu-heading p {
+    color: #64748b;
+    font-size: 16px;
+}
+
+.learning-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.learning-activity-card {
+    background: #ffffff;
+    border: 1px solid #dce7f5;
+    border-radius: 17px;
+    padding: 28px;
+    box-shadow: 0 5px 18px rgba(22, 52, 92, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.learning-activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.12);
+    border-color: #93c5fd;
+}
+
+.learning-activity-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eff6ff;
+    border-radius: 15px;
+    font-size: 27px;
+    margin-bottom: 18px;
+}
+
+.learning-activity-label {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.learning-activity-card h3 {
+    color: #16345c;
+    font-size: 21px;
+    margin: 14px 0;
+}
+
+.learning-activity-card p {
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.7;
+    flex-grow: 1;
+    margin-bottom: 22px;
+}
+
+.learning-activity-card button,
+.module3-back-button {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    border: none;
+    border-radius: 9px;
+    padding: 13px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.learning-activity-card button:hover,
+.module3-back-button:hover {
+    background: #16345c;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(22, 52, 92, 0.18);
+}
+
+.module3-back-button {
+    margin-bottom: 25px;
+}
+
+@media (max-width: 700px) {
+    .learning-activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .module-learning-menu {
+        padding: 22px;
+    }
+
+    .learning-menu-heading h2 {
+        font-size: 24px;
+    }
+}
