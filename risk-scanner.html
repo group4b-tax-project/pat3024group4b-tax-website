@@ -72,10 +72,6 @@
 
         <div class="module3-hero-completion" style="text-align:center;">
 
-            <div id="module3-status">
-                You have not completed this module yet.
-            </div>
-
             <button
                 type="button"
                 id="complete-module-3"
@@ -87,6 +83,10 @@
                 MARK MODULE 3 AS COMPLETED
 
             </button>
+
+            <div id="module3-status">
+                You have not completed this module yet.
+            </div>
 
         </div>
 
@@ -831,19 +831,22 @@ function toggleModule3Completion() {
             module => module !== moduleId
         );
 
-        button.textContent = "MARK MODULE 3 AS COMPLETED";
-
         status.textContent =
             "You have not completed this module yet.";
+        
+        button.textContent = "MARK MODULE 3 AS COMPLETED";
+
+        
 
     } else {
 
         completedModules.push(moduleId);
 
-        button.textContent = "MARK AS NOT COMPLETED";
-
         status.textContent =
             "Congratulations! You have completed Module 3.";
+
+        button.textContent = "MARK AS NOT COMPLETED";
+
 
     }
 
