@@ -1697,3 +1697,56 @@ footer {
         padding: 14px;
     }
 }
+
+/* =========================================
+   AaDab RESULTS EXPLANATION PANEL
+========================================= */
+
+.aadab-result-explanation {
+    background-color: #f4f7fc;
+    border: 1px solid #d5dfed;
+    border-left: 5px solid #2475c7;
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 25px;
+    line-height: 1.7;
+}
+
+.aadab-result-explanation h3 {
+    color: #17365d;
+    margin-bottom: 18px;
+}
+
+.aadab-result-explanation p {
+    color: #40536b;
+    margin: 12px 0;
+}
+
+.aadab-result-explanation .result-success {
+    color: #15803d;
+    font-size: 18px;
+}
+
+.aadab-result-explanation .result-warning {
+    color: #b45309;
+    font-size: 18px;
+}
+
+.aadab-result-explanation .result-neutral {
+    color: #2475c7;
+    font-size: 18px;
+}
+
+.aadab-result-explanation .result-disclaimer {
+    border-top: 1px solid #d5dfed;
+    padding-top: 15px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #64748b;
+}
+
+@media screen and (max-width: 600px) {
+    .aadab-result-explanation {
+        padding: 17px;
+    }
+}
