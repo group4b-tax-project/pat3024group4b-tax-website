@@ -385,10 +385,35 @@ const practiceActivities = [
     `
 },
     {
-        title: "Capital Allowance Activity",
-        question: "Review the capital allowance information provided in Note 14 of the case study.",
-        content: "<p>Learning activity: Examine the current year capital allowances and balancing charge.</p>"
-    },
+    title: "Capital Allowance Activity",
+    question: "According to Note 14, the factory was purchased for RM770,000, including land costing RM70,000. Calculate the factory cost excluding land.",
+    content: `
+        <div class="guided-quiz">
+            <p><strong>Question 1: Calculate the factory cost excluding land.</strong></p>
+
+            <p>
+                Factory purchase price: RM770,000<br>
+                Land cost: RM70,000
+            </p>
+
+            <label for="guided-factory-answer">
+                Your answer (RM)
+            </label>
+
+            <input
+                type="number"
+                id="guided-factory-answer"
+                placeholder="Enter your answer"
+            >
+
+            <button type="button" onclick="checkGuidedCapitalAllowance()">
+                CHECK MY ANSWER
+            </button>
+
+            <p id="guided-ca-feedback"></p>
+        </div>
+    `
+},
     {
         title: "Other Income and Donations Activity",
         question: "Review Note 2 and Note 12 of the case study.",
@@ -728,6 +753,39 @@ function checkGuidedTaxAdjustment() {
             <strong>Not quite. Try again!</strong><br>
             Think about the two-year useful life of the tools.
             Does this indicate capital or revenue expenditure?
+        `;
+        feedback.style.color = "#dc2626";
+    }
+}
+    function checkGuidedCapitalAllowance() {
+    const answer = document.getElementById(
+        "guided-factory-answer"
+    ).value;
+
+    const feedback = document.getElementById(
+        "guided-ca-feedback"
+    );
+
+    if (answer === "") {
+        feedback.textContent = "Please enter your answer first.";
+        feedback.style.color = "#d97706";
+        return;
+    }
+
+    if (Number(answer) === 700000) {
+        feedback.innerHTML = `
+            <strong>Correct!</strong><br>
+            RM770,000 - RM70,000 = RM700,000.
+            The factory cost excluding land is RM700,000.
+            The land cost must be considered separately when
+            assessing the tax treatment of the factory.
+        `;
+        feedback.style.color = "#15803d";
+    } else {
+        feedback.innerHTML = `
+            <strong>Not quite. Try again!</strong><br>
+            Subtract the land cost of RM70,000 from the
+            total purchase price of RM770,000.
         `;
         feedback.style.color = "#dc2626";
     }
