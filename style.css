@@ -3843,3 +3843,30 @@ footer {
         font-size: 24px;
     }
 }
+/* MODULE 4 INTRO - MATCH MODULE 3 DESIGN */
+
+.module4-intro {
+    background: linear-gradient(120deg, #15385e, #2563eb);
+    color: #ffffff;
+    text-align: center;
+    padding: 35px 30px;
+    border-radius: 22px;
+    margin: 30px 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    font-family: Arial, sans-serif;
+}
+
+.module4-intro h2 {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.module4-intro p {
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.8;
+    font-weight: 400;
+}
