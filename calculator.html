@@ -602,6 +602,38 @@ function calculateTax() {
 
         return;
     }
+        // CHECK FOR NEGATIVE TAX INPUTS
+
+    const nonNegativeFields = [
+        "add-back",
+        "deductions",
+        "balancing-charge",
+        "capital-allowance",
+        "capital-allowance-bf",
+        "other-income",
+        "approved-donations",
+        "optimized-deductions",
+        "optimized-capital-allowance"
+    ];
+
+    const negativeFields = nonNegativeFields.filter(id => {
+        const value = document.getElementById(id).value;
+        return value !== "" && Number(value) < 0;
+    });
+
+    if (negativeFields.length > 0) {
+
+        alert(
+            "Negative amounts are not allowed in these fields. Please enter zero or a positive amount:\n\n" +
+            negativeFields.map(id =>
+                document.querySelector(`label[for="${id}"]`).textContent
+            ).join("\n")
+        );
+
+        document.getElementById(negativeFields[0]).focus();
+
+        return;
+    }
     // 1. Retrieve original tax inputs
     const profitBeforeTax =
         Number(document.getElementById("profit-before-tax").value) || 0;
