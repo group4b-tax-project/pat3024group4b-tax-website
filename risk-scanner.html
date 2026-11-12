@@ -376,7 +376,11 @@
         <p>Module 3 is not yet marked as completed.</p>
     </div>
 
-    <button type="button" onclick="toggleModule3Completion()">
+    <button type="button"
+        id="complete-module-3"
+        onclick="toggleModule3Completion()">
+    MARK MODULE 3 AS COMPLETED
+</button>
         MARK MODULE 3 AS COMPLETED
     </button>
 
@@ -810,6 +814,74 @@ function calculateEthicalIndex() {
 
 }
 
+
+</script>
+
+<script>
+
+// MODULE 3 COMPLETION TRACKER
+
+function toggleModule3Completion() {
+
+    let completedModules = JSON.parse(
+        localStorage.getItem("pat3024_completed_modules") || "[]"
+    );
+
+    const moduleId = "module3";
+    const button = document.getElementById("complete-module-3");
+    const status = document.getElementById("module3-status");
+
+    if (completedModules.includes(moduleId)) {
+
+        completedModules = completedModules.filter(
+            module => module !== moduleId
+        );
+
+        button.textContent = "MARK MODULE 3 AS COMPLETED";
+
+        status.textContent =
+            "You have not completed this module yet.";
+
+    } else {
+
+        completedModules.push(moduleId);
+
+        button.textContent = "MARK AS NOT COMPLETED";
+
+        status.textContent =
+            "Congratulations! You have completed Module 3.";
+
+    }
+
+    localStorage.setItem(
+        "pat3024_completed_modules",
+        JSON.stringify(completedModules)
+    );
+
+}
+
+
+// DISPLAY SAVED COMPLETION STATUS WHEN PAGE LOADS
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const completedModules = JSON.parse(
+        localStorage.getItem("pat3024_completed_modules") || "[]"
+    );
+
+    const button = document.getElementById("complete-module-3");
+    const status = document.getElementById("module3-status");
+
+    if (completedModules.includes("module3")) {
+
+        button.textContent = "MARK AS NOT COMPLETED";
+
+        status.textContent =
+            "Congratulations! You have completed Module 3.";
+
+    }
+
+});
 
 </script>
 
