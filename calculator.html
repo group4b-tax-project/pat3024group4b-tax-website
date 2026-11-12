@@ -415,10 +415,38 @@ const practiceActivities = [
     `
 },
     {
-        title: "Other Income and Donations Activity",
-        question: "Review Note 2 and Note 12 of the case study.",
-        content: "<p>Learning activity: Examine dividend income and donation information before determining their tax treatment.</p>"
-    },
+    title: "Other Income and Donations Activity",
+    question: "According to Note 2, calculate the total dividend income received by Maju Mampan Sdn Bhd.",
+    content: `
+        <div class="guided-quiz">
+            <p><strong>Question 1: Calculate the total dividend income.</strong></p>
+
+            <p>
+                Single-tier dividend from KPJ Healthcare Berhad:
+                RM141,000<br><br>
+
+                Dividend from an Australian company remitted to Malaysia:
+                RM52,000
+            </p>
+
+            <label for="guided-dividend-answer">
+                Your answer (RM)
+            </label>
+
+            <input
+                type="number"
+                id="guided-dividend-answer"
+                placeholder="Enter your answer"
+            >
+
+            <button type="button" onclick="checkGuidedDividend()">
+                CHECK MY ANSWER
+            </button>
+
+            <p id="guided-dividend-feedback"></p>
+        </div>
+    `
+},
     {
         title: "AaDab Optimization Activity",
         question: "Consider how legally eligible tax deductions and capital allowances can affect the company's tax liability.",
@@ -786,6 +814,38 @@ function checkGuidedTaxAdjustment() {
             <strong>Not quite. Try again!</strong><br>
             Subtract the land cost of RM70,000 from the
             total purchase price of RM770,000.
+        `;
+        feedback.style.color = "#dc2626";
+    }
+}
+    function checkGuidedDividend() {
+    const answer = document.getElementById(
+        "guided-dividend-answer"
+    ).value;
+
+    const feedback = document.getElementById(
+        "guided-dividend-feedback"
+    );
+
+    if (answer === "") {
+        feedback.textContent = "Please enter your answer first.";
+        feedback.style.color = "#d97706";
+        return;
+    }
+
+    if (Number(answer) === 193000) {
+        feedback.innerHTML = `
+            <strong>Correct!</strong><br>
+            RM141,000 + RM52,000 = RM193,000.
+            The total dividend income is RM193,000,
+            equivalent to RM193,000 in Note 2.
+        `;
+        feedback.style.color = "#15803d";
+    } else {
+        feedback.innerHTML = `
+            <strong>Not quite. Try again!</strong><br>
+            Add RM141,000 and RM52,000 to calculate
+            the total dividend income.
         `;
         feedback.style.color = "#dc2626";
     }
