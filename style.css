@@ -2568,3 +2568,72 @@ footer {
         padding: 17px;
     }
 }
+
+/* MODULE 3 HERO DESIGN FIX */
+
+#module-intro.risk-hero {
+    background: linear-gradient(135deg, #12345b, #2563eb) !important;
+    color: #ffffff !important;
+    padding: 48px 40px;
+    border: none;
+    border-radius: 20px;
+    text-align: left;
+}
+
+#module-intro.risk-hero h2 {
+    color: #ffffff !important;
+    text-align: left;
+}
+
+#module-intro.risk-hero p {
+    color: #e4edff !important;
+    text-align: left;
+}
+
+.risk-hero-highlights {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.risk-highlight {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 9px;
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 12px 16px;
+    border-radius: 10px;
+    color: white !important;
+}
+
+.risk-highlight strong {
+    color: white !important;
+}
+
+.section-140-card .section-140-heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 17px;
+}
+
+.section-140-card .section-140-reminder {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 19px 21px;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    #module-intro.risk-hero {
+        padding: 30px 22px;
+    }
+
+    .risk-hero-highlights {
+        flex-direction: column !important;
+    }
+}
