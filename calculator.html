@@ -702,6 +702,9 @@ function calculateTax() {
     const deductions =
         Number(document.getElementById("deductions").value) || 0;
 
+    const nonTaxableIncome =
+    Number(document.getElementById("non-taxable-income").value) || 0;
+
     const balancingCharge =
         Number(document.getElementById("balancing-charge").value) || 0;
 
@@ -710,6 +713,9 @@ function calculateTax() {
 
     const capitalAllowanceBF =
         Number(document.getElementById("capital-allowance-bf").value) || 0;
+
+    const industrialBuildingAllowance =
+    Number(document.getElementById("industrial-building-allowance").value) || 0;
 
     const otherIncome =
         Number(document.getElementById("other-income").value) || 0;
@@ -723,6 +729,9 @@ function calculateTax() {
 
     const optimizedCapitalAllowance =
         Number(document.getElementById("optimized-capital-allowance").value) || 0;
+
+    const specialDeduction =
+    Number(document.getElementById("special-deduction").value) || 0;
 
     // 3. Calculate each scenario
     function calculateScenario(extraDeductions, extraCapitalAllowances) {
