@@ -2946,3 +2946,33 @@ footer {
     color: #ffffff;
     margin-top: 15px;
 }
+/* CENTRE MODULE 3 HERO CONTENT */
+
+.risk-hero-content {
+    text-align: center;
+}
+
+.risk-hero-content h2 {
+    text-align: center;
+}
+
+.risk-hero-content p {
+    text-align: center;
+}
+
+.risk-hero-highlights {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.module3-hero-completion {
+    text-align: center;
+}
+
+.module3-hero-completion button {
+    display: block;
+    margin: 15px auto 0;
+}
