@@ -730,7 +730,12 @@ function calculateTax() {
     // 5. Calculate tax savings
     const taxSavings =
         unoptimized.estimatedTax - optimized.estimatedTax;
+// 5A. Calculate percentage change in estimated tax
 
+const taxReductionPercentage =
+    unoptimized.estimatedTax > 0
+        ? (taxSavings / unoptimized.estimatedTax) * 100
+        : 0;
     // 6. Format Malaysian Ringgit
     function formatRM(amount) {
         return "RM " + amount.toLocaleString("en-MY", {
@@ -826,7 +831,35 @@ function calculateTax() {
         </div>
 
         <hr>
+<div class="optimization-summary-panel">
 
+    <h3>Tax Savings Overview</h3>
+
+    <div class="optimization-summary-grid">
+
+        <div class="optimization-summary-item">
+            <p>Unoptimized Estimated Tax</p>
+            <h4>${formatRM(unoptimized.estimatedTax)}</h4>
+        </div>
+
+        <div class="optimization-summary-item">
+            <p>AaDab-Optimized Estimated Tax</p>
+            <h4>${formatRM(optimized.estimatedTax)}</h4>
+        </div>
+
+        <div class="optimization-summary-item">
+            <p>Estimated Tax Savings</p>
+            <h4>${formatRM(taxSavings)}</h4>
+        </div>
+
+        <div class="optimization-summary-item">
+            <p>Percentage Change in Estimated Tax</p>
+            <h4>${taxReductionPercentage.toFixed(2)}%</h4>
+        </div>
+
+    </div>
+
+</div>
         <h3>AaDab Optimization Summary</h3>
 
         <table class="tax-computation-table">
