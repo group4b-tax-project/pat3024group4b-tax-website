@@ -985,48 +985,55 @@ function displayQuestions() {
     });
 }
 
+
 document.getElementById("question-form").addEventListener(
     "submit",
-    function(event) {
-
+    async function(event) {
         event.preventDefault();
 
         const name = document.getElementById("student-name").value.trim();
         const topic = document.getElementById("question-topic").value;
         const question = document.getElementById("student-question").value.trim();
 
+        const status = document.getElementById("question-status");
+
         if (!name || !topic || !question) {
-
             alert("Please complete all fields before submitting.");
-
             return;
-
         }
 
-        const questions = getSavedEntries("pat3024_questions");
+        status.textContent = "Submitting your question...";
 
-        questions.unshift({
+        try {
+            await fetch(MODULE4_API_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify({
+                    action: "question",
+                    name: name,
+                    topic: topic,
+                    content: question
+                })
+            });
 
-            name: name,
-            topic: topic,
-            question: question,
-            date: new Date().toLocaleString()
-
-        });
-
-        if (saveEntries("pat3024_questions", questions)) {
-
-            displayQuestions();
-
-            document.getElementById("question-status").textContent =
-                "Your question has been saved successfully in this browser.";
+            status.textContent =
+                "Your question has been submitted. Refreshing shared questions...";
 
             document.getElementById("question-form").reset();
 
+            setTimeout(function() {
+                loadModule4SharedData();
+            }, 1500);
+
+        } catch (error) {
+            status.textContent =
+                "Unable to submit your question. Please try again.";
+            console.error(error);
         }
-
     }
-
 );
 
 
