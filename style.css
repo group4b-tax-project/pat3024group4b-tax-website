@@ -2858,3 +2858,43 @@ footer {
         padding: 19px;
     }
 }
+
+/* MODULE 3 - RISK DOUGHNUT CHART */
+
+.risk-chart-card {
+    background: #ffffff;
+    border: 1px solid #dce7f8;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 25px;
+    text-align: center;
+    box-shadow: 0 5px 18px rgba(22, 58, 105, 0.05);
+}
+
+.risk-chart-card h3 {
+    color: #12345b;
+    margin-bottom: 8px;
+}
+
+.risk-chart-card p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.risk-chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: 300px;
+    margin: 15px auto 0;
+}
+
+@media (max-width: 600px) {
+    .risk-chart-card {
+        padding: 18px;
+    }
+
+    .risk-chart-container {
+        height: 250px;
+    }
+}
