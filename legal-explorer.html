@@ -1089,5 +1089,95 @@ displayReflections();
 
 </script>
 
+/* =====================================
+   MODULE 4 - ACTIVITY NAVIGATION
+===================================== */
+
+function showModule4Activity(activityId) {
+
+    const menu = document.getElementById("module4-menu");
+
+    const activities = [
+        "legal-explorer",
+        "public-rulings",
+        "student-forum",
+        "reflection-hub"
+    ];
+
+    // Hide the activity menu
+    menu.style.display = "none";
+
+    // Hide all activity sections
+    activities.forEach(function(id) {
+        const section = document.getElementById(id);
+
+        if (section) {
+            section.style.display = "none";
+        }
+    });
+
+    // Display the selected activity
+    const selectedActivity = document.getElementById(activityId);
+
+    if (!selectedActivity) {
+        menu.style.display = "block";
+        alert("Activity section not found. Please check its HTML ID.");
+        return;
+    }
+
+    selectedActivity.style.display = "block";
+
+    // Create Back button
+    let backButton = selectedActivity.querySelector(
+        ".module4-back-button"
+    );
+
+    if (!backButton) {
+        backButton = document.createElement("button");
+        backButton.type = "button";
+        backButton.className = "module4-back-button";
+        backButton.textContent = "← Back to Module 4 Activities";
+
+        backButton.onclick = showModule4Menu;
+
+        selectedActivity.insertBefore(
+            backButton,
+            selectedActivity.firstChild
+        );
+    }
+
+    // Move to selected activity
+    selectedActivity.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function showModule4Menu() {
+
+    const activities = [
+        "legal-explorer",
+        "public-rulings",
+        "student-forum",
+        "reflection-hub"
+    ];
+
+    activities.forEach(function(id) {
+        const section = document.getElementById(id);
+
+        if (section) {
+            section.style.display = "none";
+        }
+    });
+
+    const menu = document.getElementById("module4-menu");
+    menu.style.display = "block";
+
+    menu.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
 </body>
 </html>
