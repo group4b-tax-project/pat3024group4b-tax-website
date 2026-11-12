@@ -1633,3 +1633,67 @@ footer {
         font-size: 19px;
     }
 }
+
+/* =========================================
+   AaDab OPTIMIZATION LEARNING GUIDE
+========================================= */
+
+.aadab-learning-guide {
+    background-color: #f4f7fc;
+    border: 1px solid #d5dfed;
+    border-left: 5px solid #2475c7;
+    border-radius: 10px;
+    padding: 24px;
+    margin: 25px 0;
+}
+
+.aadab-learning-guide h3 {
+    color: #17365d;
+    margin-bottom: 15px;
+}
+
+.aadab-learning-guide > p {
+    color: #40536b;
+    line-height: 1.7;
+}
+
+.aadab-guide-item {
+    background-color: #ffffff;
+    border: 1px solid #d5dfed;
+    border-radius: 8px;
+    padding: 18px;
+    margin: 15px 0;
+}
+
+.aadab-guide-item h4 {
+    color: #17365d;
+    margin-bottom: 10px;
+}
+
+.aadab-guide-item p {
+    color: #52647a;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.aadab-learning-guide .aadab-warning {
+    background-color: #fff8e7;
+    border-left: 4px solid #d99a24;
+    border-radius: 5px;
+    padding: 14px;
+    margin-top: 18px;
+    color: #76521a;
+    line-height: 1.6;
+}
+
+/* Mobile responsive design */
+
+@media screen and (max-width: 600px) {
+    .aadab-learning-guide {
+        padding: 17px;
+    }
+
+    .aadab-guide-item {
+        padding: 14px;
+    }
+}
