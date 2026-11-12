@@ -331,7 +331,25 @@
             refer to LHDN Public Rulings, participate in learning
             discussions and record their reflections on corporate taxation.
         </p>
+<!-- MODULE 4 COMPLETION TRACKER -->
 
+<div class="completion-control">
+
+    <button
+        type="button"
+        class="completion-button"
+        id="complete-module-4"
+        onclick="toggleModule4Completion()">
+
+        MARK MODULE 4 AS COMPLETED
+
+    </button>
+
+    <p id="module4-status">
+        You have not completed this module yet.
+    </p>
+
+</div>
     </section>
 
 
@@ -1086,7 +1104,44 @@ document.getElementById("reflection-form").addEventListener(
 
 displayQuestions();
 displayReflections();
+/* =====================================
+   MODULE 4 - COMPLETION TRACKER
+===================================== */
 
+function toggleModule4Completion() {
+
+    let completedModules = JSON.parse(
+        localStorage.getItem("pat3024_completed_modules") || "[]"
+    );
+
+    const button = document.getElementById("complete-module-4");
+    const status = document.getElementById("module4-status");
+
+    if (completedModules.includes("module4")) {
+
+        completedModules = completedModules.filter(
+            module => module !== "module4"
+        );
+
+        button.textContent = "MARK MODULE 4 AS COMPLETED";
+        status.textContent = "You have not completed this module yet.";
+
+    } else {
+
+        completedModules.push("module4");
+
+        button.textContent = "MARK AS NOT COMPLETED";
+        status.textContent =
+            "Congratulations! You have completed Module 4.";
+
+    }
+
+    localStorage.setItem(
+        "pat3024_completed_modules",
+        JSON.stringify(completedModules)
+    );
+
+}
 </script>
     
 <script>
