@@ -3548,3 +3548,163 @@ footer {
     }
 
 }
+
+/* =========================================
+   MODULE 3 - INTERACTIVE LEARNING MENU
+========================================= */
+
+.module-learning-menu {
+    background: linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%);
+    border: 1px solid #dce7f5;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px 0;
+    box-shadow: 0 8px 24px rgba(22, 52, 92, 0.08);
+}
+
+.learning-menu-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.learning-menu-label {
+    display: inline-block;
+    background: #e4efff;
+    color: #2475c7;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.learning-menu-heading h2 {
+    color: #16345c;
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.learning-menu-heading p {
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.learning-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.learning-activity-card {
+    background: #ffffff;
+    border: 1px solid #dce7f5;
+    border-radius: 18px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0 6px 18px rgba(22, 52, 92, 0.06);
+    transition: all 0.3s ease;
+}
+
+.learning-activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 26px rgba(22, 52, 92, 0.12);
+    border-color: #8db8f5;
+}
+
+.learning-activity-icon {
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf2ff;
+    border-radius: 16px;
+    font-size: 30px;
+    margin-bottom: 22px;
+}
+
+.learning-activity-label {
+    color: #2475c7;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.learning-activity-card h3 {
+    color: #16345c;
+    font-size: 21px;
+    margin: 0 0 14px;
+}
+
+.learning-activity-card p {
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.learning-activity-card button {
+    width: 100%;
+    background: linear-gradient(135deg, #2864e8, #164caa);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 18px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.learning-activity-card button:hover {
+    background: #16345c;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(22, 52, 92, 0.2);
+}
+
+/* BACK TO MENU BUTTON */
+
+.module3-back-button {
+    display: block;
+    background: #16345c;
+    color: #ffffff;
+    border: none;
+    border-radius: 9px;
+    padding: 13px 22px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+.module3-back-button:hover {
+    background: #2475c7;
+}
+
+/* MOBILE RESPONSIVE DESIGN */
+
+@media (max-width: 700px) {
+
+    .module-learning-menu {
+        padding: 22px;
+    }
+
+    .learning-activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .learning-menu-heading h2 {
+        font-size: 25px;
+    }
+
+    .learning-activity-card {
+        padding: 23px;
+    }
+}
