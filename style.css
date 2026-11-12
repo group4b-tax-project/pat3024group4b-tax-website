@@ -2222,3 +2222,188 @@ footer {
         width: 100%;
     }
 }
+
+/* =========================================
+   MODULE 3 - AADAB RISK SCANNER DESIGN
+========================================= */
+
+#module-intro,
+#section-140,
+#risk-assessment,
+#ethical-index,
+#learning-note {
+    background: #ffffff;
+    border: 1px solid #dce6f5;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    box-shadow: 0 6px 20px rgba(22, 58, 105, 0.06);
+}
+
+#module-intro h2,
+#section-140 h2,
+#risk-assessment h2,
+#ethical-index h2,
+#learning-note h2 {
+    color: #12345b;
+    margin-bottom: 18px;
+}
+
+#module-intro p,
+#section-140 p,
+#risk-assessment > p,
+#ethical-index > p,
+#learning-note p {
+    color: #52647b;
+    line-height: 1.8;
+}
+
+/* Risk assessment questions */
+
+#risk-assessment .risk-question,
+#ethical-index .risk-question {
+    background: #f4f8ff;
+    border: 1px solid #dce7f8;
+    border-radius: 13px;
+    padding: 22px;
+    margin: 18px 0;
+    transition: 0.2s ease;
+}
+
+#risk-assessment .risk-question:hover,
+#ethical-index .risk-question:hover {
+    border-color: #93b4ed;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.07);
+}
+
+#risk-assessment .risk-question label,
+#ethical-index .risk-question label {
+    display: block;
+    color: #12345b;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+#risk-assessment .risk-question p,
+#ethical-index .risk-question p {
+    color: #52647b;
+    line-height: 1.7;
+}
+
+/* Dropdowns */
+
+#risk-assessment .risk-question select,
+#ethical-index .risk-question select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd8e9;
+    border-radius: 9px;
+    background: white;
+    color: #12345b;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#risk-assessment .risk-question select:focus,
+#ethical-index .risk-question select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Assessment buttons */
+
+#risk-assessment > button,
+#ethical-index > button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 18px;
+    background: linear-gradient(135deg, #2563eb, #174ea6);
+    color: white;
+    border: none;
+    border-radius: 11px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#risk-assessment > button:hover,
+#ethical-index > button:hover {
+    background: #174ea6;
+    transform: translateY(-2px);
+}
+
+/* Result panels */
+
+#risk-result,
+#ethical-result {
+    background: #eff6ff;
+    border: 1px solid #cbdcf5;
+    border-radius: 14px;
+    padding: 25px;
+    margin-top: 25px;
+    line-height: 1.8;
+}
+
+#risk-result h3,
+#ethical-result h3 {
+    color: #12345b;
+    margin-bottom: 15px;
+}
+
+#risk-result h2,
+#ethical-result h2 {
+    color: #2563eb;
+    font-size: 36px;
+    margin: 15px 0;
+}
+
+/* Ethical dimension progress */
+
+#ethical-result .ethical-dimension {
+    background: white;
+    border: 1px solid #dce6f5;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 15px 0;
+}
+
+#ethical-result .ethical-progress {
+    height: 10px;
+    background: #e5edf8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#ethical-result .ethical-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+/* Learning note */
+
+#learning-note {
+    background: #eff6ff;
+    border-left: 5px solid #2563eb;
+}
+
+/* Mobile responsive */
+
+@media (max-width: 768px) {
+    #module-intro,
+    #section-140,
+    #risk-assessment,
+    #ethical-index,
+    #learning-note {
+        padding: 20px;
+    }
+
+    #risk-assessment .risk-question,
+    #ethical-index .risk-question {
+        padding: 17px;
+    }
+}
