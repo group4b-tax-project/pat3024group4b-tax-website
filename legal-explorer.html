@@ -1078,49 +1078,57 @@ function displayReflections() {
 
 
 
+
 document.getElementById("reflection-form").addEventListener(
     "submit",
-    function(event) {
-
+    async function(event) {
         event.preventDefault();
 
         const name = document.getElementById("reflection-name").value.trim();
         const topic = document.getElementById("reflection-topic").value;
         const content = document.getElementById("reflection-content").value.trim();
 
+        const status = document.getElementById("reflection-status");
+
         if (!name || !topic || !content) {
-
             alert("Please complete all fields before submitting.");
-
             return;
-
         }
 
-        const reflections = getSavedEntries("pat3024_reflections");
+        status.textContent = "Submitting your reflection...";
 
-        reflections.unshift({
+        try {
+            await fetch(MODULE4_API_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify({
+                    action: "reflection",
+                    name: name,
+                    topic: topic,
+                    content: content
+                })
+            });
 
-            name: name,
-            topic: topic,
-            content: content,
-            date: new Date().toLocaleString()
-
-        });
-
-        if (saveEntries("pat3024_reflections", reflections)) {
-
-            displayReflections();
-
-            document.getElementById("reflection-status").textContent =
-                "Your reflection has been saved successfully in this browser.";
+            status.textContent =
+                "Your reflection has been submitted. Refreshing shared reflections...";
 
             document.getElementById("reflection-form").reset();
 
+            setTimeout(function() {
+                loadModule4SharedData();
+            }, 1500);
+
+        } catch (error) {
+            status.textContent =
+                "Unable to submit your reflection. Please try again.";
+            console.error(error);
         }
-
     }
-
 );
+
 
 
 /* =====================================
