@@ -1572,3 +1572,64 @@ footer {
         padding: 15px 12px;
     }
 }
+
+/* =========================================
+   AaDab TAX SAVINGS OVERVIEW
+========================================= */
+
+.optimization-summary-panel {
+    background-color: #f4f7fc;
+    border: 1px solid #d5dfed;
+    border-left: 5px solid #2475c7;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.optimization-summary-panel h3 {
+    color: #17365d;
+    margin-bottom: 20px;
+}
+
+.optimization-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.optimization-summary-item {
+    background-color: #ffffff;
+    border: 1px solid #d5dfed;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.optimization-summary-item p {
+    color: #52647a;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.optimization-summary-item h4 {
+    color: #17365d;
+    font-size: 21px;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Mobile responsive layout */
+
+@media screen and (max-width: 600px) {
+
+    .optimization-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .optimization-summary-panel {
+        padding: 18px;
+    }
+
+    .optimization-summary-item h4 {
+        font-size: 19px;
+    }
+}
