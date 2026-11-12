@@ -3870,3 +3870,28 @@ footer {
     line-height: 1.8;
     font-weight: 400;
 }
+/* MODULE 4 COMPLETION BUTTON - MATCH MODULE 3 */
+
+#complete-module-4 {
+    background-color: #ffffff;
+    color: #1d4ed8;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#complete-module-4:hover {
+    background-color: #dbeafe;
+    transform: translateY(-2px);
+}
+
+#module4-status {
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 8px;
+}
