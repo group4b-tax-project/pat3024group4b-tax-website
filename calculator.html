@@ -624,6 +624,10 @@ function calculateTax() {
             name: "Allowable Deductions"
         },
         {
+    id: "non-taxable-income",
+    name: "Non-taxable Income"
+        },
+        {
             id: "balancing-charge",
             name: "Balancing Charge"
         },
@@ -636,13 +640,21 @@ function calculateTax() {
             name: "Unabsorbed Capital Allowances Brought Forward"
         },
         {
+    id: "industrial-building-allowance",
+    name: "Industrial Building Allowance"
+},
+        {
             id: "other-income",
             name: "Other Statutory Income"
         },
         {
-            id: "approved-donations",
-            name: "Approved Donations"
-        }
+    id: "approved-donations",
+    name: "Approved Donations"
+},
+{
+    id: "special-deduction",
+    name: "Special Deduction - Secretarial and Tax Filing Fees"
+}
     ];
 
     const missingFields = requiredFields.filter(field =>
@@ -663,16 +675,19 @@ function calculateTax() {
         // CHECK FOR NEGATIVE TAX INPUTS
 
     const nonNegativeFields = [
-        "add-back",
-        "deductions",
-        "balancing-charge",
-        "capital-allowance",
-        "capital-allowance-bf",
-        "other-income",
-        "approved-donations",
-        "optimized-deductions",
-        "optimized-capital-allowance"
-    ];
+    "add-back",
+    "deductions",
+    "non-taxable-income",
+    "balancing-charge",
+    "capital-allowance",
+    "capital-allowance-bf",
+    "industrial-building-allowance",
+    "other-income",
+    "approved-donations",
+    "optimized-deductions",
+    "optimized-capital-allowance",
+    "special-deduction"
+];
 
     const negativeFields = nonNegativeFields.filter(id => {
         const value = document.getElementById(id).value;
@@ -734,65 +749,92 @@ function calculateTax() {
     Number(document.getElementById("special-deduction").value) || 0;
 
     // 3. Calculate each scenario
-    function calculateScenario(extraDeductions, extraCapitalAllowances) {
+    function calculateScenario(
+    extraDeductions,
+    extraCapitalAllowances,
+    extraSpecialDeduction
+) {
 
-        const adjustedBusinessIncome =
-            profitBeforeTax + addBack - deductions - extraDeductions;
+    // Calculate Adjusted Business Income
+    const adjustedBusinessIncome =
+        profitBeforeTax
+        + addBack
+        - deductions
+        - extraDeductions
+        - extraSpecialDeduction
+        - nonTaxableIncome;
 
-        const adjustedIncomeAfterBC =
-            adjustedBusinessIncome + balancingCharge;
+    // Add Balancing Charge
+    const adjustedIncomeAfterBC =
+        adjustedBusinessIncome + balancingCharge;
 
-        const totalCapitalAllowances =
-            capitalAllowance + capitalAllowanceBF + extraCapitalAllowances;
+    // Calculate Capital Allowances
+    const totalCapitalAllowances =
+        capitalAllowance
+        + capitalAllowanceBF
+        + extraCapitalAllowances;
 
-        const availableIncomeForCA =
-            Math.max(0, adjustedIncomeAfterBC);
+    const availableIncomeForCA =
+        Math.max(0, adjustedIncomeAfterBC);
 
-        const capitalAllowancesAbsorbed =
-            Math.min(totalCapitalAllowances, availableIncomeForCA);
+    const capitalAllowancesAbsorbed =
+        Math.min(totalCapitalAllowances, availableIncomeForCA);
 
-        const unabsorbedCapitalAllowances =
-            totalCapitalAllowances - capitalAllowancesAbsorbed;
+    const unabsorbedCapitalAllowances =
+        totalCapitalAllowances - capitalAllowancesAbsorbed;
 
-        const statutoryBusinessIncome =
-            Math.max(0, adjustedIncomeAfterBC - capitalAllowancesAbsorbed);
+    // Calculate Statutory Business Income
+    const statutoryBusinessIncome =
+        Math.max(
+            0,
+            adjustedIncomeAfterBC
+            - capitalAllowancesAbsorbed
+            - industrialBuildingAllowance
+        );
 
-        const aggregateIncome =
-            statutoryBusinessIncome + otherIncome;
+    // Calculate Aggregate Income
+    const aggregateIncome =
+        statutoryBusinessIncome + otherIncome;
 
-        const donationLimit =
-            aggregateIncome * 0.10;
+    // Calculate Allowable Donations
+    const donationLimit =
+        aggregateIncome * 0.10;
 
-        const allowableDonations =
-            Math.min(approvedDonations, donationLimit);
+    const allowableDonations =
+        Math.min(approvedDonations, donationLimit);
 
-        const chargeableIncome =
-            Math.max(0, aggregateIncome - allowableDonations);
+    // Calculate Chargeable Income
+    const chargeableIncome =
+        Math.max(0, aggregateIncome - allowableDonations);
 
-        const estimatedTax =
-            chargeableIncome * 0.24;
+    // Calculate Estimated Tax
+    const estimatedTax =
+        chargeableIncome * 0.24;
 
-        return {
-            adjustedBusinessIncome,
-            adjustedIncomeAfterBC,
-            totalCapitalAllowances,
-            capitalAllowancesAbsorbed,
-            unabsorbedCapitalAllowances,
-            statutoryBusinessIncome,
-            aggregateIncome,
-            allowableDonations,
-            chargeableIncome,
-            estimatedTax
-        };
-    }
+    return {
+        adjustedBusinessIncome,
+        adjustedIncomeAfterBC,
+        totalCapitalAllowances,
+        capitalAllowancesAbsorbed,
+        unabsorbedCapitalAllowances,
+        statutoryBusinessIncome,
+        aggregateIncome,
+        allowableDonations,
+        chargeableIncome,
+        estimatedTax
+    };
+}
 
     // 4. Calculate both scenarios
-    const unoptimized = calculateScenario(0, 0);
+    // Unoptimized Scenario
+const unoptimized = calculateScenario(0, 0, 0);
 
-    const optimized = calculateScenario(
-        optimizedDeductions,
-        optimizedCapitalAllowance
-    );
+// AaDab-Optimized Scenario
+const optimized = calculateScenario(
+    optimizedDeductions,
+    optimizedCapitalAllowance,
+    specialDeduction
+);
 
     // 5. Calculate tax savings
     const taxSavings =
@@ -822,7 +864,7 @@ const taxReductionPercentage =
         `;
     }
 
-    function buildScenarioTable(title, scenario, extraDeductions, extraCapitalAllowance) {
+    function buildScenarioTable(title, scenario, extraDeductions, extraCapitalAllowance, extraSpecialDeduction) {
 
         return `
             <div class="scenario-card">
@@ -837,10 +879,10 @@ const taxReductionPercentage =
                     </thead>
 
                     <tbody>
-                        ${tableRow("Profit Before Tax", profitBeforeTax)}
-                        ${tableRow("Add: Non-Allowable Expenses", addBack)}
                         ${tableRow("Less: Allowable Deductions", deductions)}
+                        ${tableRow("Less: Special Deduction - Secretarial and Tax Filing Fees", extraSpecialDeduction)}
                         ${tableRow("Less: Additional AaDab Deductions", extraDeductions)}
+                        ${tableRow("Less: Non-taxable Income", nonTaxableIncome)}
 
                         ${tableRow("Adjusted Business Income", scenario.adjustedBusinessIncome, "total-row")}
 
@@ -853,6 +895,7 @@ const taxReductionPercentage =
                         ${tableRow("Total Capital Allowances Available", scenario.totalCapitalAllowances, "subtotal-row")}
 
                         ${tableRow("Less: Capital Allowances Absorbed", scenario.capitalAllowancesAbsorbed)}
+                        ${tableRow("Less: Industrial Building Allowance", industrialBuildingAllowance)}
                         ${tableRow("Unabsorbed Capital Allowances Carried Forward", scenario.unabsorbedCapitalAllowances)}
 
                         ${tableRow("Statutory Business Income", scenario.statutoryBusinessIncome, "total-row")}
@@ -882,18 +925,20 @@ const taxReductionPercentage =
         <div class="scenario-comparison">
 
             ${buildScenarioTable(
-                "Unoptimized Scenario",
-                unoptimized,
-                0,
-                0
-            )}
+    "Unoptimized Scenario",
+    unoptimized,
+    0,
+    0,
+    0
+)}
 
             ${buildScenarioTable(
-                "AaDab-Optimized Scenario",
-                optimized,
-                optimizedDeductions,
-                optimizedCapitalAllowance
-            )}
+    "AaDab-Optimized Scenario",
+    optimized,
+    optimizedDeductions,
+    optimizedCapitalAllowance,
+    specialDeduction
+)}
 
         </div>
 
