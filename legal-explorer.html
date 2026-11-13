@@ -614,104 +614,84 @@
 
 <!-- END MODULE 4 ACTIVITY MENU -->
 
-    <!-- STATUTORY LEGAL EXPLORER -->
+    
+<!-- STATUTORY LEGAL EXPLORER -->
 
-    <section id="legal-explorer" style="display:none;">
+<section id="legal-explorer" style="display:none;">
 
-        <h2>1. Statutory Legal Explorer</h2>
+    <h2>1. Statutory Legal Explorer</h2>
+
+    <p>
+        Explore the Income Tax Act 1967 (Act 53), including
+        its Parts, Chapters, sections and Schedules.
+        Search by section number, provision title or keyword.
+    </p>
+
+    <div class="module4-note">
+        <strong>Legislation:</strong> Income Tax Act 1967 (Act 53)
+        <br>
+        <strong>Version:</strong> Updated text as at 1 January 2026
+        <br>
+        <strong>Source:</strong> Attorney General's Chambers of Malaysia
+    </div>
+
+    <div class="legal-search">
+
+        <input
+            type="text"
+            id="legal-search-input"
+            placeholder="Search e.g. Section 33, capital allowance, tax deduction..."
+            oninput="searchLegalReferences()"
+            autocomplete="off"
+        >
+
+        <button
+            type="button"
+            onclick="searchLegalReferences()">
+            SEARCH
+        </button>
+
+    </div>
+
+    <p id="legal-result-count" aria-live="polite">
+        Search the Income Tax Act 1967.
+    </p>
+
+    <div id="legal-results"></div>
+
+    <p
+        id="legal-no-results"
+        class="no-results"
+        style="display:none;">
+        No matching provision found. Try another section number or keyword.
+    </p>
+
+    <div class="module4-note">
+
+        <h3>Official Legislation</h3>
 
         <p>
-            Search the selected provisions of the Income Tax Act 1967
-            using a section number or keyword.
+            Refer to the official updated text for the complete
+            statutory wording, subsections and Schedules.
         </p>
 
-        <div class="legal-search">
+        <a
+            href="https://lom.agc.gov.my/ilims/upload/portal/akta/outputaktap/3345910_BI/Act%2053%20%28Online%202026%29.pdf"
+            target="_blank"
+            rel="noopener noreferrer">
+            View Income Tax Act 1967 (Act 53) – Updated 1 January 2026
+        </a>
 
-            <input
-                type="text"
-                id="legal-search-input"
-                placeholder="Search e.g. Section 33, deductions, donations..."
-                oninput="searchLegalReferences()"
-            >
-
-            <button type="button" onclick="searchLegalReferences()">
-                SEARCH
-            </button>
-
-        </div>
-
-        <div id="legal-results">
-
-            <div class="legal-entry" data-search="section 33 deduction expenses wholly exclusively">
-                <span class="reference-tag">ITA 1967</span>
-                <h3>Section 33 - General Deduction</h3>
-                <p>
-                    Explore the general principles relating to the
-                    deduction of expenses incurred in producing gross income.
-                </p>
-                <p><strong>Learning focus:</strong> Deductibility of business expenses.</p>
-            </div>
-
-            <div class="legal-entry" data-search="section 39 non allowable expenses prohibited deductions">
-                <span class="reference-tag">ITA 1967</span>
-                <h3>Section 39 - Non-Allowable Expenses</h3>
-                <p>
-                    Explore expenses that are not deductible when
-                    determining adjusted income under the relevant
-                    provisions of the Income Tax Act 1967.
-                </p>
-                <p><strong>Learning focus:</strong> Tax adjustments and add-backs.</p>
-            </div>
-
-            <div class="legal-entry" data-search="section 44 donations approved donations aggregate income">
-                <span class="reference-tag">ITA 1967</span>
-                <h3>Section 44 - Deductions from Aggregate Income</h3>
-                <p>
-                    Study the provisions relating to deductions from
-                    aggregate income, including qualifying donations
-                    subject to the applicable conditions.
-                </p>
-                <p><strong>Learning focus:</strong> Approved donations and tax deductions.</p>
-            </div>
-
-            <div class="legal-entry" data-search="section 107a contract payments non resident contractor withholding tax">
-                <span class="reference-tag">ITA 1967</span>
-                <h3>Section 107A - Payments to Non-Resident Contractors</h3>
-                <p>
-                    Explore withholding tax considerations relating
-                    to payments made to non-resident contractors.
-                </p>
-                <p><strong>Learning focus:</strong> Withholding tax obligations.</p>
-            </div>
-
-            <div class="legal-entry" data-search="section 109 interest royalty withholding tax non resident">
-                <span class="reference-tag">ITA 1967</span>
-                <h3>Section 109 - Interest and Royalties</h3>
-                <p>
-                    Study withholding tax considerations relating
-                    to interest and royalty payments to non-residents.
-                </p>
-                <p><strong>Learning focus:</strong> Withholding tax compliance.</p>
-            </div>
-
-            <div class="legal-entry" data-search="section 140 anti avoidance tax avoidance director general">
-                <span class="reference-tag">ITA 1967</span>
-                <h3>Section 140 - Anti-Avoidance Provisions</h3>
-                <p>
-                    Explore the Director General's powers in relation
-                    to transactions or arrangements involving tax avoidance.
-                </p>
-                <p><strong>Learning focus:</strong> Tax planning and anti-avoidance.</p>
-            </div>
-
-        </div>
-
-        <p id="legal-no-results" class="no-results" style="display:none;">
-            No matching reference was found. Try another section number or keyword.
+        <p>
+            <strong>Note:</strong> This online version is an updated
+            text and is not an authenticated reprint.
         </p>
 
-    </section>
+    </div>
 
+</section>
+
+<!-- END STATUTORY LEGAL EXPLORER -->
 
     <!-- LHDN PUBLIC RULINGS -->
 
