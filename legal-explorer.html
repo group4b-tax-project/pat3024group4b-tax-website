@@ -2088,13 +2088,95 @@ const act53Sections = [
 ];
 
 ];
+
+function escapeLegalHTML(value) {
+    return String(value).replace(/[&<>"']/g, function(character) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[character];
+    });
+}
+
+function renderAct53Index() {
+
+    const resultsContainer = document.getElementById("legal-results");
+
+    if (!resultsContainer) return;
+
+    let html = "";
+    let previousPart = "";
+    let previousChapter = "";
+
+    act53Sections.forEach(item => {
+
+        const partChanged = item.part !== previousPart;
+        const chapterChanged = item.chapter !== previousChapter || partChanged;
+
+        if (partChanged) {
+            html += `
+                <h3 class="part-heading"
+                    data-heading-part="${escapeLegalHTML(item.part)}">
+                    ${escapeLegalHTML(item.part)}
+                </h3>
+            `;
+        }
+
+        if (item.chapter && chapterChanged) {
+            html += `
+                <h4 class="chapter-heading"
+                    data-heading-part="${escapeLegalHTML(item.part)}"
+                    data-heading-chapter="${escapeLegalHTML(item.chapter)}"
+                    style="grid-column:1/-1;color:#2563eb;margin:12px 0 4px;">
+                    ${escapeLegalHTML(item.chapter)}
+                </h4>
+            `;
+        }
+
+        const section = escapeLegalHTML(item.section);
+        const title = escapeLegalHTML(item.title);
+        const part = escapeLegalHTML(item.part);
+        const chapter = escapeLegalHTML(item.chapter || "");
+        const searchText = escapeLegalHTML(
+            `${item.part} ${item.chapter || ""} section ${item.section} ${item.title}`
+        );
+
+        html += `
+            <article class="legal-entry ${item.deleted ? "deleted-entry" : ""}"
+                data-part="${part}"
+                data-chapter="${chapter}"
+                data-search="${searchText}">
+
+                <span class="reference-tag">ITA 1967</span>
+
+                <h3>Section ${section} - ${title}</h3>
+
+                ${item.deleted
+                    ? '<p><strong>Status:</strong> This provision is marked as deleted in the updated text.</p>'
+                    : '<p>Refer to the official Income Tax Act 1967 for the complete provision and its subsections.</p>'
+                }
+
+            </article>
+        `;
+
+        previousPart = item.part;
+        previousChapter = item.chapter || "";
+
+    });
+
+    resultsContainer.innerHTML = html;
+
+    searchLegalReferences();
+}
+
+
 function searchLegalReferences() {
 
-    const searchValue = document
-        .getElementById("legal-search-input")
-        .value
-        .toLowerCase()
-        .trim();
+    const searchInput = document.getElementById("legal-search-input");
+    const searchValue = searchInput.value.toLowerCase().trim();
 
     const entries = document.querySelectorAll(
         "#legal-results .legal-entry"
@@ -2106,23 +2188,59 @@ function searchLegalReferences() {
 
         const searchableText =
             entry.innerText.toLowerCase() + " " +
-            entry.dataset.search.toLowerCase();
+            (entry.dataset.search || "").toLowerCase();
 
         const matches = searchableText.includes(searchValue);
 
         entry.style.display = matches ? "block" : "none";
 
-        if (matches) {
-            visibleCount++;
-        }
+        if (matches) visibleCount++;
+
+    });
+
+    // Show only relevant Part headings
+
+    document.querySelectorAll("#legal-results .part-heading").forEach(heading => {
+
+        const part = heading.dataset.headingPart;
+
+        const hasVisibleEntry = Array.from(entries).some(entry =>
+            entry.dataset.part === part &&
+            entry.style.display !== "none"
+        );
+
+        heading.style.display = hasVisibleEntry ? "block" : "none";
+
+    });
+
+    // Show only relevant Chapter headings
+
+    document.querySelectorAll("#legal-results .chapter-heading").forEach(heading => {
+
+        const part = heading.dataset.headingPart;
+        const chapter = heading.dataset.headingChapter;
+
+        const hasVisibleEntry = Array.from(entries).some(entry =>
+            entry.dataset.part === part &&
+            entry.dataset.chapter === chapter &&
+            entry.style.display !== "none"
+        );
+
+        heading.style.display = hasVisibleEntry ? "block" : "none";
 
     });
 
     document.getElementById("legal-no-results").style.display =
         visibleCount === 0 ? "block" : "none";
 
-}
+    const resultCount = document.getElementById("legal-result-count");
 
+    if (resultCount) {
+        resultCount.textContent = searchValue
+            ? `${visibleCount} matching provision(s) found.`
+            : `${visibleCount} provisions displayed.`;
+    }
+}
 
 /* =====================================
    MODULE 4 - PUBLIC RULINGS SEARCH
@@ -2294,6 +2412,7 @@ async function submitModule4Comment(
         button.textContent = "POST COMMENT";
 
         setTimeout(function() {
+            renderAct53Index();
             loadModule4SharedData();
         }, 1500);
 
