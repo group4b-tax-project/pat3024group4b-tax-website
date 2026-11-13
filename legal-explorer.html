@@ -1205,8 +1205,6 @@ const act53Sections = [
         title: "Derivation of pensions, etc."
     }
 
-];
-
     /* PART III - ASCERTAINMENT OF CHARGEABLE INCOME */
 
     {
@@ -1301,6 +1299,7 @@ const act53Sections = [
         number: "31",
         title: "Deleted",
         deleted: true
+    },
     {
         part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
         chapter: "Chapter 3 - Gross income",
@@ -2087,8 +2086,6 @@ const act53Sections = [
     { part: "PART XI", chapter: "Chapter 19 - Supplemental", section: "239", title: "Application of certain provisions of Part X to matters regarding Multinational Top-up Tax" }
 ];
 
-];
-
 function escapeLegalHTML(value) {
     return String(value).replace(/[&<>"']/g, function(character) {
         return {
@@ -2136,12 +2133,12 @@ function renderAct53Index() {
             `;
         }
 
-        const section = escapeLegalHTML(item.section);
+        const section = escapeLegalHTML(item.section || item.number || "");
         const title = escapeLegalHTML(item.title);
         const part = escapeLegalHTML(item.part);
         const chapter = escapeLegalHTML(item.chapter || "");
         const searchText = escapeLegalHTML(
-            `${item.part} ${item.chapter || ""} section ${item.section} ${item.title}`
+            `${item.part} ${item.chapter || ""} section ${item.section || item.number || ""} ${item.title}`
         );
 
         html += `
