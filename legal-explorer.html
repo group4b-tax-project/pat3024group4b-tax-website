@@ -2085,7 +2085,63 @@ const act53Sections = [
 
     { part: "PART XI", chapter: "Chapter 19 - Supplemental", section: "239", title: "Application of certain provisions of Part X to matters regarding Multinational Top-up Tax" }
 ];
-
+const act53Schedules = [
+    {
+        schedule: "Schedule 1",
+        title: "Rates of Tax",
+        keywords: "tax rates, chargeable income, corporate tax, individual tax"
+    },
+    {
+        schedule: "Schedule 2",
+        title: "Ascertainment of Chargeable Income",
+        keywords: "chargeable income, computation"
+    },
+    {
+        schedule: "Schedule 3",
+        title: "Capital Allowances",
+        keywords: "capital allowance, initial allowance, annual allowance, industrial building, plant and machinery"
+    },
+    {
+        schedule: "Schedule 4",
+        title: "Industrial Building Allowances",
+        keywords: "industrial building, building allowance"
+    },
+    {
+        schedule: "Schedule 5",
+        title: "Special Commissioners of Income Tax",
+        keywords: "appeal, special commissioners, tax dispute"
+    },
+    {
+        schedule: "Schedule 6",
+        title: "Exemption from Tax",
+        keywords: "tax exemption, exempt income"
+    },
+    {
+        schedule: "Schedule 7",
+        title: "Reinvestment Allowance",
+        keywords: "reinvestment allowance, qualifying project"
+    },
+    {
+        schedule: "Schedule 7A",
+        title: "Exemption of Income",
+        keywords: "exempt income, exemption"
+    },
+    {
+        schedule: "Schedule 7B",
+        title: "Investment Allowance",
+        keywords: "investment allowance"
+    },
+    {
+        schedule: "Schedule 8",
+        title: "Tax Treatment",
+        keywords: "tax treatment"
+    },
+    {
+        schedule: "Schedule 9",
+        title: "Supplementary Provisions",
+        keywords: "supplementary provisions"
+    }
+];
 function escapeLegalHTML(value) {
     return String(value).replace(/[&<>"']/g, function(character) {
         return {
@@ -2163,7 +2219,23 @@ function renderAct53Index() {
         previousChapter = item.chapter || "";
 
     });
+// DISPLAY ACT 53 SCHEDULES
+html += `<h3 class="part-heading">SCHEDULES OF THE INCOME TAX ACT 1967</h3>`;
 
+act53Schedules.forEach(item => {
+    const schedule = escapeLegalHTML(item.schedule);
+    const title = escapeLegalHTML(item.title);
+    const keywords = escapeLegalHTML(item.keywords);
+
+    html += `
+        <article class="legal-entry" data-search="${schedule} ${title} ${keywords}">
+            <span class="reference-tag">ITA 1967</span>
+            <h3>${schedule} - ${title}</h3>
+            <p>${title}</p>
+            <p>Refer to the official Income Tax Act 1967 for the complete Schedule and its provisions.</p>
+        </article>
+    `;
+});
     resultsContainer.innerHTML = html;
 
     searchLegalReferences();
