@@ -1002,6 +1002,745 @@ const MODULE4_API_URL = "https://script.google.com/macros/s/AKfycbyuZdfXseBRxmWr
    MODULE 4 - LEGAL REFERENCE SEARCH
 ===================================== */
 
+/* =====================================
+   ACT 53 - FULL SECTION INDEX
+   PART I AND PART II
+===================================== */
+
+const act53Sections = [
+
+    {
+        part: "PART I - PRELIMINARY",
+        chapter: "",
+        number: "1",
+        title: "Short title and commencement"
+    },
+    {
+        part: "PART I - PRELIMINARY",
+        chapter: "",
+        number: "2",
+        title: "Interpretation"
+    },
+
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "3",
+        title: "Charge of income tax"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "3A",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "3B",
+        title: "Non-chargeability to tax in respect of offshore business activity"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "3C",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "4",
+        title: "Classes of income on which tax is chargeable"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "4A",
+        title: "Special classes of income on which tax is chargeable"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "4B",
+        title: "Non-business income"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "4C",
+        title: "Gains or profits from a business arising from stock in trade parted with by any element of compulsion"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "5",
+        title: "Manner in which chargeable income is to be ascertained"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6",
+        title: "Rates of tax"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6A",
+        title: "Tax rebate"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6B",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6C",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6D",
+        title: "Tax rebate for company or limited liability partnership"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "7",
+        title: "Residence: individuals"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "8",
+        title: "Residence: companies and bodies of persons"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "9",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "10",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "11",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "12",
+        title: "Derivation of business income in certain cases"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "13",
+        title: "General provisions as to employment income"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "13A",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "14",
+        title: "General provisions as to dividend income"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "15",
+        title: "Derivation of interest and royalty income in certain cases"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "15A",
+        title: "Derivation of special classes of income in certain cases"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "15B",
+        title: "Derivation of gains or profits in certain cases"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "15C",
+        title: "Derivation of gains or profits from the disposal of capital assets deriving value from real property in Malaysia"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "16",
+        title: "Voluntary pensions, etc."
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "17",
+        title: "Derivation of pensions, etc."
+    }
+
+];
+
+    /* PART III - ASCERTAINMENT OF CHARGEABLE INCOME */
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 1 - Preliminary",
+        number: "18",
+        title: "Interpretation of Part III"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 1 - Preliminary",
+        number: "19",
+        title: "Supplementary provisions for the interpretation of Part III"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 2 - Basis years and basis periods",
+        number: "20",
+        title: "Basis years"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 2 - Basis years and basis periods",
+        number: "21",
+        title: "Basis period of a person other than a company, limited liability partnership, trust body or co-operative society"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 2 - Basis years and basis periods",
+        number: "21A",
+        title: "Basis period of a company, limited liability partnership, trust body or co-operative society"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "22",
+        title: "Gross income generally"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "23",
+        title: "Interpretation of sections 24 to 28"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "24",
+        title: "Basis period to which gross income from a business is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "25",
+        title: "Basis period to which gross income from an employment is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "26",
+        title: "Basis period to which gross income in respect of dividend is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "27",
+        title: "Basis period to which gross income in respect of interest, etc., is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "28",
+        title: "Basis period to which gross income not provided for by sections 24 to 27 is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "29",
+        title: "Basis period to which income obtainable on demand is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "30",
+        title: "Special provisions applicable to gross income from a business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "31",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "32",
+        title: "Special provisions applicable to gross income from an employment"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "33",
+        title: "Adjusted income generally"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34",
+        title: "Special provisions applicable to adjusted income from a business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34A",
+        title: "Special deduction for research and development expenditure"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34B",
+        title: "Special deduction for contribution to an approved research institute or payment for use of services of an approved research institute or company"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34C",
+        title: "Special provision applicable to adjusted income from a discount or premium"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34D",
+        title: "Special deduction for expenditure on treasury shares"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "35",
+        title: "Stock in trade"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "36",
+        title: "Power to direct special treatment in the computation of business income in certain cases"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "37",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "38",
+        title: "Special provisions applicable to adjusted income from an employment"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "38A",
+        title: "Limitation on deduction of entertainment expenses"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "39",
+        title: "Deductions not allowed"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "40",
+        title: "Adjusted loss"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "41",
+        title: "Ascertainment of adjusted income or adjusted loss from a business for an accounting period"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 5 - Statutory income",
+        number: "42",
+        title: "Statutory income"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 6 - Aggregate income and total income",
+        number: "43",
+        title: "Aggregate income"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 6 - Aggregate income and total income",
+        number: "44",
+        title: "Total income"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 6 - Aggregate income and total income",
+        number: "44A",
+        title: "Group relief for companies"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 6 - Aggregate income and total income",
+        number: "44B",
+        title: "Carry-back losses"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "45",
+        title: "Chargeable income and aggregation of husband's and wife's income"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "45A",
+        title: "Deduction for husband"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "46",
+        title: "Deduction for individual and Hindu joint family"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "46A",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "46B",
+        title: "Deduction for individual on interest expended"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "47",
+        title: "Deduction for wife or former wife"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "48",
+        title: "Deduction for children"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "49",
+        title: "Deduction for insurance premiums"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "50",
+        title: "Application of section 49 where husband and wife are living together"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "51",
+        title: "Deduction must be claimed"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "52",
+        title: "Modification of Part III in certain special cases"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "53",
+        title: "Trade associations"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "53A",
+        title: "Club, association or similar institution"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "54",
+        title: "Sea and air transport undertakings"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "54A",
+        title: "Exemption of shipping profits"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "54B",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "54C",
+        title: "Special treatment on distribution of profits by limited liability partnership"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "55",
+        title: "Partnerships generally"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "56",
+        title: "Successive partnerships"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "57",
+        title: "Provisions applicable where partnership is a partner in another partnership"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "58",
+        title: "Income receivable by partnership otherwise than from partnership business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "59",
+        title: "Partnership losses"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60",
+        title: "Insurance business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60A",
+        title: "Reinsurance: chargeable income, reduced rate and exempt dividend"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60AA",
+        title: "Takaful business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60AB",
+        title: "Chargeable income of life fund subject to tax"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60B",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60C",
+        title: "Banking business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60D",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60E",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60F",
+        title: "Investment holding company"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60FA",
+        title: "Investment holding company listed on Bursa Malaysia"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60G",
+        title: "Foreign fund management company"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60H",
+        title: "Closed-end fund company"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60I",
+        title: "Company that establishes special purpose vehicle"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "61",
+        title: "Trusts generally"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "61A",
+        title: "Exemption of Real Estate Investment Trust of Property Trust Fund"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "62",
+        title: "Discretionary trusts"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63",
+        title: "Trust annuities"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63A",
+        title: "Special deduction for qualifying capital expenditure"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63B",
+        title: "Special deduction for expenses"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63C",
+        title: "Special treatment on rent from the letting of real property of a Real Estate Investment Trust or Property Trust Fund"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63D",
+        title: "Income of a unit trust from the letting of real property is not income from a business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "64",
+        title: "Estates under administration"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "65",
+        title: "Settlements"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "65A",
+        title: "Co-operative Societies"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "65B",
+        title: "Incentive scheme"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 9 - Gains or profits from the disposal of capital asset",
+        number: "65C",
+        title: "Interpretation of Chapter 9"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 9 - Gains or profits from the disposal of capital asset",
+        number: "65D",
+        title: "Application of Chapter 9"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 9 - Gains or profits from the disposal of capital asset",
+        number: "65E",
+        title: "Gains or profits from the disposal of capital asset"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 9 - Gains or profits from the disposal of capital asset",
+        number: "65F",
+        title: "Disposal and acquisition of capital asset"
+    },
+
 function searchLegalReferences() {
 
     const searchValue = document
