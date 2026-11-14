@@ -3969,3 +3969,108 @@ footer {
         width: 100%;
     }
 }
+
+/* =========================================
+   MODULE 1 - ORGANIZED LAYOUT
+========================================= */
+
+/* Consistent spacing between sections */
+#company-background,
+#audit-documents,
+#supporting-notes,
+#continue-to-module-2 {
+    margin-top: 28px;
+    margin-bottom: 28px;
+    border-radius: 14px;
+}
+
+/* Company overview */
+#company-background {
+    background: #ffffff;
+    padding: 30px;
+    box-shadow: 0 4px 14px rgba(22, 52, 92, 0.07);
+}
+
+#company-background h2 {
+    margin-bottom: 20px;
+}
+
+#company-background h3 {
+    margin-bottom: 18px;
+}
+
+/* Primary documents - two-column layout */
+#audit-documents .document-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+#audit-documents .document-card {
+    margin: 0;
+    min-width: 0;
+    border-radius: 12px;
+    background: #f5f8fd;
+}
+
+#audit-documents .document-card summary {
+    padding: 20px;
+}
+
+/* Supporting notes - two-column layout */
+#supporting-notes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 30px;
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(22, 52, 92, 0.07);
+}
+
+#supporting-notes > h2,
+#supporting-notes > p {
+    grid-column: 1 / -1;
+}
+
+#supporting-notes .document-card {
+    margin: 0;
+    min-width: 0;
+    align-self: start;
+}
+
+/* Cleaner reading experience */
+#supporting-notes .document-card summary {
+    line-height: 1.5;
+}
+
+#supporting-notes .document-card[open] {
+    grid-column: 1 / -1;
+}
+
+/* Continue button section */
+#continue-to-module-2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Mobile layout */
+@media screen and (max-width: 700px) {
+    #audit-documents .document-list,
+    #supporting-notes {
+        grid-template-columns: 1fr;
+    }
+
+    #supporting-notes {
+        padding: 20px;
+    }
+
+    #supporting-notes > h2,
+    #supporting-notes > p,
+    #supporting-notes .document-card[open] {
+        grid-column: 1;
+    }
+
+    #company-background {
+        padding: 22px;
+    }
+}
