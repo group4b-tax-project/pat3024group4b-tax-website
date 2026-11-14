@@ -434,10 +434,10 @@ const guidedSteps = [
         tip: "Profit Before Tax is the starting point for the corporate tax computation."
     },
     {
-        title: "2. Tax Adjustments",
-        explanation: "Identify non-allowable expenses that must be added back and allowable deductions that can be deducted.",
-        tip: "Only expenses and deductions that satisfy the relevant tax rules should be included."
-    },
+    title: "2. Tax Adjustments",
+    explanation: "Analyse Notes 1 to 13 of Maju Mampan Sdn Bhd's financial statements. Identify non-allowable expenses, allowable deductions, exempt income and other tax adjustments required to determine adjusted business income.",
+    tip: "Examine each transaction carefully. Classify it as an add-back, deduction or NIL based on the applicable provisions of the Income Tax Act 1967."
+},
     {
         title: "3. Capital Allowances and Balancing Adjustments",
         explanation: "Consider balancing charges, current year capital allowances and unabsorbed capital allowances brought forward.",
@@ -493,33 +493,173 @@ const practiceActivities = [
             <p id="guided-pbt-feedback"></p>
         `
     },
-    {
+       
+{
     title: "Tax Adjustment Activity",
-    question: "Note 8: Repairs and Maintenance. The company incurred RM15,000 for additional tools with a lifespan of two years. How should this expenditure be treated?",
+    question: "Complete the tax adjustment questions based on Maju Mampan Sdn Bhd's Case Study 2.",
     content: `
         <div class="guided-quiz">
-            <p><strong>Choose the most appropriate answer:</strong></p>
+            <h3>Tax Adjustment Practice – Case Study 2</h3>
 
-            <label class="guided-option">
-                <input type="radio" name="tax-adjustment-answer" value="a">
-                A. Allow it as an ordinary repair expense without adjustment.
-            </label>
+            <p>Answer each question using the information in Notes 1–13.</p>
 
-            <label class="guided-option">
-                <input type="radio" name="tax-adjustment-answer" value="b">
-                B. Add it back as capital expenditure and consider capital allowance eligibility separately.
-            </label>
+            <div class="tax-question">
+                <p><strong>Question 1 – Note 1: Stock Obsolescence</strong></p>
+                <p>The company recorded a general provision for stock obsolescence of RM220,000. What is the tax treatment?</p>
+                <label class="guided-option"><input type="radio" name="tax-q1" value="a"> A. Allow the full provision as a deduction.</label>
+                <label class="guided-option"><input type="radio" name="tax-q1" value="b"> B. Add back the general provision.</label>
+                <label class="guided-option"><input type="radio" name="tax-q1" value="c"> C. Treat it as approved donation.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(1)">CHECK ANSWER</button>
+                <p id="tax-feedback-1"></p>
+            </div>
 
-            <label class="guided-option">
-                <input type="radio" name="tax-adjustment-answer" value="c">
-                C. Treat it as an approved donation.
-            </label>
+            <hr>
 
-            <button type="button" onclick="checkGuidedTaxAdjustment()">
-                CHECK MY ANSWER
-            </button>
+            <div class="tax-question">
+                <p><strong>Question 2 – Note 1: Damaged Stock</strong></p>
+                <p>Stock costing RM87,800 was actually damaged and written off during the year. What is the treatment?</p>
+                <label class="guided-option"><input type="radio" name="tax-q2" value="a"> A. Add back the entire amount.</label>
+                <label class="guided-option"><input type="radio" name="tax-q2" value="b"> B. Treat it as capital expenditure.</label>
+                <label class="guided-option"><input type="radio" name="tax-q2" value="c"> C. NIL adjustment if the actual stock loss is properly supported.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(2)">CHECK ANSWER</button>
+                <p id="tax-feedback-2"></p>
+            </div>
 
-            <p id="tax-adjustment-feedback"></p>
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 3 – Note 3: EPF Contribution</strong></p>
+                <p>The employer contributed RM300,000 to EPF. Based on the worksheet's 19% limit and staff remuneration of RM1,400,000, what amount is disallowed?</p>
+                <label class="guided-option"><input type="radio" name="tax-q3" value="a"> A. RM34,000</label>
+                <label class="guided-option"><input type="radio" name="tax-q3" value="b"> B. RM266,000</label>
+                <label class="guided-option"><input type="radio" name="tax-q3" value="c"> C. RM300,000</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(3)">CHECK ANSWER</button>
+                <p id="tax-feedback-3"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 4 – Note 4: Entertainment</strong></p>
+                <p>Entertainment expenses for existing customers, potential customers and suppliers are recorded. According to the Tax Rules Q1 worksheet, what is the general restriction applied?</p>
+                <label class="guided-option"><input type="radio" name="tax-q4" value="a"> A. 100% disallowed.</label>
+                <label class="guided-option"><input type="radio" name="tax-q4" value="b"> B. 50% disallowed, subject to applicable exceptions.</label>
+                <label class="guided-option"><input type="radio" name="tax-q4" value="c"> C. 100% deductible in every case.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(4)">CHECK ANSWER</button>
+                <p id="tax-feedback-4"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 5 – Note 5: Finance Charges</strong></p>
+                <p>RM5,500 interest expense relates to borrowing used to purchase shares in KPJ Healthcare Berhad. What adjustment is proposed in the worksheet?</p>
+                <label class="guided-option"><input type="radio" name="tax-q5" value="a"> A. Add back RM5,500.</label>
+                <label class="guided-option"><input type="radio" name="tax-q5" value="b"> B. Deduct an additional RM5,500.</label>
+                <label class="guided-option"><input type="radio" name="tax-q5" value="c"> C. Treat it as capital allowance.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(5)">CHECK ANSWER</button>
+                <p id="tax-feedback-5"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 6 – Note 6: Professional and Legal Fees</strong></p>
+                <p>Which expense is identified as requiring an add-back in the worksheet?</p>
+                <label class="guided-option"><input type="radio" name="tax-q6" value="a"> A. Statutory audit fees.</label>
+                <label class="guided-option"><input type="radio" name="tax-q6" value="b"> B. Tax audit enquiry fees of RM22,000.</label>
+                <label class="guided-option"><input type="radio" name="tax-q6" value="c"> C. Legal fees for tenancy renewal.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(6)">CHECK ANSWER</button>
+                <p id="tax-feedback-6"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 7 – Note 7: Contract Cancellation</strong></p>
+                <p>The company paid RM18,000 to cancel a contract to install a high-tech security system. What is the proposed treatment in the worksheet?</p>
+                <label class="guided-option"><input type="radio" name="tax-q7" value="a"> A. Add back, subject to the capital or revenue character of the expenditure.</label>
+                <label class="guided-option"><input type="radio" name="tax-q7" value="b"> B. Claim as approved donation.</label>
+                <label class="guided-option"><input type="radio" name="tax-q7" value="c"> C. Claim as employee remuneration.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(7)">CHECK ANSWER</button>
+                <p id="tax-feedback-7"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 8 – Note 8: Additional Tools</strong></p>
+                <p>The company incurred RM15,000 for additional tools with a lifespan of two years. How should this expenditure be treated?</p>
+                <label class="guided-option"><input type="radio" name="tax-q8" value="a"> A. Allow it as an ordinary repair expense without adjustment.</label>
+                <label class="guided-option"><input type="radio" name="tax-q8" value="b"> B. Add it back as capital expenditure and consider capital allowance eligibility separately.</label>
+                <label class="guided-option"><input type="radio" name="tax-q8" value="c"> C. Treat it as an approved donation.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(8)">CHECK ANSWER</button>
+                <p id="tax-feedback-8"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 9 – Note 9: General Provision for Bad Debts</strong></p>
+                <p>What is the treatment of the RM120,000 general provision for trade debts?</p>
+                <label class="guided-option"><input type="radio" name="tax-q9" value="a"> A. Add back the general provision.</label>
+                <label class="guided-option"><input type="radio" name="tax-q9" value="b"> B. Deduct it as capital allowance.</label>
+                <label class="guided-option"><input type="radio" name="tax-q9" value="c"> C. Treat it as exempt income.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(9)">CHECK ANSWER</button>
+                <p id="tax-feedback-9"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 10 – Note 10: Foreign Exchange</strong></p>
+                <p>How should the unrealised trade foreign exchange loss of RM44,000 be treated according to the worksheet?</p>
+                <label class="guided-option"><input type="radio" name="tax-q10" value="a"> A. Deduct it again.</label>
+                <label class="guided-option"><input type="radio" name="tax-q10" value="b"> B. Add back the unrealised loss.</label>
+                <label class="guided-option"><input type="radio" name="tax-q10" value="c"> C. Treat it as a donation.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(10)">CHECK ANSWER</button>
+                <p id="tax-feedback-10"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 11 – Note 11: Motor Vehicle Lease</strong></p>
+                <p>The company leases a passenger motor car costing RM190,000 when new. What should students consider?</p>
+                <label class="guided-option"><input type="radio" name="tax-q11" value="a"> A. The full rental is automatically deductible.</label>
+                <label class="guided-option"><input type="radio" name="tax-q11" value="b"> B. The statutory restriction on passenger motor vehicle lease rentals.</label>
+                <label class="guided-option"><input type="radio" name="tax-q11" value="c"> C. The rental is an approved donation.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(11)">CHECK ANSWER</button>
+                <p id="tax-feedback-11"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 12 – Note 12: Donations</strong></p>
+                <p>Which donation is identified as a political donation and added back in the worksheet?</p>
+                <label class="guided-option"><input type="radio" name="tax-q12" value="a"> A. Approved Covid-19 Fund donation of RM98,000.</label>
+                <label class="guided-option"><input type="radio" name="tax-q12" value="b"> B. Political party donation of RM70,000.</label>
+                <label class="guided-option"><input type="radio" name="tax-q12" value="c"> C. Both donations are automatically deductible.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(12)">CHECK ANSWER</button>
+                <p id="tax-feedback-12"></p>
+            </div>
+
+            <hr>
+
+            <div class="tax-question">
+                <p><strong>Question 13 – Note 13: Retrenchment Expenses</strong></p>
+                <p>The company paid RM352,000 in retrenchment payments to redundant employees. What is the proposed treatment in the worksheet?</p>
+                <label class="guided-option"><input type="radio" name="tax-q13" value="a"> A. Add back the entire amount.</label>
+                <label class="guided-option"><input type="radio" name="tax-q13" value="b"> B. No adjustment, subject to the business purpose and supporting evidence.</label>
+                <label class="guided-option"><input type="radio" name="tax-q13" value="c"> C. Treat it as capital allowance.</label>
+                <button type="button" onclick="checkGuidedTaxAdjustment(13)">CHECK ANSWER</button>
+                <p id="tax-feedback-13"></p>
+            </div>
+
+            <hr>
+
+            <p><strong>Quiz progress:</strong> <span id="tax-quiz-progress">0 / 13 completed</span></p>
         </div>
     `
 },
@@ -1159,12 +1299,69 @@ const taxReductionPercentage =
 }
     
 function checkGuidedTaxAdjustment() {
+   
+const taxAdjustmentAnswers = {
+    1: {
+        answer: "b",
+        explanation: "The RM220,000 general provision is added back because it is an estimated provision. A properly supported actual stock write-down must be considered separately."
+    },
+    2: {
+        answer: "c",
+        explanation: "The RM87,800 represents actual damaged stock written off. The worksheet treats this as deductible, provided the loss is properly supported."
+    },
+    3: {
+        answer: "a",
+        explanation: "RM1,400,000 × 19% = RM266,000 allowable under the worksheet's assumption. RM300,000 − RM266,000 = RM34,000 excess."
+    },
+    4: {
+        answer: "b",
+        explanation: "The worksheet applies a general 50% entertainment restriction. Specific statutory exceptions must still be checked."
+    },
+    5: {
+        answer: "a",
+        explanation: "The worksheet adds back RM5,500 because the borrowing relates to an investment in shares rather than the manufacturing business."
+    },
+    6: {
+        answer: "b",
+        explanation: "The worksheet identifies RM22,000 tax audit enquiry fees as an add-back. The precise treatment should be checked against the purpose and applicable tax rules."
+    },
+    7: {
+        answer: "a",
+        explanation: "The worksheet proposes an add-back because the cancellation relates to a security-system installation contract. Its capital or revenue character should be examined."
+    },
+    8: {
+        answer: "b",
+        explanation: "The tools have a two-year useful life and are treated as capital expenditure. Add back the expense and consider capital allowance eligibility separately."
+    },
+    9: {
+        answer: "a",
+        explanation: "A general provision for doubtful debts is an estimate and is added back under the worksheet's treatment."
+    },
+    10: {
+        answer: "b",
+        explanation: "The worksheet adds back the unrealised foreign exchange loss of RM44,000. Its tax treatment should be assessed under the applicable foreign exchange rules."
+    },
+    11: {
+        answer: "b",
+        explanation: "The passenger motor vehicle lease rental is subject to the statutory restriction. The original cost of the car and applicable lease rules must be considered."
+    },
+    12: {
+        answer: "b",
+        explanation: "The RM70,000 political party donation is added back in the worksheet. The RM98,000 approved fund donation is considered separately under the donation provisions."
+    },
+    13: {
+        answer: "b",
+        explanation: "The worksheet proposes NIL adjustment for retrenchment expenses incurred to reduce business operating costs, subject to supporting evidence."
+    }
+};
+
+function checkGuidedTaxAdjustment(questionNumber) {
     const selectedAnswer = document.querySelector(
-        'input[name="tax-adjustment-answer"]:checked'
+        'input[name="tax-q' + questionNumber + '"]:checked'
     );
 
     const feedback = document.getElementById(
-        "tax-adjustment-feedback"
+        "tax-feedback-" + questionNumber
     );
 
     if (!selectedAnswer) {
@@ -1173,25 +1370,32 @@ function checkGuidedTaxAdjustment() {
         return;
     }
 
-    if (selectedAnswer.value === "b") {
-        feedback.innerHTML = `
-            <strong>Correct!</strong><br>
-            The additional tools have a useful life of two years.
-            This indicates capital expenditure rather than an
-            ordinary revenue repair expense. The amount should
-            be added back, and capital allowance eligibility
-            should be considered separately.
-        `;
+    const item = taxAdjustmentAnswers[questionNumber];
+
+    if (selectedAnswer.value === item.answer) {
+        feedback.innerHTML =
+            "<strong>Correct!</strong><br>" + item.explanation;
         feedback.style.color = "#15803d";
+        feedback.dataset.completed = "true";
     } else {
-        feedback.innerHTML = `
-            <strong>Not quite. Try again!</strong><br>
-            Think about the two-year useful life of the tools.
-            Does this indicate capital or revenue expenditure?
-        `;
+        feedback.innerHTML =
+            "<strong>Not quite. Try again!</strong><br>" +
+            "Review the relevant note and consider the tax treatment again.";
         feedback.style.color = "#dc2626";
+        feedback.dataset.completed = "false";
     }
-}
+
+    const completed = Object.keys(taxAdjustmentAnswers).filter(function(key) {
+        const result = document.getElementById("tax-feedback-" + key);
+        return result && result.dataset.completed === "true";
+    }).length;
+
+    const progress = document.getElementById("tax-quiz-progress");
+
+    if (progress) {
+        progress.textContent = completed + " / 13 completed";
+    }
+}DON
     function checkGuidedCapitalAllowance() {
     const answer = document.getElementById(
         "guided-factory-answer"
