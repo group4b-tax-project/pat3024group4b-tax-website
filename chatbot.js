@@ -290,7 +290,7 @@
     });
 
     addMessage(
-        "Hello! 👋 I'm your PAT3024 learning assistant. Ask me about Corporate Tax, Case Study 2 Question 1 or any of the four modules.",
+        "Hello! 👋 I'm your PAT3024 learning assistant. Ask me about Corporate Tax, Case Study 2 or any of the four modules.",
         "bot"
     );
 
