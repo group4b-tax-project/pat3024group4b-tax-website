@@ -322,133 +322,135 @@
 
 </section>
 
-    <!-- AaDab ETHICAL INDEX -->
+    
+<!-- AaDab ETHICAL INDEX -->
 
 <section id="ethical-index" style="display:none;">
 
-        <h2>AaDab Ethical Index</h2>
+    <h2>AaDab Ethical Index</h2>
+
+    <p>
+        The AaDab Ethical Index evaluates the ethical responsibility
+        of Maju Mampan Sdn Bhd in managing its tax affairs based on
+        four assessment dimensions.
+    </p>
+
+    <p>
+        Answer the following questions based on the company's
+        circumstances in Case Study 2, Question 1. Each dimension
+        carries a maximum of 25 marks.
+    </p>
+
+    <!-- DIMENSION 1: TRANSPARENCY -->
+
+    <div class="risk-question">
+
+        <label for="ethical-transparency">
+            1. Transparency (25 marks)
+        </label>
 
         <p>
-            The AaDab Ethical Index evaluates the ethical responsibility
-            of the company's tax planning arrangements through four
-            assessment dimensions.
+            Does the company honestly disclose and properly document
+            tax-related transactions, including the dividend income,
+            interest expense and foreign exchange differences
+            identified in the case?
         </p>
+
+        <select id="ethical-transparency">
+            <option value="">Select an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+    </div>
+
+    <!-- DIMENSION 2: SOCIAL EQUITY -->
+
+    <div class="risk-question">
+
+        <label for="ethical-equity">
+            2. Social Equity (25 marks)
+        </label>
 
         <p>
-            Answer the following questions to calculate the company's
-            Ethical Index Score. Each dimension carries a maximum of
-            25 marks.
+            Does the company demonstrate fairness towards its employees
+            by properly managing staff remuneration, EPF contributions,
+            training expenses and retrenchment payments?
         </p>
 
+        <select id="ethical-equity">
+            <option value="">Select an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
 
-        <!-- DIMENSION 1: TRANSPARENCY -->
+    </div>
 
-        <div class="risk-question">
+    <!-- DIMENSION 3: COMPLIANCE DISCIPLINE -->
 
-            <label for="ethical-transparency">
-                1. Transparency (25 marks)
-            </label>
+    <div class="risk-question">
 
-            <p>
-                Does the company provide honest disclosure and maintain
-                accurate records of its tax planning arrangements?
-            </p>
+        <label for="ethical-compliance">
+            3. Compliance Discipline (25 marks)
+        </label>
 
-            <select id="ethical-transparency">
-                <option value="">Select an answer</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
+        <p>
+            Does the company ensure that its tax adjustments comply
+            with the relevant tax requirements, particularly in
+            distinguishing stock provisions from actual stock
+            write-offs and general bad debt provisions from
+            specific bad debts?
+        </p>
 
-        </div>
+        <select id="ethical-compliance">
+            <option value="">Select an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
 
+    </div>
 
-        <!-- DIMENSION 2: SOCIAL EQUITY -->
+    <!-- DIMENSION 4: PUBLIC WELFARE CONTRIBUTIONS -->
 
-        <div class="risk-question">
+    <div class="risk-question">
 
-            <label for="ethical-equity">
-                2. Social Equity (25 marks)
-            </label>
+        <label for="ethical-welfare">
+            4. Public Welfare Contributions (25 marks)
+        </label>
 
-            <p>
-                Does the company's tax planning approach demonstrate
-                fairness and avoid arrangements that shift an unfair
-                tax burden to others?
-            </p>
+        <p>
+            Does the company demonstrate responsible contributions
+            to society by properly distinguishing the RM98,000
+            approved Covid-19 fund donation from the RM70,000
+            political party donation?
+        </p>
 
-            <select id="ethical-equity">
-                <option value="">Select an answer</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
+        <select id="ethical-welfare">
+            <option value="">Select an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
 
-        </div>
+    </div>
 
+    <button type="button" onclick="calculateEthicalIndex()">
+        CALCULATE AaDab ETHICAL INDEX
+    </button>
 
-        <!-- DIMENSION 3: COMPLIANCE DISCIPLINE -->
+    <!-- ETHICAL INDEX RESULTS -->
 
-        <div class="risk-question">
+    <div id="ethical-result">
 
-            <label for="ethical-compliance">
-                3. Compliance Discipline (25 marks)
-            </label>
+        <h3>Ethical Index Score</h3>
 
-            <p>
-                Does the company comply with applicable tax laws and
-                maintain proper supporting documentation?
-            </p>
+        <p>
+            Complete the four assessment questions to generate
+            your score.
+        </p>
 
-            <select id="ethical-compliance">
-                <option value="">Select an answer</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
+    </div>
 
-        </div>
-
-
-        <!-- DIMENSION 4: PUBLIC WELFARE CONTRIBUTIONS -->
-
-        <div class="risk-question">
-
-            <label for="ethical-welfare">
-                4. Public Welfare Contributions (25 marks)
-            </label>
-
-            <p>
-                Does the company demonstrate responsibility towards
-                society through genuine contributions to public welfare?
-            </p>
-
-            <select id="ethical-welfare">
-                <option value="">Select an answer</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-
-        </div>
-
-
-        <button type="button" onclick="calculateEthicalIndex()">
-            CALCULATE AaDab ETHICAL INDEX
-        </button>
-
-
-        <!-- ETHICAL INDEX RESULTS -->
-
-        <div id="ethical-result">
-
-            <h3>Ethical Index Score</h3>
-
-            <p>
-                Complete the four assessment questions to generate
-                your score.
-            </p>
-
-        </div>
-
-    </section>
+</section>
 
 
     <!-- IMPORTANT LEARNING NOTE -->
