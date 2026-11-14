@@ -200,9 +200,9 @@
             return "Hello! Welcome to the PAT3024 Corporate Tax Learning Hub. What would you like to learn today?";
         }
 
-        if (q.includes("section 140") || q.includes("140(1)")) {
-            return "Section 140(1) of the Income Tax Act 1967 gives the Director General of Inland Revenue powers to disregard or vary certain arrangements in circumstances involving tax avoidance. Remember: an ordinary tax adjustment does not automatically mean tax avoidance.";
-        }
+        if (q.includes("tax avoidance") || q.includes("avoidance")) {
+    return "Tax avoidance refers to arrangements or transactions intended to reduce tax liability. Under Section 140(1) of the Income Tax Act 1967, the Director General of Inland Revenue may disregard or vary certain arrangements involving tax avoidance. However, legitimate tax planning is not automatically tax avoidance, and an ordinary tax adjustment does not prove that tax avoidance has occurred.";
+}
 
         if (q.includes("capital allowance") || q.includes("depreciation")) {
             return "Capital allowances are tax deductions given for qualifying capital expenditure on assets used in a business. Accounting depreciation is generally added back when computing adjusted business income, while capital allowances are claimed under the relevant tax rules.";
