@@ -357,21 +357,19 @@
         </p>
 
         <select id="ethical-transparency">
-            <option value="">Select rating (1–5)</option>
-            <option value="1">1 – Very Poor</option>
-            <option value="2">2 – Poor</option>
-            <option value="3">3 – Satisfactory</option>
-            <option value="4">4 – Good</option>
-            <option value="5">5 – Excellent</option>
-        </select>
+    <option value="">Select a rating</option>
+    <option value="1">1 - Very Poor</option>
+    <option value="2">2 - Poor</option>
+    <option value="3">3 - Satisfactory</option>
+    <option value="4">4 - Good</option>
+    <option value="5">5 - Excellent</option>
+</select>
 
-        <label for="reason-transparency">
-            Why did you give this rating?
-        </label>
-
-        <textarea id="reason-transparency"
-                  rows="3"
-                  placeholder="Explain your rating using evidence from Case Study 2..."></textarea>
+<textarea
+    id="ethical-transparency-why"
+    placeholder="Explain why you selected this rating. Use evidence from Case Study 2."
+    rows="3">
+</textarea>
 
     </div>
 
@@ -390,21 +388,19 @@
         </p>
 
         <select id="ethical-equity">
-            <option value="">Select rating (1–5)</option>
-            <option value="1">1 – Very Poor</option>
-            <option value="2">2 – Poor</option>
-            <option value="3">3 – Satisfactory</option>
-            <option value="4">4 – Good</option>
-            <option value="5">5 – Excellent</option>
-        </select>
+    <option value="">Select a rating</option>
+    <option value="1">1 - Very Poor</option>
+    <option value="2">2 - Poor</option>
+    <option value="3">3 - Satisfactory</option>
+    <option value="4">4 - Good</option>
+    <option value="5">5 - Excellent</option>
+</select>
 
-        <label for="reason-equity">
-            Why did you give this rating?
-        </label>
-
-        <textarea id="reason-equity"
-                  rows="3"
-                  placeholder="Explain your rating using evidence from Case Study 2..."></textarea>
+<textarea
+    id="ethical-equity-why"
+    placeholder="Explain why you selected this rating. Use evidence from Case Study 2."
+    rows="3">
+</textarea>
 
     </div>
 
@@ -423,21 +419,19 @@
         </p>
 
         <select id="ethical-compliance">
-            <option value="">Select rating (1–5)</option>
-            <option value="1">1 – Very Poor</option>
-            <option value="2">2 – Poor</option>
-            <option value="3">3 – Satisfactory</option>
-            <option value="4">4 – Good</option>
-            <option value="5">5 – Excellent</option>
-        </select>
+    <option value="">Select a rating</option>
+    <option value="1">1 - Very Poor</option>
+    <option value="2">2 - Poor</option>
+    <option value="3">3 - Satisfactory</option>
+    <option value="4">4 - Good</option>
+    <option value="5">5 - Excellent</option>
+</select>
 
-        <label for="reason-compliance">
-            Why did you give this rating?
-        </label>
-
-        <textarea id="reason-compliance"
-                  rows="3"
-                  placeholder="Explain your rating using evidence from Case Study 2..."></textarea>
+<textarea
+    id="ethical-compliance-why"
+    placeholder="Explain why you selected this rating. Use evidence from Case Study 2."
+    rows="3">
+</textarea>
 
     </div>
 
@@ -456,21 +450,19 @@
         </p>
 
         <select id="ethical-welfare">
-            <option value="">Select rating (1–5)</option>
-            <option value="1">1 – Very Poor</option>
-            <option value="2">2 – Poor</option>
-            <option value="3">3 – Satisfactory</option>
-            <option value="4">4 – Good</option>
-            <option value="5">5 – Excellent</option>
-        </select>
+    <option value="">Select a rating</option>
+    <option value="1">1 - Very Poor</option>
+    <option value="2">2 - Poor</option>
+    <option value="3">3 - Satisfactory</option>
+    <option value="4">4 - Good</option>
+    <option value="5">5 - Excellent</option>
+</select>
 
-        <label for="reason-welfare">
-            Why did you give this rating?
-        </label>
-
-        <textarea id="reason-welfare"
-                  rows="3"
-                  placeholder="Explain your rating using evidence from Case Study 2..."></textarea>
+<textarea
+    id="ethical-welfare-why"
+    placeholder="Explain why you selected this rating. Use evidence from Case Study 2."
+    rows="3">
+</textarea>
 
     </div>
 
@@ -699,43 +691,77 @@ let ethicalBarChartInstance = null;
 // FUNCTION 2: AaDab ETHICAL INDEX CALCULATION
 
 
+
 function calculateEthicalIndex() {
 
     const dimensions = [
         {
             id: "ethical-transparency",
+            reasonId: "ethical-transparency-why",
             name: "Transparency"
         },
         {
             id: "ethical-equity",
+            reasonId: "ethical-equity-why",
             name: "Social Equity"
         },
         {
             id: "ethical-compliance",
+            reasonId: "ethical-compliance-why",
             name: "Compliance Discipline"
         },
         {
             id: "ethical-welfare",
+            reasonId: "	ethical-welfare-why",
             name: "Public Welfare Contributions"
         }
     ];
 
-    const answers = dimensions.map(dimension =>
-        document.getElementById(dimension.id).value
-    );
-
-    if (answers.includes("")) {
-        alert("Please answer all four Ethical Index questions.");
-        return;
-    }
+    const escapeHTML = text => String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
     let totalScore = 0;
     let resultsHTML = "";
     let scores = [];
 
+    const ratings = [];
+    const reasons = [];
+
+    // CHECK ALL RATINGS AND EXPLANATIONS
+
+    for (const dimension of dimensions) {
+
+        const rating = document.getElementById(dimension.id).value;
+        const reason = document.getElementById(dimension.reasonId).value.trim();
+
+        if (rating === "") {
+            alert("Please rate all four AaDab dimensions.");
+            return;
+        }
+
+        if (reason === "") {
+            alert("Please explain why you selected each rating.");
+            document.getElementById(dimension.reasonId).focus();
+            return;
+        }
+
+        ratings.push(Number(rating));
+        reasons.push(reason);
+    }
+
+    // CALCULATE MARKS
+    // Rating 1–5 is converted into marks out of 25.
+    // Rating 1 = 5 marks; Rating 5 = 25 marks.
+
     dimensions.forEach((dimension, index) => {
 
-        const score = answers[index] === "yes" ? 25 : 0;
+        const rating = ratings[index];
+        const score = rating * 5;
+        const reason = escapeHTML(reasons[index]);
 
         totalScore += score;
         scores.push(score);
@@ -743,11 +769,17 @@ function calculateEthicalIndex() {
         resultsHTML += `
             <div class="ethical-dimension">
 
+                <h4>${dimension.name}</h4>
+
                 <p>
-                    <strong>${dimension.name}</strong>
+                    <strong>Student Rating:</strong>
+                    ${rating}/5
                 </p>
 
-                <p>${score}/25 marks</p>
+                <p>
+                    <strong>Marks:</strong>
+                    ${score}/25
+                </p>
 
                 <div class="ethical-progress">
                     <div class="ethical-progress-fill"
@@ -755,9 +787,17 @@ function calculateEthicalIndex() {
                     </div>
                 </div>
 
+                <p>
+                    <strong>Reason for Rating:</strong>
+                </p>
+
+                <p>${reason}</p>
+
             </div>
         `;
     });
+
+    // OVERALL ETHICAL PERFORMANCE
 
     let ethicalRating;
 
@@ -780,20 +820,22 @@ function calculateEthicalIndex() {
             ${ethicalRating}
         </p>
 
+        <p>
+            Your score is based on the ratings and explanations
+            you provided for the four AaDab dimensions.
+        </p>
+
         <h3>Individual Assessment Scores</h3>
 
         ${resultsHTML}
-
-        <p>
-            The score is based on the four educational assessment
-            dimensions and the answers provided.
-        </p>
 
         <div class="risk-chart-card">
 
             <h3>Ethical Performance Radar Chart</h3>
 
-            <p>Overview of the company's performance across four dimensions.</p>
+            <p>
+                Overview of your ratings across the four dimensions.
+            </p>
 
             <div class="risk-chart-container">
                 <canvas id="ethicalRadarChart"></canvas>
@@ -805,7 +847,9 @@ function calculateEthicalIndex() {
 
             <h3>Ethical Dimension Comparison</h3>
 
-            <p>Comparison of marks obtained for each ethical dimension.</p>
+            <p>
+                Comparison of marks obtained for each dimension.
+            </p>
 
             <div class="risk-chart-container">
                 <canvas id="ethicalBarChart"></canvas>
@@ -815,7 +859,7 @@ function calculateEthicalIndex() {
 
     `;
 
-    // Destroy previous charts before creating new ones
+    // DESTROY PREVIOUS CHARTS
 
     if (ethicalRadarChartInstance) {
         ethicalRadarChartInstance.destroy();
