@@ -655,15 +655,16 @@
         <!-- ACTIVITY 04 -->
         <div class="module4-activity-card">
             <span class="module4-activity-number">ACTIVITY 04</span>
-            <h3>Reflective Learning Hub</h3>
+            <h3>Peer Feedback Review</h3>
             <p>
-                Record your learning reflections, identify challenges
-                and consider how to apply your taxation knowledge.
+                Review a fellow student's corporate tax answer,
+                evaluate tax accuracy and AaDab application, and
+                provide constructive feedback.
             </p>
             <button type="button"
                 class="module4-activity-button"
-                onclick="showModule4Activity('reflection-hub')">
-                Record Reflection →
+                onclick="showModule4Activity('peer-feedback-review')">
+                Give Peer Feedback →
             </button>
         </div>
 
@@ -968,61 +969,91 @@
     </section>
 
 
-    <!-- REFLECTIVE LEARNING HUB -->
 
-    <section id="reflection-hub" style="display:none;">
+<!-- PEER FEEDBACK REVIEW -->
 
-        <h2>4. Reflective Learning Hub</h2>
+<section id="peer-feedback-review" style="display:none;">
 
-        <p>
-            Students can reflect on their understanding of corporate
-            taxation, identify challenges and explain how the learning
-            activities improve their knowledge and professional awareness.
-        </p>
+    <h2>4. Peer Feedback Review</h2>
 
-        <form id="reflection-form" class="module4-form">
+    <p>
+        Review your peer's corporate tax answer. Evaluate the clarity,
+        tax accuracy and application of AaDab principles. Provide
+        constructive feedback to support improvement.
+    </p>
 
-            <label for="reflection-name">Student Name</label>
-            <input
-                type="text"
-                id="reflection-name"
-                placeholder="Enter your name"
-                required
-            >
+    <form id="peer-feedback-form" class="module4-form">
 
-            <label for="reflection-topic">Reflection Topic</label>
-            <select id="reflection-topic" required>
-                <option value="">Select a topic</option>
-                <option value="Corporate Tax Computation">Corporate Tax Computation</option>
-                <option value="Capital Allowances">Capital Allowances</option>
-                <option value="Withholding Tax">Withholding Tax</option>
-                <option value="Tax Planning and Ethics">Tax Planning and Ethics</option>
-                <option value="Section 140 ITA 1967">Section 140 ITA 1967</option>
-                <option value="Overall Learning Experience">Overall Learning Experience</option>
-            </select>
+        <label for="peer-reviewer-name">Reviewer Name</label>
+        <input
+            type="text"
+            id="peer-reviewer-name"
+            placeholder="Enter your name"
+            required
+        >
 
-            <label for="reflection-content">Your Reflection</label>
-            <textarea
-                id="reflection-content"
-                placeholder="What have you learned? What challenges did you face? How can you apply this knowledge?"
-                required
-            ></textarea>
+        <label for="peer-case-id">Case ID</label>
+        <input
+            type="text"
+            id="peer-case-id"
+            placeholder="Enter the case or question ID"
+            required
+        >
 
-            <button type="submit" class="module4-button">
-                SUBMIT REFLECTION
-            </button>
+        <label for="peer-answer-clarity">Answer Clarity</label>
+        <select id="peer-answer-clarity" required>
+            <option value="">Select rating</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
 
-        </form>
+        <label for="peer-tax-accuracy">Tax Accuracy</label>
+        <select id="peer-tax-accuracy" required>
+            <option value="">Select rating</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
 
-        <div id="reflection-status" aria-live="polite"></div>
+        <label for="peer-aadab-application">AaDab Application</label>
+        <select id="peer-aadab-application" required>
+            <option value="">Select rating</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
 
-        <h3>Reflection Submission Log</h3>
+        <label for="peer-strengths">Strengths</label>
+        <textarea
+            id="peer-strengths"
+            placeholder="What did your peer do well?"
+            required
+        ></textarea>
 
-        <div id="reflection-list">
-            <p class="empty-message">No reflections have been submitted yet.</p>
-        </div>
+        <label for="peer-suggestions">Suggestions for Improvement</label>
+        <textarea
+            id="peer-suggestions"
+            placeholder="What could your peer improve?"
+            required
+        ></textarea>
 
-    </section>
+        <label for="peer-overall-feedback">Overall Feedback</label>
+        <textarea
+            id="peer-overall-feedback"
+            placeholder="Write your overall constructive feedback"
+            required
+        ></textarea>
+
+        <button type="submit" class="module4-button">
+            SUBMIT PEER FEEDBACK
+        </button>
+
+    </form>
+
+    <div id="peer-feedback-status" aria-live="polite"></div>
+
+</section>
 
 
     <!-- LEARNING NOTE -->
