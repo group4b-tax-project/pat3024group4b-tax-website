@@ -1,0 +1,3123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4 - Statutory Legal Explorer & Reflective Learning Hub</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* MODULE 4 - GENERAL LAYOUT */
+
+        .module4-intro {
+            text-align: center;
+        }
+
+        .module4-card {
+            background-color: #f4f7fc;
+            border: 1px solid #d5dfed;
+            border-left: 5px solid #16345c;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 18px 0;
+        }
+
+        .module4-card h3 {
+            color: #16345c;
+            margin-top: 0;
+        }
+
+        /* SEARCH AREA */
+
+        .legal-search {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .legal-search input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border: 1px solid #b8c7dc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .legal-search button,
+        .module4-button {
+            background-color: #16345c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 22px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .legal-search button:hover,
+        .module4-button:hover {
+            background-color: #2475c7;
+        }
+
+        .legal-entry {
+            background-color: white;
+            border: 1px solid #d5dce8;
+            border-radius: 7px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        .legal-entry h3 {
+            color: #16345c;
+            margin-top: 0;
+        }
+
+        .legal-entry p {
+            margin-bottom: 8px;
+        }
+
+        .reference-tag {
+            display: inline-block;
+            background-color: #dce6f2;
+            color: #16345c;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .no-results {
+            background-color: #fff4e5;
+            border: 1px solid #f0d4a8;
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        /* FORM DESIGN */
+
+        .module4-form label {
+            display: block;
+            font-weight: bold;
+            color: #16345c;
+            margin-top: 15px;
+            margin-bottom: 7px;
+        }
+
+        .module4-form input,
+        .module4-form select,
+        .module4-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #b8c7dc;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .module4-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .module4-form button {
+            margin-top: 18px;
+        }
+
+        /* SUBMISSION RESULTS */
+
+        .submission-item {
+            background-color: white;
+            border: 1px solid #d5dce8;
+            border-left: 4px solid #2475c7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 12px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .submission-item h4 {
+            color: #16345c;
+            margin-top: 0;
+        }
+
+        .submission-date {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .empty-message {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .module4-note {
+            background-color: #eef4fb;
+            border: 1px solid #d5dfed;
+            border-radius: 8px;
+            padding: 18px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .legal-search {
+                flex-direction: column;
+            }
+
+            .legal-search input,
+            .legal-search button {
+                width: 100%;
+            }
+
+            .module4-card {
+                padding: 15px;
+            }
+        }
+    
+/* =====================================
+   MODULE 4 - ACTIVITY MENU DESIGN
+===================================== */
+
+.module4-menu {
+    background: linear-gradient(135deg, #eef5ff, #ffffff);
+    border: 1px solid #dce7f5;
+    border-radius: 22px;
+    padding: 35px;
+    margin: 30px 0;
+    box-shadow: 0 8px 24px rgba(22, 52, 92, 0.08);
+}
+
+.module4-menu-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.module4-menu-heading h2 {
+    color: #16345c;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.module4-menu-heading p {
+    color: #52657d;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.module4-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.module4-activity-card {
+    background: #ffffff;
+    border: 1px solid #dce7f5;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 5px 18px rgba(22, 52, 92, 0.06);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.module4-activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(22, 52, 92, 0.12);
+}
+
+.module4-activity-number {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    width: fit-content;
+}
+
+.module4-activity-card h3 {
+    color: #16345c;
+    font-size: 20px;
+    margin: 0 0 12px;
+}
+
+.module4-activity-card p {
+    color: #52657d;
+    font-size: 15px;
+    line-height: 1.7;
+    flex-grow: 1;
+}
+
+.module4-activity-button {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #2864ed, #174cae);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.module4-activity-button:hover {
+    background: #16345c;
+    transform: translateY(-2px);
+}
+
+.module4-back-button {
+    background: #e8f1ff;
+    color: #16345c;
+    border: 1px solid #c8dcf8;
+    border-radius: 9px;
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.module4-back-button:hover {
+    background: #d5e6ff;
+}
+
+@media (max-width: 700px) {
+    .module4-activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .module4-menu {
+        padding: 22px;
+    }
+}
+
+/* =====================================
+   MODULE 4 - BEAUTIFUL QUESTION CARDS
+===================================== */
+
+.question-card {
+    background: #ffffff;
+    border: 1px solid #dce6f2;
+    border-left: 5px solid #2563eb;
+    border-radius: 16px;
+    padding: 25px;
+    margin: 22px 0;
+    box-shadow: 0 5px 18px rgba(25, 55, 95, 0.07);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.question-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 24px rgba(25, 55, 95, 0.12);
+}
+
+.question-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.question-card-header h3 {
+    color: #17365d;
+    font-size: 21px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.question-date {
+    color: #8291a5;
+    font-size: 12px;
+}
+
+.question-author {
+    color: #64748b;
+    font-size: 14px;
+    margin: 8px 0 16px;
+}
+
+.question-content {
+    color: #263b53;
+    font-size: 16px;
+    line-height: 1.8;
+    background: #f5f8fc;
+    padding: 16px;
+    border-radius: 10px;
+    margin: 0;
+}
+
+/* COMMENTS AREA */
+
+.question-card .comment-section {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f4f7fc;
+    border: 1px solid #e0e8f3;
+    border-radius: 12px;
+}
+
+.question-card .comment-heading {
+    color: #17365d;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 16px;
+}
+
+.question-card .comment-item {
+    background: #ffffff;
+    border: 1px solid #e1e8f0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 12px 0;
+}
+
+.question-card .comment-item strong {
+    display: block;
+    color: #1d4ed8;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.question-card .comment-item p {
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 5px 0 10px;
+    overflow-wrap: anywhere;
+}
+
+.question-card .comment-item small {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* COMMENT FORM */
+
+.question-card .comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.question-card .comment-form h5 {
+    color: #17365d;
+    font-size: 16px;
+    margin: 0 0 3px;
+}
+
+.question-card .comment-form input,
+.question-card .comment-form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 15px;
+    border: 1px solid #cbd8e8;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #263b53;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.question-card .comment-form input:focus,
+.question-card .comment-form textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.question-card .comment-form textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.question-card .comment-form button {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 9px;
+    background: #17365d;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.question-card .comment-form button:hover {
+    background: #2563eb;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media screen and (max-width: 600px) {
+    .question-card {
+        padding: 16px;
+        margin: 16px 0;
+    }
+
+    .question-card-header {
+        flex-direction: column;
+    }
+
+    .question-card-header h3 {
+        font-size: 19px;
+    }
+
+    .question-card .comment-section {
+        padding: 14px;
+    }
+}
+
+/* FULL ACT 53 SECTION INDEX */
+
+#legal-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+#legal-results .legal-entry {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #dce7f5;
+    border-left: 5px solid #2563eb;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+#legal-results .legal-entry h3 {
+    color: #17365d;
+    font-size: 17px;
+    margin: 10px 0;
+}
+
+#legal-results .legal-entry p {
+    color: #52657c;
+    line-height: 1.6;
+    margin: 7px 0;
+}
+
+#legal-results .part-heading {
+    grid-column: 1 / -1;
+    color: #17365d;
+    background: #eaf2fc;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#legal-results .deleted-entry {
+    border-left-color: #9ca3af;
+    background: #f8fafc;
+}
+
+#legal-result-count {
+    color: #52657c;
+    font-size: 14px;
+    margin-top: 14px;
+}
+
+@media screen and (max-width: 600px) {
+    #legal-results {
+        grid-template-columns: 1fr;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>PAT3024 Corporate Tax Interactive Learning Hub</h1>
+    <p>Module 4 - Statutory Legal Explorer & Reflective Learning Hub</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="case-hub.html">MODULE 1</a>
+    <a href="calculator.html">MODULE 2</a>
+    <a href="risk-scanner.html">MODULE 3</a>
+    <a href="legal-explorer.html">MODULE 4</a>
+</nav>
+
+<main>
+
+    <!-- MODULE INTRODUCTION -->
+
+    <section id="module-intro" class="module4-intro">
+
+        <h2>Statutory Legal Explorer & Reflective Learning Hub</h2>
+
+        <p>
+            This module provides a learning platform for students
+            to explore selected provisions of the Income Tax Act 1967,
+            refer to LHDN Public Rulings, participate in learning
+            discussions and record their reflections on corporate taxation.
+        </p>
+<!-- MODULE 4 COMPLETION TRACKER -->
+
+<div class="completion-control">
+
+    <button
+        type="button"
+        class="completion-button"
+        id="complete-module-4"
+        onclick="toggleModule4Completion()">
+
+        MARK MODULE 4 AS COMPLETED
+
+    </button>
+
+    <p id="module4-status">
+        You have not completed this module yet.
+    </p>
+
+</div>
+    </section>
+
+
+<!-- MODULE 4 ACTIVITY MENU -->
+
+<section id="module4-menu" class="module4-menu">
+
+    <div class="module4-menu-heading">
+        <h2>Choose Your Learning Activity</h2>
+        <p>
+            Select an activity below to explore Malaysian tax legislation,
+            discuss corporate taxation and reflect on your learning.
+        </p>
+    </div>
+
+    <div class="module4-activity-grid">
+
+        <!-- ACTIVITY 01 -->
+        <div class="module4-activity-card">
+            <span class="module4-activity-number">ACTIVITY 01</span>
+            <h3>Statutory Legal Explorer</h3>
+            <p>
+                Explore selected provisions of the Income Tax Act 1967
+                and understand their application to corporate taxation.
+            </p>
+            <button type="button"
+                class="module4-activity-button"
+                onclick="showModule4Activity('legal-explorer')">
+                Explore Tax Legislation →
+            </button>
+        </div>
+
+        <!-- ACTIVITY 02 -->
+        <div class="module4-activity-card">
+            <span class="module4-activity-number">ACTIVITY 02</span>
+            <h3>LHDN Public Rulings Repository</h3>
+            <p>
+                Search tax-related topics and explore guidance
+                published by the Inland Revenue Board of Malaysia.
+            </p>
+            <button type="button"
+                class="module4-activity-button"
+                onclick="showModule4Activity('public-rulings')">
+                Explore Public Rulings →
+            </button>
+        </div>
+
+        <!-- ACTIVITY 03 -->
+        <div class="module4-activity-card">
+            <span class="module4-activity-number">ACTIVITY 03</span>
+            <h3>Interactive Student Q&A Forum</h3>
+            <p>
+                Submit corporate taxation questions, share learning
+                difficulties and explore discussion topics.
+            </p>
+            <button type="button"
+                class="module4-activity-button"
+                onclick="showModule4Activity('student-forum')">
+                Join Discussion →
+            </button>
+        </div>
+
+        <!-- ACTIVITY 04 -->
+        <div class="module4-activity-card">
+            <span class="module4-activity-number">ACTIVITY 04</span>
+            <h3>Peer Feedback Review</h3>
+            <p>
+                Review a fellow student's corporate tax answer,
+                evaluate tax accuracy and AaDab application, and
+                provide constructive feedback.
+            </p>
+            <button type="button"
+                class="module4-activity-button"
+                onclick="showModule4Activity('peer-feedback-review')">
+                Give Peer Feedback →
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- END MODULE 4 ACTIVITY MENU -->
+
+    
+<!-- STATUTORY LEGAL EXPLORER -->
+
+<section id="legal-explorer" style="display:none;">
+
+    <h2>1. Statutory Legal Explorer</h2>
+
+    <p>
+        Explore the Income Tax Act 1967 (Act 53), including
+        its Parts, Chapters, sections and Schedules.
+        Search by section number, provision title or keyword.
+    </p>
+
+    <div class="module4-note">
+        <strong>Legislation:</strong> Income Tax Act 1967 (Act 53)
+        <br>
+        <strong>Version:</strong> Updated text as at 1 January 2026
+        <br>
+        <strong>Source:</strong> Attorney General's Chambers of Malaysia
+    </div>
+
+    <div class="legal-search">
+
+        <input
+            type="text"
+            id="legal-search-input"
+            placeholder="Search e.g. Section 33, capital allowance, tax deduction..."
+            oninput="searchLegalReferences()"
+            autocomplete="off"
+        >
+
+        <button
+            type="button"
+            onclick="searchLegalReferences()">
+            SEARCH
+        </button>
+
+    </div>
+
+    <p id="legal-result-count" aria-live="polite">
+        Search the Income Tax Act 1967.
+    </p>
+
+    <div id="legal-results"></div>
+
+    <p
+        id="legal-no-results"
+        class="no-results"
+        style="display:none;">
+        No matching provision found. Try another section number or keyword.
+    </p>
+
+    <div class="module4-note">
+
+        <h3>Official Legislation</h3>
+
+        <p>
+            Refer to the official updated text for the complete
+            statutory wording, subsections and Schedules.
+        </p>
+
+        <a
+            href="https://lom.agc.gov.my/ilims/upload/portal/akta/outputaktap/3345910_BI/Act%2053%20%28Online%202026%29.pdf"
+            target="_blank"
+            rel="noopener noreferrer">
+            View Income Tax Act 1967 (Act 53) – Updated 1 January 2026
+        </a>
+
+        <p>
+            <strong>Note:</strong> This online version is an updated
+            text and is not an authenticated reprint.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- END STATUTORY LEGAL EXPLORER -->
+
+    <!-- LHDN PUBLIC RULINGS -->
+
+    <section id="public-rulings" style="display:none;">
+
+        <h2>2. LHDN Public Rulings Repository</h2>
+
+        <p>
+            Public Rulings provide guidance on the interpretation
+            and application of income tax provisions.
+            Use the official LHDN website to locate the relevant
+            ruling and verify its current status.
+        </p>
+
+        <div class="legal-search">
+
+            <input
+                type="text"
+                id="ruling-search-input"
+                placeholder="Search Public Rulings by topic..."
+                oninput="searchPublicRulings()"
+            >
+
+            <button type="button" onclick="searchPublicRulings()">
+                SEARCH
+            </button>
+
+        </div>
+
+        
+<div id="ruling-results">
+
+    <!-- PUBLIC RULING 1 -->
+    <div class="legal-entry"
+         data-search="public ruling 6 2015 qualifying expenditure computation capital allowances plant machinery assets">
+
+        <span class="reference-tag">PUBLIC RULING NO. 6/2015</span>
+
+        <h3>Qualifying Expenditure and Computation of Capital Allowances</h3>
+
+        <p>
+            Explains the tax treatment of qualifying expenditure
+            on plant and machinery and the computation of capital allowances.
+        </p>
+
+        <p><strong>Related provision:</strong> Schedule 3, ITA 1967.</p>
+
+        <p><strong>Publication date:</strong> 27 August 2015.</p>
+
+        <a href="https://www.hasil.gov.my/wp-content/uploads/PR_6_2015.pdf"
+   target="_blank" rel="noopener noreferrer">
+    View Official Public Ruling (PDF)
+</a>
+    </div>
+
+    <!-- PUBLIC RULING 2 -->
+    <div class="legal-entry"
+         data-search="public ruling 4 2015 entertainment expense deduction section 18 33 39">
+
+        <span class="reference-tag">PUBLIC RULING NO. 4/2015</span>
+
+        <h3>Entertainment Expense</h3>
+
+        <p>
+            Explains the tax treatment of entertainment expenses
+            and the conditions for claiming deductions.
+        </p>
+
+        <p><strong>Related provisions:</strong> Sections 18, 33(1) and 39(1)(l), ITA 1967.</p>
+
+        <p><strong>Publication date:</strong> 29 July 2015.</p>
+
+        <a href="https://www.hasil.gov.my/wp-content/uploads/PR_4_2015.pdf"
+   target="_blank" rel="noopener noreferrer">
+    View Official Public Ruling (PDF)
+</a>
+    </div>
+
+    <!-- PUBLIC RULING 3 -->
+    <div class="legal-entry"
+         data-search="public ruling 12 2019 foreign exchange gains losses forex currency">
+
+        <span class="reference-tag">PUBLIC RULING NO. 12/2019</span>
+
+        <h3>Tax Treatment of Foreign Exchange Gains and Losses</h3>
+
+        <p>
+            Explains the tax treatment of foreign exchange gains
+            and losses arising from trade and non-trade transactions.
+        </p>
+
+        <p><strong>Related provisions:</strong> Sections 4, 4B and 33(1), ITA 1967.</p>
+
+        <p><strong>Publication date:</strong> 13 December 2019.</p>
+
+        <a href="https://www.hasil.gov.my/wp-content/uploads/PR_12_2019.pdf"
+   target="_blank" rel="noopener noreferrer">
+    View Official Public Ruling (PDF)
+</a>
+    </div>
+
+    <!-- PUBLIC RULING 4 -->
+    <div class="legal-entry"
+         data-search="public ruling 6 2006 tax treatment legal professional expenses deductible non deductible">
+
+        <span class="reference-tag">PUBLIC RULING NO. 6/2006</span>
+
+        <h3>Tax Treatment of Legal and Professional Expenses</h3>
+
+        <p>
+            Explains the general principles for determining
+            whether legal and professional expenses are deductible
+            or non-deductible for income tax purposes.
+        </p>
+
+        <p><strong>Related provision:</strong> Section 33(1), ITA 1967.</p>
+
+        <p><strong>Publication date:</strong> 6 July 2006.</p>
+
+        <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en&refererUrl=https%3A%2F%2Fwww.hasil.gov.my%2Fen%2Fperundangan%2Fketetapan-umum%2F"
+   target="_blank" rel="noopener noreferrer">
+    Find Public Ruling on Official LHDN Website
+</a>
+    </div>
+
+</div>
+
+        <p id="ruling-no-results" class="no-results" style="display:none;">
+            No matching topic was found. Try another keyword.
+        </p>
+
+        <div class="module4-note">
+
+            <h3>Official LHDN Reference</h3>
+
+            <p>
+                Visit the Inland Revenue Board of Malaysia website
+                to obtain the official legislation, Public Rulings
+                and latest tax guidance.
+            </p>
+
+            <p>
+                <a href="https://www.hasil.gov.my/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Visit the Official LHDN Website
+                </a>
+            </p>
+
+            <p>
+    <strong>Important:</strong> The Public Rulings listed above
+    are published LHDN documents. Students should check the
+    official LHDN website for any subsequent amendments,
+    replacement rulings or withdrawal notices before relying
+    on them for current tax computations.
+</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDENT Q&A FORUM -->
+
+    <section id="student-forum" style="display:none;">
+
+        <h2>3. Interactive Student Q&A Forum</h2>
+
+        <p>
+            Students can submit questions about corporate taxation,
+            share learning difficulties and record discussion topics.
+        </p>
+
+        <form id="question-form" class="module4-form">
+
+            <label for="student-name">Student Name</label>
+            <input
+                type="text"
+                id="student-name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <label for="question-topic">Question Topic</label>
+            <select id="question-topic" required>
+                <option value="">Select a topic</option>
+                <option value="Corporate Tax Computation">Corporate Tax Computation</option>
+                <option value="Capital Allowances">Capital Allowances</option>
+                <option value="Withholding Tax">Withholding Tax</option>
+                <option value="Tax Planning">Tax Planning</option>
+                <option value="Section 140">Section 140</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="student-question">Your Question</label>
+            <textarea
+                id="student-question"
+                placeholder="Type your question here..."
+                required
+            ></textarea>
+
+            <button type="submit" class="module4-button">
+                SUBMIT QUESTION
+            </button>
+
+        </form>
+
+        <div id="question-status" aria-live="polite"></div>
+
+        <h3>Submitted Questions</h3>
+
+        <div id="question-list">
+            <p class="empty-message">No questions have been submitted yet.</p>
+        </div>
+
+    </section>
+
+
+
+<!-- PEER FEEDBACK REVIEW -->
+
+<section id="peer-feedback-review" style="display:none;">
+
+    <h2>4. Peer Feedback Review</h2>
+
+    <p>
+        Review your peer's corporate tax answer. Evaluate the clarity,
+        tax accuracy and application of AaDab principles. Provide
+        constructive feedback to support improvement.
+    </p>
+
+    <form id="peer-feedback-form" class="module4-form">
+
+        <label for="peer-reviewer-name">Reviewer Name</label>
+        <input
+            type="text"
+            id="peer-reviewer-name"
+            placeholder="Enter your name"
+            required
+        >
+
+        <label for="peer-case-id">Case ID</label>
+        <input
+            type="text"
+            id="peer-case-id"
+            placeholder="Enter the case or question ID"
+            required
+        >
+
+        <label for="peer-answer-clarity">Answer Clarity</label>
+        <select id="peer-answer-clarity" required>
+            <option value="">Select rating</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
+
+        <label for="peer-tax-accuracy">Tax Accuracy</label>
+        <select id="peer-tax-accuracy" required>
+            <option value="">Select rating</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
+
+        <label for="peer-aadab-application">AaDab Application</label>
+        <select id="peer-aadab-application" required>
+            <option value="">Select rating</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
+
+        <label for="peer-strengths">Strengths</label>
+        <textarea
+            id="peer-strengths"
+            placeholder="What did your peer do well?"
+            required
+        ></textarea>
+
+        <label for="peer-suggestions">Suggestions for Improvement</label>
+        <textarea
+            id="peer-suggestions"
+            placeholder="What could your peer improve?"
+            required
+        ></textarea>
+
+        <label for="peer-overall-feedback">Overall Feedback</label>
+        <textarea
+            id="peer-overall-feedback"
+            placeholder="Write your overall constructive feedback"
+            required
+        ></textarea>
+
+        <button type="submit" class="module4-button">
+            SUBMIT PEER FEEDBACK
+        </button>
+
+    </form>
+
+    <div id="peer-feedback-status" aria-live="polite"></div>
+
+</section>
+
+
+    <!-- LEARNING NOTE -->
+
+    <section id="module4-learning-note">
+
+        <h2>Important Learning Note</h2>
+
+        <p>
+            The legal references and learning topics provided in this
+            module are intended for educational purposes. Students
+            should consult the official Income Tax Act 1967 and the
+            latest LHDN publications when completing tax research
+            and assignments.
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>Prepared by: Group 4(B) Corporate Taxation 2.</p>
+</footer>
+
+
+<script>
+
+const MODULE4_API_URL = "https://script.google.com/macros/s/AKfycbyWaa513V0JPDfxAay-c2uKsbuwWQVs2QXpeyDm_BuntP25yinuMLp4UY-lt8k4cLCp/exec";
+
+// Activity 03 - Student Q&A Forum (separate Google Apps Script)
+const QNA_FORUM_API_URL = "https://script.google.com/macros/s/AKfycbzc8-eFWgBEDhIPGI8ytRm7mUKSK5Yg2HhjBfUu3H3gjz7-knJHi8UsxSkpZVkGgOGO/exec";
+
+/* =====================================
+   MODULE 4 - LEGAL REFERENCE SEARCH
+===================================== */
+
+/* =====================================
+   ACT 53 - FULL SECTION INDEX
+   PART I AND PART II
+===================================== */
+
+const act53Sections = [
+
+    {
+        part: "PART I - PRELIMINARY",
+        chapter: "",
+        number: "1",
+        title: "Short title and commencement"
+    },
+    {
+        part: "PART I - PRELIMINARY",
+        chapter: "",
+        number: "2",
+        title: "Interpretation"
+    },
+
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "3",
+        title: "Charge of income tax"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "3A",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "3B",
+        title: "Non-chargeability to tax in respect of offshore business activity"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "3C",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "4",
+        title: "Classes of income on which tax is chargeable"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "4A",
+        title: "Special classes of income on which tax is chargeable"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "4B",
+        title: "Non-business income"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "4C",
+        title: "Gains or profits from a business arising from stock in trade parted with by any element of compulsion"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "5",
+        title: "Manner in which chargeable income is to be ascertained"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6",
+        title: "Rates of tax"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6A",
+        title: "Tax rebate"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6B",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6C",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "6D",
+        title: "Tax rebate for company or limited liability partnership"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "7",
+        title: "Residence: individuals"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "8",
+        title: "Residence: companies and bodies of persons"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "9",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "10",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "11",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "12",
+        title: "Derivation of business income in certain cases"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "13",
+        title: "General provisions as to employment income"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "13A",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "14",
+        title: "General provisions as to dividend income"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "15",
+        title: "Derivation of interest and royalty income in certain cases"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "15A",
+        title: "Derivation of special classes of income in certain cases"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "15B",
+        title: "Derivation of gains or profits in certain cases"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "15C",
+        title: "Derivation of gains or profits from the disposal of capital assets deriving value from real property in Malaysia"
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "16",
+        title: "Voluntary pensions, etc."
+    },
+    {
+        part: "PART II - IMPOSITION AND GENERAL CHARACTERISTICS OF THE TAX",
+        chapter: "",
+        number: "17",
+        title: "Derivation of pensions, etc."
+    },
+
+    /* PART III - ASCERTAINMENT OF CHARGEABLE INCOME */
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 1 - Preliminary",
+        number: "18",
+        title: "Interpretation of Part III"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 1 - Preliminary",
+        number: "19",
+        title: "Supplementary provisions for the interpretation of Part III"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 2 - Basis years and basis periods",
+        number: "20",
+        title: "Basis years"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 2 - Basis years and basis periods",
+        number: "21",
+        title: "Basis period of a person other than a company, limited liability partnership, trust body or co-operative society"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 2 - Basis years and basis periods",
+        number: "21A",
+        title: "Basis period of a company, limited liability partnership, trust body or co-operative society"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "22",
+        title: "Gross income generally"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "23",
+        title: "Interpretation of sections 24 to 28"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "24",
+        title: "Basis period to which gross income from a business is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "25",
+        title: "Basis period to which gross income from an employment is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "26",
+        title: "Basis period to which gross income in respect of dividend is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "27",
+        title: "Basis period to which gross income in respect of interest, etc., is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "28",
+        title: "Basis period to which gross income not provided for by sections 24 to 27 is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "29",
+        title: "Basis period to which income obtainable on demand is related"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "30",
+        title: "Special provisions applicable to gross income from a business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "31",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 3 - Gross income",
+        number: "32",
+        title: "Special provisions applicable to gross income from an employment"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "33",
+        title: "Adjusted income generally"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34",
+        title: "Special provisions applicable to adjusted income from a business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34A",
+        title: "Special deduction for research and development expenditure"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34B",
+        title: "Special deduction for contribution to an approved research institute or payment for use of services of an approved research institute or company"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34C",
+        title: "Special provision applicable to adjusted income from a discount or premium"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "34D",
+        title: "Special deduction for expenditure on treasury shares"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "35",
+        title: "Stock in trade"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "36",
+        title: "Power to direct special treatment in the computation of business income in certain cases"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "37",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "38",
+        title: "Special provisions applicable to adjusted income from an employment"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "38A",
+        title: "Limitation on deduction of entertainment expenses"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "39",
+        title: "Deductions not allowed"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "40",
+        title: "Adjusted loss"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 4 - Adjusted income and adjusted loss",
+        number: "41",
+        title: "Ascertainment of adjusted income or adjusted loss from a business for an accounting period"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 5 - Statutory income",
+        number: "42",
+        title: "Statutory income"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 6 - Aggregate income and total income",
+        number: "43",
+        title: "Aggregate income"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 6 - Aggregate income and total income",
+        number: "44",
+        title: "Total income"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 6 - Aggregate income and total income",
+        number: "44A",
+        title: "Group relief for companies"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 6 - Aggregate income and total income",
+        number: "44B",
+        title: "Carry-back losses"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "45",
+        title: "Chargeable income and aggregation of husband's and wife's income"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "45A",
+        title: "Deduction for husband"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "46",
+        title: "Deduction for individual and Hindu joint family"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "46A",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "46B",
+        title: "Deduction for individual on interest expended"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "47",
+        title: "Deduction for wife or former wife"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "48",
+        title: "Deduction for children"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "49",
+        title: "Deduction for insurance premiums"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "50",
+        title: "Application of section 49 where husband and wife are living together"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 7 - Chargeable income",
+        number: "51",
+        title: "Deduction must be claimed"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "52",
+        title: "Modification of Part III in certain special cases"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "53",
+        title: "Trade associations"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "53A",
+        title: "Club, association or similar institution"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "54",
+        title: "Sea and air transport undertakings"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "54A",
+        title: "Exemption of shipping profits"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "54B",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "54C",
+        title: "Special treatment on distribution of profits by limited liability partnership"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "55",
+        title: "Partnerships generally"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "56",
+        title: "Successive partnerships"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "57",
+        title: "Provisions applicable where partnership is a partner in another partnership"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "58",
+        title: "Income receivable by partnership otherwise than from partnership business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "59",
+        title: "Partnership losses"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60",
+        title: "Insurance business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60A",
+        title: "Reinsurance: chargeable income, reduced rate and exempt dividend"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60AA",
+        title: "Takaful business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60AB",
+        title: "Chargeable income of life fund subject to tax"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60B",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60C",
+        title: "Banking business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60D",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60E",
+        title: "Deleted",
+        deleted: true
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60F",
+        title: "Investment holding company"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60FA",
+        title: "Investment holding company listed on Bursa Malaysia"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60G",
+        title: "Foreign fund management company"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60H",
+        title: "Closed-end fund company"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "60I",
+        title: "Company that establishes special purpose vehicle"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "61",
+        title: "Trusts generally"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "61A",
+        title: "Exemption of Real Estate Investment Trust of Property Trust Fund"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "62",
+        title: "Discretionary trusts"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63",
+        title: "Trust annuities"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63A",
+        title: "Special deduction for qualifying capital expenditure"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63B",
+        title: "Special deduction for expenses"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63C",
+        title: "Special treatment on rent from the letting of real property of a Real Estate Investment Trust or Property Trust Fund"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "63D",
+        title: "Income of a unit trust from the letting of real property is not income from a business"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "64",
+        title: "Estates under administration"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "65",
+        title: "Settlements"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "65A",
+        title: "Co-operative Societies"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 8 - Special cases",
+        number: "65B",
+        title: "Incentive scheme"
+    },
+
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 9 - Gains or profits from the disposal of capital asset",
+        number: "65C",
+        title: "Interpretation of Chapter 9"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 9 - Gains or profits from the disposal of capital asset",
+        number: "65D",
+        title: "Application of Chapter 9"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 9 - Gains or profits from the disposal of capital asset",
+        number: "65E",
+        title: "Gains or profits from the disposal of capital asset"
+    },
+    {
+        part: "PART III - ASCERTAINMENT OF CHARGEABLE INCOME",
+        chapter: "Chapter 9 - Gains or profits from the disposal of capital asset",
+        number: "65F",
+        title: "Disposal and acquisition of capital asset"
+    },
+    
+    /* PART IV - PERSONS CHARGEABLE */
+
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "66", title: "Personal chargeability: general principle" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "66A", title: "Tax identification number" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "67", title: "Vicarious responsibility and chargeability" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "68", title: "Power to appoint agent" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "69", title: "Incapacitated persons" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "70", title: "Non-residents" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "71", title: "Masters of ships and captains of aircraft" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "72", title: "Hindu joint families" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "73", title: "Trustees" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "74", title: "Executors" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "75", title: "Companies and bodies of persons" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "75A", title: "Director’s liability" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "75B", title: "Director’s liability" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "76", title: "Rulers and Ruling Chiefs" },
+    { part: "PART IV - PERSONS CHARGEABLE", chapter: "", number: "76A", title: "Acts of nominee" },
+
+    /* PART V - RETURNS */
+
+    { part: "PART V - RETURNS", chapter: "", number: "77", title: "Return of income by a person other than a company, limited liability partnership, trust body or co-operative society" },
+    { part: "PART V - RETURNS", chapter: "", number: "77A", title: "Return of income by every company, limited liability partnership, trust body or co-operative society" },
+    { part: "PART V - RETURNS", chapter: "", number: "77B", title: "Amendment of return" },
+    { part: "PART V - RETURNS", chapter: "", number: "77C", title: "Deduction of tax as final tax" },
+    { part: "PART V - RETURNS", chapter: "", number: "78", title: "Power to call for specific returns and production of books" },
+    { part: "PART V - RETURNS", chapter: "", number: "79", title: "Power to call for statement of bank accounts, etc." },
+    { part: "PART V - RETURNS", chapter: "", number: "80", title: "Power of access to buildings and documents, etc." },
+    { part: "PART V - RETURNS", chapter: "", number: "81", title: "Power to call for information" },
+    { part: "PART V - RETURNS", chapter: "", number: "82", title: "Duty to keep records and give receipts" },
+    { part: "PART V - RETURNS", chapter: "", number: "82A", title: "Duty to keep documents for ascertaining chargeable income and tax payable" },
+    { part: "PART V - RETURNS", chapter: "", number: "82B", title: "Duty to provide information and furnish documents for ascertaining chargeable income, tax payable, etc." },
+    { part: "PART V - RETURNS", chapter: "", number: "82C", title: "Duty to issue electronic invoice" },
+    { part: "PART V - RETURNS", chapter: "", number: "83", title: "Return by employer" },
+    { part: "PART V - RETURNS", chapter: "", number: "83A", title: "Duty to furnish particulars of payment made to an agent, etc." },
+    { part: "PART V - RETURNS", chapter: "", number: "84", title: "Return concerning persons other than the maker of the return" },
+    { part: "PART V - RETURNS", chapter: "", number: "85", title: "Return by occupiers" },
+    { part: "PART V - RETURNS", chapter: "", number: "86", title: "Return by partnership" },
+    { part: "PART V - RETURNS", chapter: "", number: "87", title: "Power to call for further return" },
+    { part: "PART V - RETURNS", chapter: "", number: "88", title: "Returns deemed to be made with due authority" },
+    { part: "PART V - RETURNS", chapter: "", number: "89", title: "Change of address" },
+
+    /* PART VI - ASSESSMENTS AND APPEALS */
+
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "90", title: "Assessments generally" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "91", title: "Assessments and additional assessments in certain cases" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "91A", title: "Deemed assessment on the amended return" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "92", title: "Advance assessments" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "93", title: "Form and making of assessments" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "94", title: "Record of assessments" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "95", title: "Discharge of double assessments" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "96", title: "Notice of assessment" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "96A", title: "Composite assessment" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "97", title: "Finality of assessment" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 1 - Assessments", number: "97A", title: "Notification of non-chargeability" },
+
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 2 - Appeals", number: "98", title: "The Special Commissioners and the Secretary" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 2 - Appeals", number: "99", title: "Right of appeal" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 2 - Appeals", number: "100", title: "Extension of time for appeal" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 2 - Appeals", number: "101", title: "Review by Director General" },
+    { part: "PART VI - ASSESSMENTS AND APPEALS", chapter: "Chapter 2 - Appeals", number: "102", title: "Disposal of appeals" },
+
+    // =====================================
+    // PART VII - COLLECTION AND RECOVERY OF TAX
+    // =====================================
+
+    { part: "PART VII", chapter: "", section: "103", title: "Payment of tax" },
+    { part: "PART VII", chapter: "", section: "103A", title: "Deleted", deleted: true },
+    { part: "PART VII", chapter: "", section: "103B", title: "Tax payable notwithstanding institution of proceedings under any other written law" },
+    { part: "PART VII", chapter: "", section: "104", title: "Recovery from persons leaving Malaysia" },
+    { part: "PART VII", chapter: "", section: "105", title: "Refusal of customs clearance in certain cases" },
+    { part: "PART VII", chapter: "", section: "106", title: "Recovery by suit" },
+    { part: "PART VII", chapter: "", section: "106A", title: "Power to call for bank account information for purpose of making garnishee order application" },
+    { part: "PART VII", chapter: "", section: "107", title: "Deduction of tax from emoluments and pensions" },
+    { part: "PART VII", chapter: "", section: "107A", title: "Deduction of tax from contract payment" },
+    { part: "PART VII", chapter: "", section: "107B", title: "Payment by instalments" },
+    { part: "PART VII", chapter: "", section: "107C", title: "Estimate of tax payable and payment by instalments for companies" },
+    { part: "PART VII", chapter: "", section: "107D", title: "Deduction of tax from payment made to agent, etc." },
+    { part: "PART VII", chapter: "", section: "108", title: "Non-deduction of tax from dividend" },
+    { part: "PART VII", chapter: "", section: "109", title: "Deduction of tax from interest or royalty in certain cases" },
+    { part: "PART VII", chapter: "", section: "109A", title: "Application of sections 109 and 110 to income derived by a public entertainer" },
+    { part: "PART VII", chapter: "", section: "109B", title: "Deduction of tax from special classes of income in certain cases derived from Malaysia" },
+    { part: "PART VII", chapter: "", section: "109C", title: "Deduction of tax from interest paid to a resident" },
+    { part: "PART VII", chapter: "", section: "109D", title: "Deduction of tax on the distribution of income of a unit trust" },
+    { part: "PART VII", chapter: "", section: "109DA", title: "Deduction of tax on distribution of income of unit trust to unit holder other than individual" },
+    { part: "PART VII", chapter: "", section: "109E", title: "Deduction of tax on the distribution of income of a family fund, etc." },
+    { part: "PART VII", chapter: "", section: "109F", title: "Deduction of tax from gains or profits in certain cases derived from Malaysia" },
+    { part: "PART VII", chapter: "", section: "109G", title: "Deduction of tax from income derived from withdrawal of a deferred annuity or a private retirement scheme" },
+    { part: "PART VII", chapter: "", section: "109H", title: "Appeal by the payer" },
+    { part: "PART VII", chapter: "", section: "110", title: "Set-off for tax deducted" },
+    { part: "PART VII", chapter: "", section: "110A", title: "Deleted", deleted: true },
+    { part: "PART VII", chapter: "", section: "110B", title: "Set-off for tax charged on actuarial surplus" },
+    { part: "PART VII", chapter: "", section: "110C", title: "Set-off for tax charged on actuarial surplus under takaful business" },
+    { part: "PART VII", chapter: "", section: "111", title: "Refund of over-payments" },
+    { part: "PART VII", chapter: "", section: "111A", title: "Deleted", deleted: true },
+
+    // =====================================
+    // PART VIIA - FUND FOR TAX REFUND
+    // =====================================
+
+    { part: "PART VIIA", chapter: "", section: "111B", title: "Establishment of Fund for Tax Refund" },
+    { part: "PART VIIA", chapter: "", section: "111C", title: "Non applicability of section 14A of the Financial Procedure Act 1957" },
+    { part: "PART VIIA", chapter: "", section: "111D", title: "Compensation for over-payment of tax" },
+
+    // =====================================
+    // PART VIII - OFFENCES AND PENALTIES
+    // =====================================
+
+    { part: "PART VIII", chapter: "", section: "112", title: "Failure to furnish return or give notice of chargeability" },
+    { part: "PART VIII", chapter: "", section: "112A", title: "Failure to furnish country-by-country report" },
+    { part: "PART VIII", chapter: "", section: "113", title: "Incorrect returns" },
+    { part: "PART VIII", chapter: "", section: "113A", title: "Incorrect returns, information returns or reports" },
+    { part: "PART VIII", chapter: "", section: "113B", title: "Failure to furnish contemporaneous transfer pricing documentation" },
+    { part: "PART VIII", chapter: "", section: "114", title: "Wilful evasion" },
+    { part: "PART VIII", chapter: "", section: "115", title: "Leaving Malaysia without payment of tax" },
+    { part: "PART VIII", chapter: "", section: "116", title: "Obstruction of officers" },
+    { part: "PART VIII", chapter: "", section: "117", title: "Breach of confidence" },
+    { part: "PART VIII", chapter: "", section: "118", title: "Offences by officials" },
+    { part: "PART VIII", chapter: "", section: "119", title: "Unauthorized collection" },
+    { part: "PART VIII", chapter: "", section: "119A", title: "Failure to keep records" },
+    { part: "PART VIII", chapter: "", section: "119B", title: "Failure to comply with rules made under paragraph 154(1)(c) on mutual administrative assistance" },
+    { part: "PART VIII", chapter: "", section: "120", title: "Other offences" },
+    { part: "PART VIII", chapter: "", section: "121", title: "Additional provisions as to offences under sections 113, 115, 116, 118 and 120" },
+    { part: "PART VIII", chapter: "", section: "122", title: "Tax, etc., payable notwithstanding institution of proceedings" },
+    { part: "PART VIII", chapter: "", section: "123", title: "Deleted", deleted: true },
+    { part: "PART VIII", chapter: "", section: "124", title: "Power to compound offences and abate or remit penalties" },
+    { part: "PART VIII", chapter: "", section: "125", title: "Recovery of penalties imposed under Part VIII" },
+    { part: "PART VIII", chapter: "", section: "126", title: "Jurisdiction of subordinate court" },
+
+    // =====================================
+    // PART IX - EXEMPTIONS, REMISSION AND OTHER RELIEF
+    // =====================================
+
+    { part: "PART IX", chapter: "", section: "127", title: "Exemptions from tax: general" },
+    { part: "PART IX", chapter: "", section: "127A", title: "Cessation of exemption" },
+    { part: "PART IX", chapter: "", section: "128", title: "Deleted", deleted: true },
+    { part: "PART IX", chapter: "", section: "129", title: "Remission of tax" },
+    { part: "PART IX", chapter: "", section: "129A", title: "Other relief" },
+    { part: "PART IX", chapter: "", section: "130", title: "Deleted", deleted: true },
+    { part: "PART IX", chapter: "", section: "131", title: "Relief in respect of error or mistake" },
+    { part: "PART IX", chapter: "", section: "131A", title: "Relief other than in respect of error or mistake" },
+    { part: "PART IX", chapter: "", section: "132", title: "Double taxation arrangements" },
+    { part: "PART IX", chapter: "", section: "132A", title: "Tax information exchange arrangements" },
+    { part: "PART IX", chapter: "", section: "132B", title: "Mutual administrative assistance arrangement" },
+    { part: "PART IX", chapter: "", section: "132C", title: "International obligations" },
+    { part: "PART IX", chapter: "", section: "133", title: "Unilateral relief from double taxation" },
+
+    // =====================================
+    // PART IXA - SPECIAL INCENTIVE RELIEF
+    // =====================================
+
+    { part: "PART IXA", chapter: "", section: "133A", title: "Special incentive relief" },
+
+    // =====================================
+    // PART X - SUPPLEMENTAL
+    // =====================================
+
+    // Chapter 1 - Administration
+
+    { part: "PART X", chapter: "Chapter 1 - Administration", section: "134", title: "The Director General and his staff" },
+    { part: "PART X", chapter: "Chapter 1 - Administration", section: "134A", title: "Power of Director General to issue guidelines" },
+    { part: "PART X", chapter: "Chapter 1 - Administration", section: "135", title: "Power of Minister to give directions to Director General" },
+    { part: "PART X", chapter: "Chapter 1 - Administration", section: "136", title: "Delegation of Director General's functions" },
+    { part: "PART X", chapter: "Chapter 1 - Administration", section: "137", title: "Identification of officials" },
+    { part: "PART X", chapter: "Chapter 1 - Administration", section: "138", title: "Certain materials to be treated as confidential" },
+
+    // Chapter 1A - Ruling
+
+    { part: "PART X", chapter: "Chapter 1A - Ruling", section: "138A", title: "Public ruling" },
+    { part: "PART X", chapter: "Chapter 1A - Ruling", section: "138B", title: "Advance ruling" },
+    { part: "PART X", chapter: "Chapter 1A - Ruling", section: "138C", title: "Advance Pricing Arrangement" },
+
+    // Chapter 2 - Controlled companies and powers to protect the revenue in case of certain transactions
+
+    { part: "PART X", chapter: "Chapter 2 - Controlled companies and powers to protect the revenue in case of certain transactions", section: "139", title: "Controlled companies" },
+    { part: "PART X", chapter: "Chapter 2 - Controlled companies and powers to protect the revenue in case of certain transactions", section: "140", title: "Power to disregard certain transactions" },
+    { part: "PART X", chapter: "Chapter 2 - Controlled companies and powers to protect the revenue in case of certain transactions", section: "140A", title: "Power to substitute the price on certain transactions" },
+    { part: "PART X", chapter: "Chapter 2 - Controlled companies and powers to protect the revenue in case of certain transactions", section: "140B", title: "Special provision applicable to loan or advances to director" },
+    { part: "PART X", chapter: "Chapter 2 - Controlled companies and powers to protect the revenue in case of certain transactions", section: "140C", title: "Restriction on deductibility of interest" },
+    { part: "PART X", chapter: "Chapter 2 - Controlled companies and powers to protect the revenue in case of certain transactions", section: "141", title: "Powers regarding certain transactions by non-residents" },
+
+    // Chapter 3 - Miscellaneous
+
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "142", title: "Evidential provisions" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "142A", title: "Admissibility of electronic record" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "143", title: "Errors and defects in assessments, notices and other documents" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "144", title: "Power to direct where returns, etc., are to be sent" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "145", title: "Service of notices" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "146", title: "Authentication of notices and other documents" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "147", title: "Free postage" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "148", title: "Provisions as to approvals and directions given by Minister or Director General" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "149", title: "Annulment of rules and orders laid before the Dewan Rakyat" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "150", title: "Power to approve pension or provident fund, scheme or society" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "151", title: "Procedure for making refunds and repayments" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "152", title: "Forms" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "152A", title: "Electronic medium" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "153", title: "Restriction on persons holding themselves out as tax agents, tax consultants, etc." },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "154", title: "Power to make rules" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "154A", title: "Power to enter into an agreement with regard to tax liability" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "155", title: "Repeals" },
+    { part: "PART X", chapter: "Chapter 3 - Miscellaneous", section: "156", title: "Transitional and saving provisions" },
+
+    // =====================================
+    // PART XI - IMPLEMENTATION OF DOMESTIC TOP-UP TAX
+    // AND MULTINATIONAL TOP-UP TAX
+    // =====================================
+
+    // Chapter 1 - Preliminary
+
+    { part: "PART XI", chapter: "Chapter 1 - Preliminary", section: "157", title: "Interpretation" },
+
+    // Chapter 2 - Scope
+
+    { part: "PART XI", chapter: "Chapter 2 - Scope", section: "158", title: "Scope of application" },
+
+    // Chapter 3 - Imposition and General Characteristic of the Tax
+
+    { part: "PART XI", chapter: "Chapter 3 - Imposition and General Characteristic of the Tax", section: "159", title: "Domestic Top-up Tax" },
+    { part: "PART XI", chapter: "Chapter 3 - Imposition and General Characteristic of the Tax", section: "160", title: "Multinational Top-up Tax" },
+
+    // Chapter 4 - Income Inclusion Rule
+
+    { part: "PART XI", chapter: "Chapter 4 - Income Inclusion Rule", section: "161", title: "Application of Income Inclusion Rule" },
+    { part: "PART XI", chapter: "Chapter 4 - Income Inclusion Rule", section: "162", title: "Allocation of Multinational Top-up Tax under the Income Inclusion Rule" },
+    { part: "PART XI", chapter: "Chapter 4 - Income Inclusion Rule", section: "163", title: "Income Inclusion Rule offset mechanism" },
+
+    // Chapter 5 - Computation of GloBE Income or Loss
+
+    { part: "PART XI", chapter: "Chapter 5 - Computation of GloBE Income or Loss", section: "164", title: "Financial Accounts" },
+    { part: "PART XI", chapter: "Chapter 5 - Computation of GloBE Income or Loss", section: "165", title: "Adjustments to determine GloBE Income or Loss" },
+    { part: "PART XI", chapter: "Chapter 5 - Computation of GloBE Income or Loss", section: "166", title: "International Shipping Income exclusion" },
+    { part: "PART XI", chapter: "Chapter 5 - Computation of GloBE Income or Loss", section: "167", title: "Allocation of Income or Loss between a Main Entity and a Permanent Establishment" },
+    { part: "PART XI", chapter: "Chapter 5 - Computation of GloBE Income or Loss", section: "168", title: "Allocation of Income or Loss from a Flow-through Entity" },
+
+    // Chapter 6 - Computation of Adjusted Covered Taxes
+
+    { part: "PART XI", chapter: "Chapter 6 - Computation of Adjusted Covered Taxes", section: "169", title: "Adjusted Covered Taxes" },
+    { part: "PART XI", chapter: "Chapter 6 - Computation of Adjusted Covered Taxes", section: "170", title: "Allocation of Covered Taxes from one Constituent Entity to another Constituent Entity" },
+    { part: "PART XI", chapter: "Chapter 6 - Computation of Adjusted Covered Taxes", section: "171", title: "Mechanism to address temporary differences" },
+    { part: "PART XI", chapter: "Chapter 6 - Computation of Adjusted Covered Taxes", section: "172", title: "The GloBE Loss Election" },
+    { part: "PART XI", chapter: "Chapter 6 - Computation of Adjusted Covered Taxes", section: "173", title: "Post-filing Adjustments and Tax Rate Changes" },
+
+    // Chapter 7 - Computation of Effective Tax Rate
+
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "174", title: "Determination of Effective Tax Rate" },
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "175", title: "Multinational Top-up Tax Percentage" },
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "176", title: "Excess Profit" },
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "177", title: "Jurisdictional Top-up Tax" },
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "178", title: "Multinational Top-up Tax of a Constituent Entity" },
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "179", title: "Allocation of tax for jurisdiction with no Net GloBE Income" },
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "180", title: "Substance-based Income Exclusion" },
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "181", title: "Additional Current Multinational Top-up Tax" },
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "182", title: "De minimis exclusion" },
+    { part: "PART XI", chapter: "Chapter 7 - Computation of Effective Tax Rate", section: "183", title: "Minority-Owned Constituent Entity" },
+
+    // Chapter 8 - Corporate restructurings and holding structures
+
+    { part: "PART XI", chapter: "Chapter 8 - Corporate restructurings and holding structures", section: "184", title: "Application of consolidated revenue threshold to group mergers and demergers" },
+    { part: "PART XI", chapter: "Chapter 8 - Corporate restructurings and holding structures", section: "185", title: "Constituent Entities joining and leaving a Multinational Enterprise Group" },
+    { part: "PART XI", chapter: "Chapter 8 - Corporate restructurings and holding structures", section: "186", title: "Transfer of assets and liabilities" },
+    { part: "PART XI", chapter: "Chapter 8 - Corporate restructurings and holding structures", section: "187", title: "Joint Ventures" },
+    { part: "PART XI", chapter: "Chapter 8 - Corporate restructurings and holding structures", section: "188", title: "Multi-Parented Multinational Enterprise Groups" },
+
+    // Chapter 9 - Tax neutrality and distribution regimes
+
+    { part: "PART XI", chapter: "Chapter 9 - Tax neutrality and distribution regimes", section: "189", title: "Ultimate Parent Entity that is a Flow-through Entity" },
+    { part: "PART XI", chapter: "Chapter 9 - Tax neutrality and distribution regimes", section: "190", title: "Ultimate Parent Entity subject to Deductible Dividend Regime" },
+    { part: "PART XI", chapter: "Chapter 9 - Tax neutrality and distribution regimes", section: "191", title: "Eligible Distribution Tax Systems" },
+    { part: "PART XI", chapter: "Chapter 9 - Tax neutrality and distribution regimes", section: "192", title: "Effective Tax Rate Computation for Investment Entities" },
+    { part: "PART XI", chapter: "Chapter 9 - Tax neutrality and distribution regimes", section: "193", title: "Investment Entity Tax Transparency Election" },
+    { part: "PART XI", chapter: "Chapter 9 - Tax neutrality and distribution regimes", section: "194", title: "Taxable Distribution Method Election" },
+
+    // Chapter 10 - Safe Harbour
+
+    { part: "PART XI", chapter: "Chapter 10 - Safe Harbour", section: "195", title: "GloBE Safe Harbour" },
+
+    // Chapter 11 - Transition rules
+
+    { part: "PART XI", chapter: "Chapter 11 - Transition rules", section: "196", title: "Transitional Tax Attributes" },
+    { part: "PART XI", chapter: "Chapter 11 - Transition rules", section: "197", title: "Transitional relief for the Substance-based Income Exclusion" },
+
+    // Chapter 12 - Person Chargeable
+
+    { part: "PART XI", chapter: "Chapter 12 - Person Chargeable", section: "198", title: "Personal chargeability: Domestic Top-up Tax or Multinational Top-up Tax" },
+    { part: "PART XI", chapter: "Chapter 12 - Person Chargeable", section: "199", title: "Responsibilities for doing all acts and things of Constituent Entity" },
+    { part: "PART XI", chapter: "Chapter 12 - Person Chargeable", section: "200", title: "Responsibilities for doing all acts and things of limited liability partnership and business trust" },
+
+    // Chapter 13 - Returns
+
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "201", title: "Information return by Constituent Entity" },
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "202", title: "Top-up Tax return by Constituent Entity" },
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "203", title: "Amendment of Top-up Tax return" },
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "204", title: "Power to call for specific returns and production of books under Part XI" },
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "205", title: "Power of access to buildings and documents, etc., under Part XI" },
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "206", title: "Power to call for information under Part XI" },
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "207", title: "Duty of Constituent Entity to keep documents for ascertaining tax payable" },
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "208", title: "Power to call for further return under Part XI" },
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "209", title: "Returns deemed to be made with due authority under Part XI" },
+    { part: "PART XI", chapter: "Chapter 13 - Returns", section: "210", title: "Change of address of Constituent Entity" },
+
+    // Chapter 14 - Assessment
+
+    { part: "PART XI", chapter: "Chapter 14 - Assessment", section: "211", title: "Domestic Top-up Tax or Multinational Top-up Tax assessments" },
+    { part: "PART XI", chapter: "Chapter 14 - Assessment", section: "212", title: "Assessments and additional assessments in certain cases under Part XI" },
+    { part: "PART XI", chapter: "Chapter 14 - Assessment", section: "213", title: "Deemed assessment on amended return of Constituent Entity" },
+    { part: "PART XI", chapter: "Chapter 14 - Assessment", section: "214", title: "Form and making of Domestic Top-up Tax or Multinational Top-up Tax assessments" },
+    { part: "PART XI", chapter: "Chapter 14 - Assessment", section: "215", title: "Record of Domestic Top-up Tax or Multinational Top-up Tax assessments" },
+    { part: "PART XI", chapter: "Chapter 14 - Assessment", section: "216", title: "Notice of Domestic Top-up Tax or Multinational Top-up Tax assessment" },
+    { part: "PART XI", chapter: "Chapter 14 - Assessment", section: "217", title: "Composite assessment for Domestic Top-up Tax or Multinational Top-up Tax" },
+    { part: "PART XI", chapter: "Chapter 14 - Assessment", section: "218", title: "Finality of Domestic Top-up Tax or Multinational Top-up Tax assessment" },
+
+    // Chapter 15 - Appeal against Domestic Top-up Tax or Multinational Top-up Tax
+
+    { part: "PART XI", chapter: "Chapter 15 - Appeal against Domestic Top-up Tax or Multinational Top-up Tax", section: "219", title: "Right of appeal under Part XI" },
+
+    // Chapter 16 - Collection and Recovery of Domestic Top-up Tax or Multinational Top-up Tax
+
+    { part: "PART XI", chapter: "Chapter 16 - Collection and Recovery of Domestic Top-up Tax or Multinational Top-up Tax", section: "220", title: "Payment of Domestic Top-up Tax or Multinational Top-up Tax" },
+    { part: "PART XI", chapter: "Chapter 16 - Collection and Recovery of Domestic Top-up Tax or Multinational Top-up Tax", section: "221", title: "Domestic Top-up Tax or Multinational Top-up Tax payable notwithstanding institution of proceedings under any other written law" },
+    { part: "PART XI", chapter: "Chapter 16 - Collection and Recovery of Domestic Top-up Tax or Multinational Top-up Tax", section: "222", title: "Recovery by suit under Part XI" },
+    { part: "PART XI", chapter: "Chapter 16 - Collection and Recovery of Domestic Top-up Tax or Multinational Top-up Tax", section: "223", title: "Refund of over-payments under Part XI" },
+
+    // Chapter 17 - Offences and Penalties
+
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "224", title: "Failure of Constituent Entity to furnish information return" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "225", title: "Failure of Constituent Entity to furnish Top-up Tax return" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "226", title: "Incorrect information return of Constituent Entity" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "227", title: "Incorrect Top-up Tax return of Constituent Entity" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "228", title: "Wilful evasion of Multinational Top-up Tax or Domestic Top-up Tax" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "229", title: "Obstruction of officers" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "230", title: "Offences by officials under Part XI" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "231", title: "Other offences in relation to Domestic Top-up Tax or Multinational Top-up Tax" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "232", title: "Additional provisions as to offences under section 227, 229, 230 or 231" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "233", title: "Domestic Top-up Tax and Multinational Top-up Tax, etc., payable notwithstanding institution of proceedings" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "234", title: "Power to compound offences under Part XI" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "235", title: "Recovery of penalties imposed under Part XI" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "236", title: "Jurisdiction of subordinate court under Part XI" },
+    { part: "PART XI", chapter: "Chapter 17 - Offences and Penalties", section: "237", title: "Remission of tax" },
+
+    // Chapter 18 - Relief
+
+    { part: "PART XI", chapter: "Chapter 18 - Relief", section: "238", title: "Relief in respect of error or mistake under Part XI" },
+
+    // Chapter 19 - Supplemental
+
+    { part: "PART XI", chapter: "Chapter 19 - Supplemental", section: "239", title: "Application of certain provisions of Part X to matters regarding Multinational Top-up Tax" }
+];
+const act53Schedules = [
+    {
+        schedule: "Schedule 1",
+        title: "Rates of Tax",
+        keywords: "tax rates, chargeable income, corporate tax, individual tax"
+    },
+    {
+        schedule: "Schedule 2",
+        title: "Ascertainment of Chargeable Income",
+        keywords: "chargeable income, computation"
+    },
+    {
+        schedule: "Schedule 3",
+        title: "Capital Allowances",
+        keywords: "capital allowance, initial allowance, annual allowance, industrial building, plant and machinery"
+    },
+    {
+        schedule: "Schedule 4",
+        title: "Industrial Building Allowances",
+        keywords: "industrial building, building allowance"
+    },
+    {
+        schedule: "Schedule 5",
+        title: "Special Commissioners of Income Tax",
+        keywords: "appeal, special commissioners, tax dispute"
+    },
+    {
+        schedule: "Schedule 6",
+        title: "Exemption from Tax",
+        keywords: "tax exemption, exempt income"
+    },
+    {
+        schedule: "Schedule 7",
+        title: "Reinvestment Allowance",
+        keywords: "reinvestment allowance, qualifying project"
+    },
+    {
+        schedule: "Schedule 7A",
+        title: "Exemption of Income",
+        keywords: "exempt income, exemption"
+    },
+    {
+        schedule: "Schedule 7B",
+        title: "Investment Allowance",
+        keywords: "investment allowance"
+    },
+    {
+        schedule: "Schedule 8",
+        title: "Tax Treatment",
+        keywords: "tax treatment"
+    },
+    {
+        schedule: "Schedule 9",
+        title: "Supplementary Provisions",
+        keywords: "supplementary provisions"
+    }
+];
+function escapeLegalHTML(value) {
+    return String(value).replace(/[&<>"']/g, function(character) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[character];
+    });
+}
+
+function renderAct53Index() {
+
+    const resultsContainer = document.getElementById("legal-results");
+
+    if (!resultsContainer) return;
+
+    let html = "";
+    let previousPart = "";
+    let previousChapter = "";
+
+    act53Sections.forEach(item => {
+
+        const partChanged = item.part !== previousPart;
+        const chapterChanged = item.chapter !== previousChapter || partChanged;
+
+        if (partChanged) {
+            html += `
+                <h3 class="part-heading"
+                    data-heading-part="${escapeLegalHTML(item.part)}">
+                    ${escapeLegalHTML(item.part)}
+                </h3>
+            `;
+        }
+
+        if (item.chapter && chapterChanged) {
+            html += `
+                <h4 class="chapter-heading"
+                    data-heading-part="${escapeLegalHTML(item.part)}"
+                    data-heading-chapter="${escapeLegalHTML(item.chapter)}"
+                    style="grid-column:1/-1;color:#2563eb;margin:12px 0 4px;">
+                    ${escapeLegalHTML(item.chapter)}
+                </h4>
+            `;
+        }
+
+        const section = escapeLegalHTML(item.section || item.number || "");
+        const title = escapeLegalHTML(item.title);
+        const part = escapeLegalHTML(item.part);
+        const chapter = escapeLegalHTML(item.chapter || "");
+        const searchText = escapeLegalHTML(
+            `${item.part} ${item.chapter || ""} section ${item.section || item.number || ""} ${item.title}`
+        );
+
+        html += `
+            <article class="legal-entry ${item.deleted ? "deleted-entry" : ""}"
+                data-part="${part}"
+                data-chapter="${chapter}"
+                data-search="${searchText}">
+
+                <span class="reference-tag">ITA 1967</span>
+
+                <h3>Section ${section} - ${title}</h3>
+
+                ${item.deleted
+                    ? '<p><strong>Status:</strong> This provision is marked as deleted in the updated text.</p>'
+                    : '<p>Refer to the official Income Tax Act 1967 for the complete provision and its subsections.</p>'
+                }
+
+            </article>
+        `;
+
+        previousPart = item.part;
+        previousChapter = item.chapter || "";
+
+    });
+// DISPLAY ACT 53 SCHEDULES
+html += `<h3 class="part-heading">SCHEDULES OF THE INCOME TAX ACT 1967</h3>`;
+
+act53Schedules.forEach(item => {
+    const schedule = escapeLegalHTML(item.schedule);
+    const title = escapeLegalHTML(item.title);
+    const keywords = escapeLegalHTML(item.keywords);
+
+    html += `
+        <article class="legal-entry" data-search="${schedule} ${title} ${keywords}">
+            <span class="reference-tag">ITA 1967</span>
+            <h3>${schedule} - ${title}</h3>
+            <p>${title}</p>
+            <p>Refer to the official Income Tax Act 1967 for the complete Schedule and its provisions.</p>
+        </article>
+    `;
+});
+    resultsContainer.innerHTML = html;
+
+    searchLegalReferences();
+}
+
+
+function searchLegalReferences() {
+
+    const searchInput = document.getElementById("legal-search-input");
+    const searchValue = searchInput.value.toLowerCase().trim();
+
+    const entries = document.querySelectorAll(
+        "#legal-results .legal-entry"
+    );
+
+    let visibleCount = 0;
+
+    entries.forEach(entry => {
+
+        const searchableText =
+            entry.innerText.toLowerCase() + " " +
+            (entry.dataset.search || "").toLowerCase();
+
+        const matches = searchableText.includes(searchValue);
+
+        entry.style.display = matches ? "block" : "none";
+
+        if (matches) visibleCount++;
+
+    });
+
+    // Show only relevant Part headings
+
+    document.querySelectorAll("#legal-results .part-heading").forEach(heading => {
+
+        const part = heading.dataset.headingPart;
+
+        const hasVisibleEntry = Array.from(entries).some(entry =>
+            entry.dataset.part === part &&
+            entry.style.display !== "none"
+        );
+
+        heading.style.display = hasVisibleEntry ? "block" : "none";
+
+    });
+
+    // Show only relevant Chapter headings
+
+    document.querySelectorAll("#legal-results .chapter-heading").forEach(heading => {
+
+        const part = heading.dataset.headingPart;
+        const chapter = heading.dataset.headingChapter;
+
+        const hasVisibleEntry = Array.from(entries).some(entry =>
+            entry.dataset.part === part &&
+            entry.dataset.chapter === chapter &&
+            entry.style.display !== "none"
+        );
+
+        heading.style.display = hasVisibleEntry ? "block" : "none";
+
+    });
+
+    document.getElementById("legal-no-results").style.display =
+        visibleCount === 0 ? "block" : "none";
+
+    const resultCount = document.getElementById("legal-result-count");
+
+    if (resultCount) {
+        resultCount.textContent = searchValue
+            ? `${visibleCount} matching provision(s) found.`
+            : `${visibleCount} provisions displayed.`;
+    }
+}
+
+/* =====================================
+   MODULE 4 - PUBLIC RULINGS SEARCH
+===================================== */
+
+function searchPublicRulings() {
+
+    const searchValue = document
+        .getElementById("ruling-search-input")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const entries = document.querySelectorAll(
+        "#ruling-results .legal-entry"
+    );
+
+    let visibleCount = 0;
+
+    entries.forEach(entry => {
+
+        const searchableText =
+            entry.innerText.toLowerCase() + " " +
+            entry.dataset.search.toLowerCase();
+
+        const matches = searchableText.includes(searchValue);
+
+        entry.style.display = matches ? "block" : "none";
+
+        if (matches) {
+            visibleCount++;
+        }
+
+    });
+
+    document.getElementById("ruling-no-results").style.display =
+        visibleCount === 0 ? "block" : "none";
+
+}
+
+
+/* =====================================
+   MODULE 4 - LOAD SHARED DATABASE
+===================================== */
+
+window.module4Questions = [];
+window.module4Reflections = [];
+window.module4Comments = [];
+
+function loadModule4SharedData() {
+    const callbackName = "module4Callback_" + Date.now();
+
+    window[callbackName] = function(data) {
+        window.module4Questions = data.questions || [];
+        window.module4Reflections = data.reflections || [];
+        window.module4Comments = data.comments || [];
+
+        displayQuestions();
+        displayReflections();
+
+        delete window[callbackName];
+        script.remove();
+    };
+
+    const script = document.createElement("script");
+
+    script.src =
+        MODULE4_API_URL +
+        "?action=questions&callback=" + callbackName;
+
+    script.onerror = function() {
+        document.getElementById("question-status").textContent =
+            "Unable to load shared questions. Please refresh the page.";
+
+        delete window[callbackName];
+        script.remove();
+    };
+
+    document.body.appendChild(script);
+}
+
+/* =====================================
+   ACTIVITY 03 - LOAD Q&A FORUM DATA
+   Uses its own Google Apps Script endpoint
+===================================== */
+
+function loadQnaForumData() {
+    const callbackName = "qnaForumCallback_" + Date.now();
+
+    window[callbackName] = function(data) {
+        window.module4Questions = data.questions || [];
+        window.module4Comments = data.comments || [];
+
+        displayQuestions();
+
+        delete window[callbackName];
+        script.remove();
+    };
+
+    const script = document.createElement("script");
+    script.src = QNA_FORUM_API_URL +
+        "?action=questions&callback=" + callbackName;
+
+    script.onerror = function() {
+        const status = document.getElementById("question-status");
+        if (status) {
+            status.textContent =
+                "Unable to load Q&A Forum questions. Please refresh the page.";
+        }
+        delete window[callbackName];
+        script.remove();
+    };
+
+    document.body.appendChild(script);
+}
+
+/* =====================================
+   MODULE 4 - LOCAL STORAGE FUNCTIONS
+===================================== */
+
+function getSavedEntries(storageKey) {
+
+    try {
+
+        const savedData = localStorage.getItem(storageKey);
+
+        return savedData ? JSON.parse(savedData) : [];
+
+    } catch (error) {
+
+        return [];
+
+    }
+
+}
+
+function saveEntries(storageKey, entries) {
+
+    try {
+
+        localStorage.setItem(
+            storageKey,
+            JSON.stringify(entries)
+        );
+
+        return true;
+
+    } catch (error) {
+
+        alert("Unable to save the entry in this browser.");
+
+        return false;
+
+    }
+
+}
+
+
+/* =====================================
+   MODULE 4 - STUDENT Q&A FORUM
+===================================== */
+
+
+async function submitModule4Comment(
+    event,
+    postId,
+    postType,
+    nameInput,
+    commentInput
+) {
+    event.preventDefault();
+
+    const name = nameInput.value.trim();
+    const content = commentInput.value.trim();
+
+    if (!name || !content) {
+        alert("Please enter your name and comment.");
+        return;
+    }
+
+    const button = event.submitter;
+    button.disabled = true;
+    button.textContent = "POSTING...";
+
+    try {
+        await fetch(QNA_FORUM_API_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                action: "submitComment",
+                Question_ID: postId,
+                Student_Name: name,
+                Comment: content
+            })
+        });
+
+        commentInput.value = "";
+        nameInput.value = "";
+
+        button.textContent = "POST COMMENT";
+
+        setTimeout(function() {
+            loadQnaForumData();
+        }, 1500);
+
+    } catch (error) {
+        button.disabled = false;
+        button.textContent = "POST COMMENT";
+        alert("Unable to submit your comment. Please try again.");
+        console.error(error);
+    }
+}
+
+
+
+function displayQuestions() {
+    const questionList = document.getElementById("question-list");
+    const questions = window.module4Questions || [];
+    const comments = window.module4Comments || [];
+
+    questionList.innerHTML = "";
+
+    if (questions.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "empty-message";
+        empty.textContent = "No questions have been submitted yet. Be the first to ask!";
+        questionList.appendChild(empty);
+        return;
+    }
+
+    questions.slice().reverse().forEach(question => {
+        const item = document.createElement("div");
+        item.className = "submission-item question-card";
+
+        // Question header
+        const header = document.createElement("div");
+        header.className = "question-card-header";
+
+        const title = document.createElement("h3");
+        title.textContent = question.Question_Topic;
+
+        const date = document.createElement("span");
+        date.className = "question-date";
+        date.textContent = new Date(question.Timestamp).toLocaleString();
+
+        header.append(title, date);
+
+        // Student information
+        const author = document.createElement("p");
+        author.className = "question-author";
+       author.textContent = "Asked by " + question.Student_Name;
+
+        // Question content
+        const content = document.createElement("p");
+        content.className = "question-content";
+        content.textContent = question.Question;
+
+        item.append(header, author, content);
+
+        // Individual comment section
+        const commentSection = document.createElement("div");
+        commentSection.className = "comment-section";
+
+        const questionComments = comments.filter(comment =>
+            String(comment.Question_ID) === String(question.Question_ID)
+        );
+
+        const commentHeading = document.createElement("h4");
+        commentHeading.className = "comment-heading";
+        commentHeading.textContent =
+            "Discussion (" + questionComments.length + ")";
+
+        commentSection.appendChild(commentHeading);
+
+        // Display existing comments
+        if (questionComments.length === 0) {
+            const empty = document.createElement("p");
+            empty.className = "empty-message";
+            empty.textContent = "No comments yet. Be the first to join the discussion!";
+            commentSection.appendChild(empty);
+        }
+
+        questionComments.forEach(comment => {
+            const commentItem = document.createElement("div");
+            commentItem.className = "comment-item";
+
+            const commentName = document.createElement("strong");
+            commentName.textContent = comment.Student_Name || comment.StudentName || "Student";
+
+            const commentText = document.createElement("p");
+            commentText.textContent = comment.Comment;
+
+            const commentDate = document.createElement("small");
+            const commentTimestamp = comment.Timestamp || comment.Date;
+            commentDate.textContent = commentTimestamp
+                ? new Date(commentTimestamp).toLocaleString()
+                : "";
+
+            commentItem.append(commentName, commentText, commentDate);
+            commentSection.appendChild(commentItem);
+        });
+
+        // Comment form
+        const commentForm = document.createElement("form");
+        commentForm.className = "comment-form";
+
+        const formHeading = document.createElement("h5");
+        formHeading.textContent = "Join the discussion";
+
+        const nameInput = document.createElement("input");
+        nameInput.type = "text";
+        nameInput.placeholder = "Enter your name";
+        nameInput.required = true;
+
+        const commentInput = document.createElement("textarea");
+        commentInput.placeholder = "Write your comment...";
+        commentInput.required = true;
+
+        const submitButton = document.createElement("button");
+        submitButton.type = "submit";
+        submitButton.className = "module4-button";
+        submitButton.textContent = "POST COMMENT";
+
+        commentForm.append(
+            formHeading,
+            nameInput,
+            commentInput,
+            submitButton
+        );
+
+        commentForm.addEventListener("submit", function(event) {
+            submitModule4Comment(
+                event,
+                question.Question_ID,
+                "question",
+                nameInput,
+                commentInput
+            );
+        });
+
+        commentSection.appendChild(commentForm);
+        item.appendChild(commentSection);
+        questionList.appendChild(item);
+    });
+}
+
+document.getElementById("question-form").addEventListener(
+    "submit",
+    async function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("student-name").value.trim();
+        const topic = document.getElementById("question-topic").value;
+        const question = document.getElementById("student-question").value.trim();
+
+        const status = document.getElementById("question-status");
+
+        if (!name || !topic || !question) {
+            alert("Please complete all fields before submitting.");
+            return;
+        }
+
+        status.textContent = "Submitting your question...";
+
+        try {
+            await fetch(QNA_FORUM_API_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify({
+    action: "submitQuestion",
+    Student_Name: name,
+    Question_Topic: topic,
+    Question: question
+})
+            });
+
+            status.textContent =
+                "Your question has been submitted. Refreshing shared questions...";
+
+            document.getElementById("question-form").reset();
+
+            setTimeout(function() {
+                loadQnaForumData();
+            }, 1500);
+
+        } catch (error) {
+            status.textContent =
+                "Unable to submit your question. Please try again.";
+            console.error(error);
+        }
+    }
+);
+
+
+/* =====================================
+   MODULE 4 - REFLECTIVE LEARNING HUB
+===================================== */
+
+
+function displayReflections() {
+    const reflectionList = document.getElementById("reflection-list");
+    const reflections = window.module4Reflections || [];
+
+    if (reflections.length === 0) {
+        reflectionList.innerHTML =
+            '<p class="empty-message">No reflections have been submitted yet. Share your learning experience!</p>';
+        return;
+    }
+
+    reflectionList.innerHTML = "";
+
+    reflections.slice().reverse().forEach(reflection => {
+        const item = document.createElement("div");
+        item.className = "submission-item";
+
+        const title = document.createElement("h4");
+        title.textContent = reflection.Topic;
+
+        const name = document.createElement("p");
+        name.textContent = "Submitted by: " + reflection.StudentName;
+
+        const content = document.createElement("p");
+        content.textContent = reflection.Reflection;
+
+        const date = document.createElement("p");
+        date.className = "submission-date";
+        date.textContent = new Date(reflection.Date).toLocaleString();
+
+        item.append(title, name, content, date);
+        reflectionList.appendChild(item);
+    });
+}
+
+
+
+
+
+document.getElementById("peer-feedback-form").addEventListener(
+    "submit",
+    async function(event) {
+        event.preventDefault();
+
+        const reviewerName = document.getElementById("peer-reviewer-name").value.trim();
+        const caseId = document.getElementById("peer-case-id").value.trim();
+        const answerClarity = document.getElementById("peer-answer-clarity").value;
+        const taxAccuracy = document.getElementById("peer-tax-accuracy").value;
+        const aadabApplication = document.getElementById("peer-aadab-application").value;
+        const strengths = document.getElementById("peer-strengths").value.trim();
+        const suggestions = document.getElementById("peer-suggestions").value.trim();
+        const overallFeedback = document.getElementById("peer-overall-feedback").value.trim();
+
+        const status = document.getElementById("peer-feedback-status");
+
+        if (
+            !reviewerName ||
+            !caseId ||
+            !answerClarity ||
+            !taxAccuracy ||
+            !aadabApplication ||
+            !strengths ||
+            !suggestions ||
+            !overallFeedback
+        ) {
+            alert("Please complete all fields before submitting.");
+            return;
+        }
+
+        status.textContent = "Submitting your peer feedback...";
+
+        try {
+            await fetch(MODULE4_API_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify({
+                    action: "peerFeedback",
+                    reviewerName: reviewerName,
+                    caseId: caseId,
+                    answerClarity: answerClarity,
+                    taxAccuracy: taxAccuracy,
+                    aadabApplication: aadabApplication,
+                    strengths: strengths,
+                    suggestions: suggestions,
+                    overallFeedback: overallFeedback
+                })
+            });
+
+            status.textContent =
+                "Your peer feedback has been submitted.";
+
+            document.getElementById("peer-feedback-form").reset();
+
+        } catch (error) {
+            status.textContent =
+                "Unable to submit peer feedback. Please try again.";
+            console.error(error);
+        }
+    }
+);
+
+
+
+/* =====================================
+   LOAD SAVED SUBMISSIONS
+===================================== */
+    
+renderAct53Index();
+loadModule4SharedData();
+    
+/* =====================================
+   MODULE 4 - COMPLETION TRACKER
+===================================== */
+
+
+function toggleModule4Completion() {
+
+    let completedModules = JSON.parse(
+        localStorage.getItem("pat3024_completed_modules") || "[]"
+    );
+
+    const button = document.getElementById("complete-module-4");
+    const status = document.getElementById("module4-status");
+
+    if (completedModules.includes("module4")) {
+
+        completedModules = completedModules.filter(
+            module => module !== "module4"
+        );
+
+        button.textContent = "MARK MODULE 4 AS COMPLETED";
+        status.textContent = "You have not completed this module yet.";
+
+    } else {
+
+        completedModules.push("module4");
+
+        button.textContent = "MARK AS NOT COMPLETED";
+        status.textContent =
+            "Congratulations! You have completed Module 4.";
+
+    }
+
+    // Save completion locally
+    localStorage.setItem(
+        "pat3024_completed_modules",
+        JSON.stringify(completedModules)
+    );
+
+    // Get saved student details
+    const studentId =
+        localStorage.getItem("pat3024_student_id") || "";
+
+    const studentName =
+        localStorage.getItem("pat3024_student_name") || "";
+
+    if (!studentId || !studentName) {
+        alert("Please save your Student ID and Name on the HOME page first.");
+        return;
+    }
+
+    // Prepare current completion status
+    const moduleNames = {
+        module1: "Module 1 Completed",
+        module2: "Module 2 Completed",
+        module3: "Module 3 Completed",
+        module4: "Module 4 Completed"
+    };
+
+    const completionStatus = completedModules.length > 0
+        ? completedModules
+            .map(module => moduleNames[module])
+            .filter(Boolean)
+            .join(", ")
+        : "Started";
+
+    // Google Sheets database
+    const databaseURL =
+        "https://script.google.com/macros/s/AKfycbzMTQdlG2HyBHNjGvmLmKcgSR7vckYUXINwfI7GfNqkddwnPwrePOvN9IP98qlk8ZzR4g/exec";
+
+    // Receive database response
+    window.pat3024Module4Callback = function(response) {
+        if (response.success) {
+            console.log("Module 4 progress saved to Google Sheets.");
+        } else {
+            console.error("Progress save failed:", response.message);
+        }
+    };
+
+    // Send progress to Google Sheets
+    const params = new URLSearchParams({
+        action: "save",
+        studentId: studentId,
+        studentName: studentName,
+        completionStatus: completionStatus,
+        quizScore: "",
+        reflectionCompleted: "",
+        replaceStatus: "true",
+        callback: "pat3024Module4Callback"
+    });
+
+    const script = document.createElement("script");
+    script.src = databaseURL + "?" + params.toString();
+
+    script.onerror = function() {
+        console.error("Could not connect to the Learning Progress database.");
+    };
+
+    document.body.appendChild(script);
+
+}
+
+</script>
+    
+<script>
+/* =====================================
+   MODULE 4 - ACTIVITY NAVIGATION
+===================================== */
+
+function showModule4Activity(activityId) {
+
+    const menu = document.getElementById("module4-menu");
+
+    const activities = [
+        "legal-explorer",
+        "public-rulings",
+        "student-forum",
+        "reflection-hub",
+        "peer-feedback-review"
+    ];
+
+    // Hide the activity menu
+    menu.style.display = "none";
+
+    // Hide all activity sections
+    activities.forEach(function(id) {
+        const section = document.getElementById(id);
+
+        if (section) {
+            section.style.display = "none";
+        }
+    });
+
+    // Display the selected activity
+    const selectedActivity = document.getElementById(activityId);
+
+    if (!selectedActivity) {
+        menu.style.display = "block";
+        alert("Activity section not found. Please check its HTML ID.");
+        return;
+    }
+
+    selectedActivity.style.display = "block";
+
+    // Load Activity 03 data only when the Q&A Forum is opened.
+    if (activityId === "student-forum") {
+        loadQnaForumData();
+    }
+
+    // Create Back button
+    let backButton = selectedActivity.querySelector(
+        ".module4-back-button"
+    );
+
+    if (!backButton) {
+        backButton = document.createElement("button");
+        backButton.type = "button";
+        backButton.className = "module4-back-button";
+        backButton.textContent = "← Back to Module 4 Activities";
+
+        backButton.onclick = showModule4Menu;
+
+        selectedActivity.insertBefore(
+            backButton,
+            selectedActivity.firstChild
+        );
+    }
+
+    // Move to selected activity
+    selectedActivity.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function showModule4Menu() {
+
+    const activities = [
+        "legal-explorer",
+        "public-rulings",
+        "student-forum",
+        "reflection-hub",
+        "peer-feedback-review"
+    ];
+
+    activities.forEach(function(id) {
+        const section = document.getElementById(id);
+
+        if (section) {
+            section.style.display = "none";
+        }
+    });
+
+    const menu = document.getElementById("module4-menu");
+    menu.style.display = "block";
+
+    menu.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+</script>
+<script src="chatbot.js"></script>
+</body>
+</html>
