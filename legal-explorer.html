@@ -2464,7 +2464,7 @@ function loadModule4SharedData() {
 
     script.src =
         MODULE4_API_URL +
-        "?action=list&callback=" + callbackName;
+        "?action=questions&callback=" + callbackName;
 
     script.onerror = function() {
         document.getElementById("question-status").textContent =
@@ -2553,12 +2553,11 @@ async function submitModule4Comment(
                 "Content-Type": "text/plain;charset=utf-8"
             },
             body: JSON.stringify({
-                action: "comment",
-                postId: postId,
-                postType: postType,
-                name: name,
-                content: content
-            })
+    action: "submitComment",
+    Question_ID: postId,
+    Student_Name: name,
+    Comment: content
+})
         });
 
         commentInput.value = "";
@@ -2605,18 +2604,18 @@ function displayQuestions() {
         header.className = "question-card-header";
 
         const title = document.createElement("h3");
-        title.textContent = question.Topic;
+        title.textContent = question.Question_Topic;
 
         const date = document.createElement("span");
         date.className = "question-date";
-        date.textContent = new Date(question.Date).toLocaleString();
+        date.textContent = new Date(question.Timestamp).toLocaleString();
 
         header.append(title, date);
 
         // Student information
         const author = document.createElement("p");
         author.className = "question-author";
-        author.textContent = "Asked by " + question.StudentName;
+       author.textContent = "Asked by " + question.Student_Name;
 
         // Question content
         const content = document.createElement("p");
@@ -2630,7 +2629,7 @@ function displayQuestions() {
         commentSection.className = "comment-section";
 
         const questionComments = comments.filter(comment =>
-            String(comment.PostID) === String(question.QuestionID) &&
+            String(comment.PostID) === String(question.Question_ID) &&
             comment.PostType === "question"
         );
 
@@ -2698,7 +2697,7 @@ function displayQuestions() {
         commentForm.addEventListener("submit", function(event) {
             submitModule4Comment(
                 event,
-                question.QuestionID,
+                ,
                 "question",
                 nameInput,
                 commentInput
@@ -2737,11 +2736,11 @@ document.getElementById("question-form").addEventListener(
                     "Content-Type": "text/plain;charset=utf-8"
                 },
                 body: JSON.stringify({
-                    action: "question",
-                    name: name,
-                    topic: topic,
-                    content: question
-                })
+    action: "submitQuestion",
+    Student_Name: name,
+    Question_Topic: topic,
+    Question: question
+})
             });
 
             status.textContent =
