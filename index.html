@@ -196,29 +196,70 @@
     <!-- Homepage Learning Progress Script -->
     <script>
         // Save student details
-        function saveStudentDetails() {
+function saveStudentDetails() {
 
-            const studentId = document
-                .getElementById("student-id")
-                .value.trim();
+    const studentId = document
+        .getElementById("student-id")
+        .value.trim();
 
-            const studentName = document
-                .getElementById("student-name")
-                .value.trim();
+    const studentName = document
+        .getElementById("student-name")
+        .value.trim();
 
-            if (!studentId || !studentName) {
-                document.getElementById("student-message").textContent =
-                    "Please enter both your Student ID and Student Name.";
-                return;
-            }
+    const message = document.getElementById("student-message");
 
-            localStorage.setItem("pat3024_student_id", studentId);
-            localStorage.setItem("pat3024_student_name", studentName);
+    if (!studentId || !studentName) {
+        message.textContent =
+            "Please enter both your Student ID and Student Name.";
+        return;
+    }
 
-            document.getElementById("student-message").textContent =
-                "Student details saved successfully!";
+    // Save student details in the browser
+    localStorage.setItem("pat3024_student_id", studentId);
+    localStorage.setItem("pat3024_student_name", studentName);
 
+    message.textContent = "Saving student details to database...";
+
+    // Google Sheets database connection
+    const databaseURL =
+        "https://script.google.com/macros/s/AKfycbzMTQdlG2HyBHNjGvmLmKcgSR7vckYUXINwfI7GfNqkddwnPwrePOvN9IP98qlk8ZzR4g/exec";
+
+    // Create a callback to receive the database response
+    window.pat3024ProgressCallback = function(response) {
+
+        if (response.success) {
+            message.textContent =
+                "Student details saved successfully to Google Sheets!";
+        } else {
+            message.textContent =
+                "Database error: " + response.message;
         }
+
+    };
+
+    // Send student details to Google Sheets
+    const params = new URLSearchParams({
+        action: "save",
+        studentId: studentId,
+        studentName: studentName,
+        completionStatus: "Started",
+        quizScore: "",
+        reflectionCompleted: "No",
+        callback: "pat3024ProgressCallback"
+    });
+
+    const script = document.createElement("script");
+
+    script.src = databaseURL + "?" + params.toString();
+
+    script.onerror = function() {
+        message.textContent =
+            "Unable to connect to Google Sheets. Please try again.";
+    };
+
+    document.body.appendChild(script);
+
+}
 
         // Load saved student details
         function loadStudentDetails() {
