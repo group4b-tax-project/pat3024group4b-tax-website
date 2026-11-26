@@ -1004,10 +1004,8 @@ function toggleModule3Completion() {
 
         status.textContent =
             "You have not completed this module yet.";
-        
-        button.textContent = "MARK MODULE 3 AS COMPLETED";
 
-        
+        button.textContent = "MARK MODULE 3 AS COMPLETED";
 
     } else {
 
@@ -1018,17 +1016,77 @@ function toggleModule3Completion() {
 
         button.textContent = "MARK AS NOT COMPLETED";
 
-
     }
 
+    // Save completion locally
     localStorage.setItem(
         "pat3024_completed_modules",
         JSON.stringify(completedModules)
     );
 
+    // Get saved student details
+    const studentId =
+        localStorage.getItem("pat3024_student_id") || "";
+
+    const studentName =
+        localStorage.getItem("pat3024_student_name") || "";
+
+    if (!studentId || !studentName) {
+        alert("Please save your Student ID and Name on the HOME page first.");
+        return;
+    }
+
+    // Prepare current completion status
+    const moduleNames = {
+        module1: "Module 1 Completed",
+        module2: "Module 2 Completed",
+        module3: "Module 3 Completed",
+        module4: "Module 4 Completed"
+    };
+
+    const completionStatus = completedModules.length > 0
+        ? completedModules
+            .map(module => moduleNames[module])
+            .filter(Boolean)
+            .join(", ")
+        : "Started";
+
+    // Google Sheets database
+    const databaseURL =
+        "https://script.google.com/macros/s/AKfycbzMTQdlG2HyBHNjGvmLmKcgSR7vckYUXINwfI7GfNqkddwnPwrePOvN9IP98qlk8ZzR4g/exec";
+
+    // Receive database response
+    window.pat3024Module3Callback = function(response) {
+        if (response.success) {
+            console.log("Module 3 progress saved to Google Sheets.");
+        } else {
+            console.error("Progress save failed:", response.message);
+        }
+    };
+
+    // Send progress to Google Sheets
+    const params = new URLSearchParams({
+        action: "save",
+        studentId: studentId,
+        studentName: studentName,
+        completionStatus: completionStatus,
+        quizScore: "",
+        reflectionCompleted: "",
+        replaceStatus: "true",
+        callback: "pat3024Module3Callback"
+    });
+
+    const script = document.createElement("script");
+    script.src = databaseURL + "?" + params.toString();
+
+    script.onerror = function() {
+        console.error("Could not connect to the Learning Progress database.");
+    };
+
+    document.body.appendChild(script);
+
 }
-
-
+    
 // DISPLAY SAVED COMPLETION STATUS WHEN PAGE LOADS
 
 document.addEventListener("DOMContentLoaded", function() {
