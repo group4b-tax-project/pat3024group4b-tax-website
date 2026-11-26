@@ -712,7 +712,7 @@ function calculateEthicalIndex() {
         },
         {
             id: "ethical-welfare",
-            reasonId: "	ethical-welfare-why",
+            reasonId: "ethical-welfare-why",
             name: "Public Welfare Contributions"
         }
     ];
@@ -808,7 +808,8 @@ function calculateEthicalIndex() {
     } else {
         ethicalRating = "Needs Ethical Improvement";
     }
-
+saveAadabRubric(ratings, reasons, totalScore, ethicalRating);
+    
     document.getElementById("ethical-result").innerHTML = `
 
         <h3>AaDab Ethical Index Results</h3>
@@ -1188,7 +1189,65 @@ function showModule3Menu() {
         block: "start"
     });
 }
+// SAVE AaDab ETHICAL INDEX TO GOOGLE SHEETS
 
+function saveAadabRubric(ratings, reasons, totalScore, ethicalRating) {
+
+    const studentId =
+        localStorage.getItem("pat3024_student_id") || "";
+
+    const studentName =
+        localStorage.getItem("pat3024_student_name") || "";
+
+    if (!studentId || !studentName) {
+        alert("Please save your Student ID and Name on the HOME page first.");
+        return;
+    }
+
+    const databaseURL =
+        "https://script.google.com/macros/s/AKfycbxq4FexqAat9DO8_OOlAQzD-p76txYldFFBbLiw7f0yn_WJzncERgLr8vNmOsynyfCS/exec";
+
+    window.pat3024AadabCallback = function(response) {
+
+        if (response.success) {
+            alert("AaDab Ethical Index submitted successfully!");
+        } else {
+            alert("Submission failed: " + response.message);
+        }
+
+    };
+
+    const params = new URLSearchParams({
+        action: "saveAadabRubric",
+
+        studentId: studentId,
+        studentName: studentName,
+
+        transparencyRating: ratings[0],
+        transparencyExplanation: reasons[0],
+
+        socialEquityRating: ratings[1],
+        socialEquityExplanation: reasons[1],
+
+        complianceRating: ratings[2],
+        complianceExplanation: reasons[2],
+
+        publicWelfareRating: ratings[3],
+        publicWelfareExplanation: reasons[3],
+
+        callback: "pat3024AadabCallback"
+    });
+
+    const script = document.createElement("script");
+
+    script.src = databaseURL + "?" + params.toString();
+
+    script.onerror = function() {
+        alert("Could not connect to the Aadab Rubric database.");
+    };
+
+    document.body.appendChild(script);
+}
 </script>
 <script src="chatbot.js"></script>
 </body>
