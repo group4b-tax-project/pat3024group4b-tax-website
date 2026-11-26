@@ -225,6 +225,8 @@
         Year of Assessment 2025.
     </p>
 
+    <!-- QUESTION 1 -->
+
     <div class="risk-question">
 
         <label for="commercial-purpose">
@@ -234,12 +236,26 @@
         </label>
 
         <select id="commercial-purpose">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="">Select a rating</option>
+            <option value="1">1 - Very Poor</option>
+            <option value="2">2 - Poor</option>
+            <option value="3">3 - Satisfactory</option>
+            <option value="4">4 - Good</option>
+            <option value="5">5 - Excellent</option>
         </select>
 
+        <label for="commercial-purpose-reason">
+            Reason for Rating
+        </label>
+
+        <textarea
+            id="commercial-purpose-reason"
+            placeholder="Explain your rating using evidence from Case Study 2..."
+            rows="4"></textarea>
+
     </div>
+
+    <!-- QUESTION 2 -->
 
     <div class="risk-question">
 
@@ -251,12 +267,26 @@
         </label>
 
         <select id="documentation">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="">Select a rating</option>
+            <option value="1">1 - Very Poor</option>
+            <option value="2">2 - Poor</option>
+            <option value="3">3 - Satisfactory</option>
+            <option value="4">4 - Good</option>
+            <option value="5">5 - Excellent</option>
         </select>
 
+        <label for="documentation-reason">
+            Reason for Rating
+        </label>
+
+        <textarea
+            id="documentation-reason"
+            placeholder="Explain your rating using evidence from Case Study 2..."
+            rows="4"></textarea>
+
     </div>
+
+    <!-- QUESTION 3 -->
 
     <div class="risk-question">
 
@@ -267,12 +297,26 @@
         </label>
 
         <select id="compliance">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="">Select a rating</option>
+            <option value="1">1 - Very Poor</option>
+            <option value="2">2 - Poor</option>
+            <option value="3">3 - Satisfactory</option>
+            <option value="4">4 - Good</option>
+            <option value="5">5 - Excellent</option>
         </select>
 
+        <label for="compliance-reason">
+            Reason for Rating
+        </label>
+
+        <textarea
+            id="compliance-reason"
+            placeholder="Explain your rating using evidence from Case Study 2..."
+            rows="4"></textarea>
+
     </div>
+
+    <!-- QUESTION 4 -->
 
     <div class="risk-question">
 
@@ -284,12 +328,26 @@
         </label>
 
         <select id="transparency">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="">Select a rating</option>
+            <option value="1">1 - Very Poor</option>
+            <option value="2">2 - Poor</option>
+            <option value="3">3 - Satisfactory</option>
+            <option value="4">4 - Good</option>
+            <option value="5">5 - Excellent</option>
         </select>
 
+        <label for="transparency-reason">
+            Reason for Rating
+        </label>
+
+        <textarea
+            id="transparency-reason"
+            placeholder="Explain your rating using evidence from Case Study 2..."
+            rows="4"></textarea>
+
     </div>
+
+    <!-- QUESTION 5 -->
 
     <div class="risk-question">
 
@@ -301,10 +359,22 @@
         </label>
 
         <select id="arm-length">
-            <option value="">Select an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="">Select a rating</option>
+            <option value="1">1 - Very Poor</option>
+            <option value="2">2 - Poor</option>
+            <option value="3">3 - Satisfactory</option>
+            <option value="4">4 - Good</option>
+            <option value="5">5 - Excellent</option>
         </select>
+
+        <label for="arm-length-reason">
+            Reason for Rating
+        </label>
+
+        <textarea
+            id="arm-length-reason"
+            placeholder="Explain your rating using evidence from Case Study 2..."
+            rows="4"></textarea>
 
     </div>
 
@@ -321,8 +391,6 @@
     </div>
 
 </section>
-
-    
 
 <!-- AaDab ETHICAL INDEX -->
 
@@ -540,33 +608,91 @@ let riskChartInstance = null;
     
 // FUNCTION 1: TAX PLANNING RISK ASSESSMENT
 
-
 function assessRisk() {
 
     const questions = [
-        "commercial-purpose",
-        "documentation",
-        "compliance",
-        "transparency",
-        "arm-length"
+        {
+            id: "commercial-purpose",
+            reasonId: "commercial-purpose-reason",
+            title: "Commercial Purpose"
+        },
+        {
+            id: "documentation",
+            reasonId: "documentation-reason",
+            title: "Supporting Documentation"
+        },
+        {
+            id: "compliance",
+            reasonId: "compliance-reason",
+            title: "EPF Compliance"
+        },
+        {
+            id: "transparency",
+            reasonId: "transparency-reason",
+            title: "Interest Expense"
+        },
+        {
+            id: "arm-length",
+            reasonId: "arm-length-reason",
+            title: "Donation and Retrenchment"
+        }
     ];
 
-    const answers = questions.map(id =>
-        document.getElementById(id).value
-    );
+    const ratingLabels = [
+        "",
+        "Very Poor",
+        "Poor",
+        "Satisfactory",
+        "Good",
+        "Excellent"
+    ];
 
-    if (answers.includes("")) {
-        alert("Please answer all five questions before submitting.");
+    // GET RATINGS AND REASONS
+
+    const assessments = questions.map(question => ({
+        title: question.title,
+        rating: Number(
+            document.getElementById(question.id).value
+        ),
+        reason: document.getElementById(
+            question.reasonId
+        ).value.trim()
+    }));
+
+    // CHECK RATINGS
+
+    if (assessments.some(item => !item.rating)) {
+        alert("Please select a rating for all five questions.");
         return;
     }
 
-    const positiveAnswers = answers.filter(
-        answer => answer === "yes"
-    ).length;
+    // CHECK REASONS
+
+    if (assessments.some(item => item.reason === "")) {
+        alert("Please provide a reason for all five ratings.");
+        return;
+    }
+
+    // CALCULATE AVERAGE RATING
+
+    const totalRating = assessments.reduce(
+        (total, item) => total + item.rating,
+        0
+    );
+
+    const averageRating = totalRating / questions.length;
+
+    // HIGHER RATING = LOWER RISK
 
     const riskScore = Math.round(
-        ((questions.length - positiveAnswers) / questions.length) * 100
+        ((5 - averageRating) / 4) * 100
     );
+
+    const positiveAnswers = assessments.filter(
+        item => item.rating >= 4
+    ).length;
+
+    // DETERMINE RISK LEVEL
 
     let riskLevel;
     let riskExplanation;
@@ -578,7 +704,7 @@ function assessRisk() {
         riskColor = "#16a34a";
 
         riskExplanation =
-            "The arrangement demonstrates positive indicators of tax compliance and ethical tax planning.";
+            "The assessment indicates generally strong tax compliance and ethical tax planning practices.";
 
     } else if (riskScore <= 40) {
 
@@ -586,7 +712,7 @@ function assessRisk() {
         riskColor = "#f59e0b";
 
         riskExplanation =
-            "Some aspects of the arrangement require further review and supporting evidence.";
+            "Some areas require further review, improvement and supporting evidence.";
 
     } else {
 
@@ -594,9 +720,42 @@ function assessRisk() {
         riskColor = "#dc2626";
 
         riskExplanation =
-            "Several risk indicators have been identified. The arrangement requires careful review before implementation.";
+            "Several risk indicators require careful review and corrective action.";
 
     }
+
+    // SAFELY DISPLAY STUDENT EXPLANATIONS
+
+    function escapeHTML(text) {
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    const resultHTML = assessments.map(
+        (item, index) => `
+            <div class="risk-result-item">
+
+                <h4>${index + 1}. ${item.title}</h4>
+
+                <p>
+                    <strong>Rating:</strong>
+                    ${item.rating} - ${ratingLabels[item.rating]}
+                </p>
+
+                <p>
+                    <strong>Reason:</strong><br>
+                    ${escapeHTML(item.reason).replace(/\n/g, "<br>")}
+                </p>
+
+            </div>
+        `
+    ).join("");
+
+    // DISPLAY RESULTS
 
     document.getElementById("risk-result").innerHTML = `
 
@@ -609,6 +768,11 @@ function assessRisk() {
         </p>
 
         <p>${riskExplanation}</p>
+
+        <p>
+            <strong>Average Rating:</strong>
+            ${averageRating.toFixed(2)} / 5
+        </p>
 
         <p>
             <strong>Positive Assessment Indicators:</strong>
@@ -627,13 +791,19 @@ function assessRisk() {
 
         </div>
 
+        <h3>Your Ratings and Reasons</h3>
+
+        ${resultHTML}
+
     `;
 
-    // Destroy previous chart before creating a new one
+    // DESTROY PREVIOUS CHART
 
     if (riskChartInstance) {
         riskChartInstance.destroy();
     }
+
+    // CREATE DOUGHNUT CHART
 
     const ctx = document
         .getElementById("riskDoughnutChart")
@@ -644,10 +814,18 @@ function assessRisk() {
         type: "doughnut",
 
         data: {
-            labels: ["Risk Score", "Remaining Score"],
+
+            labels: [
+                "Risk Score",
+                "Remaining Score"
+            ],
 
             datasets: [{
-                data: [riskScore, 100 - riskScore],
+
+                data: [
+                    riskScore,
+                    100 - riskScore
+                ],
 
                 backgroundColor: [
                     riskColor,
@@ -656,7 +834,9 @@ function assessRisk() {
 
                 borderWidth: 0,
                 hoverOffset: 8
+
             }]
+
         },
 
         options: {
@@ -672,15 +852,22 @@ function assessRisk() {
                 },
 
                 tooltip: {
+
                     callbacks: {
+
                         label: function(context) {
                             return context.label + ": " +
                                 context.raw + "%";
                         }
+
                     }
+
                 }
+
             }
+
         }
+
     });
 
 }
