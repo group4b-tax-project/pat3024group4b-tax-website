@@ -725,7 +725,60 @@ function assessRisk() {
     }
 
     // SAFELY DISPLAY STUDENT EXPLANATIONS
+// SEND TAX RISK ASSESSMENT TO GOOGLE SHEETS
 
+const studentId =
+    localStorage.getItem("pat3024_student_id") || "";
+
+const studentName =
+    localStorage.getItem("pat3024_student_name") || "";
+
+if (!studentId || !studentName) {
+    alert("Please save your Student ID and Name on the HOME page first.");
+    return;
+}
+
+const sheetPayload = {
+    Student_ID: studentId,
+    Student_Name: studentName,
+
+    Commercial_Purpose_Rating: assessments[0].rating,
+    Commercial_Purpose_Reason: assessments[0].reason,
+
+    Documentation_Rating: assessments[1].rating,
+    Documentation_Reason: assessments[1].reason,
+
+    Compliance_Rating: assessments[2].rating,
+    Compliance_Reason: assessments[2].reason,
+
+    Transparency_Rating: assessments[3].rating,
+    Transparency_Reason: assessments[3].reason,
+
+    Arm_Length_Rating: assessments[4].rating,
+    Arm_Length_Reason: assessments[4].reason,
+
+    Average_Rating: averageRating.toFixed(2),
+    Risk_Score: riskScore,
+    Risk_Level: riskLevel
+};
+
+fetch(
+    "https://script.google.com/macros/s/AKfycbyYAUBpGJ6CzX43YKg9xDhvSSGg_Z7CEWIYOOLpR_5YleplRrNr8owX6Z534wTc4Q/exec",
+    {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(sheetPayload)
+    }
+)
+.then(() => {
+    console.log("Assessment sent to Google Sheets.");
+})
+.catch(error => {
+    console.error("Assessment submission error:", error);
+});
     function escapeHTML(text) {
         return text
             .replace(/&/g, "&amp;")
