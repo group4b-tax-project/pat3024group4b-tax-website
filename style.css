@@ -4121,3 +4121,104 @@ footer {
     text-align: center;
     box-sizing: border-box;
 }
+/* ================================
+   STUDENT LEARNING PROFILE
+================================ */
+
+#student-details {
+    background: linear-gradient(135deg, #ffffff, #f0f6ff);
+    border: 1px solid #dce8f7;
+    border-radius: 18px;
+    padding: 35px;
+    margin: 30px auto;
+    box-shadow: 0 8px 25px rgba(30, 80, 140, 0.08);
+}
+
+#student-details h2 {
+    color: #174a7e;
+    margin-bottom: 10px;
+}
+
+#student-details > p {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.student-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.student-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.student-field label {
+    font-weight: 600;
+    color: #25496b;
+    font-size: 14px;
+}
+
+.student-field input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 16px;
+    border: 1px solid #d3dfed;
+    border-radius: 10px;
+    background: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.student-field input:focus {
+    border-color: #2878c7;
+    box-shadow: 0 0 0 3px rgba(40, 120, 199, 0.12);
+}
+
+.student-save-button {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1d5f9e, #287dcc);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.student-save-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(40, 120, 199, 0.25);
+}
+
+#student-message {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: #21845a;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    #student-details {
+        padding: 22px;
+    }
+
+    .student-form {
+        grid-template-columns: 1fr;
+    }
+
+    .student-save-button,
+    #student-message {
+        grid-column: 1;
+    }
+}
