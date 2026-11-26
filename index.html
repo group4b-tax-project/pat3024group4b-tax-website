@@ -47,7 +47,42 @@
 
         </section>
 
+        <!-- Student Details -->
+        <section id="student-details">
 
+            <h2>Student Learning Profile</h2>
+
+            <p>Please enter your details to record your learning progress.</p>
+
+            <div class="student-form">
+
+                <label for="student-id">Student ID</label>
+                <input
+                    type="text"
+                    id="student-id"
+                    placeholder="Enter your Student ID"
+                >
+
+                <label for="student-name">Student Name</label>
+                <input
+                    type="text"
+                    id="student-name"
+                    placeholder="Enter your full name"
+                >
+
+                <button
+                    type="button"
+                    class="main-button"
+                    onclick="saveStudentDetails()"
+                >
+                    SAVE STUDENT DETAILS
+                </button>
+
+                <p id="student-message"></p>
+
+            </div>
+
+        </section>
         <!-- Learning Progress -->
         <section id="learning-progress">
 
@@ -160,7 +195,43 @@
 
     <!-- Homepage Learning Progress Script -->
     <script>
+        // Save student details
+        function saveStudentDetails() {
 
+            const studentId = document
+                .getElementById("student-id")
+                .value.trim();
+
+            const studentName = document
+                .getElementById("student-name")
+                .value.trim();
+
+            if (!studentId || !studentName) {
+                document.getElementById("student-message").textContent =
+                    "Please enter both your Student ID and Student Name.";
+                return;
+            }
+
+            localStorage.setItem("pat3024_student_id", studentId);
+            localStorage.setItem("pat3024_student_name", studentName);
+
+            document.getElementById("student-message").textContent =
+                "Student details saved successfully!";
+
+        }
+
+        // Load saved student details
+        function loadStudentDetails() {
+
+            document.getElementById("student-id").value =
+                localStorage.getItem("pat3024_student_id") || "";
+
+            document.getElementById("student-name").value =
+                localStorage.getItem("pat3024_student_name") || "";
+
+        }
+
+        loadStudentDetails();
         function updateProgress() {
 
             let completed = JSON.parse(
