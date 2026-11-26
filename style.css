@@ -4271,3 +4271,52 @@ footer {
         font-size: 14px;
     }
 }
+/* TAX PLANNING RISK ASSESSMENT */
+#risk-assessment select,
+#risk-assessment textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background-color: #f8fbff;
+    color: #334155;
+    font-family: inherit;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Rating dropdown */
+#risk-assessment select {
+    cursor: pointer;
+    min-height: 45px;
+}
+
+/* Reason text area */
+#risk-assessment textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* Focus effect */
+#risk-assessment select:focus,
+#risk-assessment textarea:focus {
+    outline: none;
+    border-color: #60a5fa;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+/* Question headings */
+#risk-assessment h3 {
+    color: #1e3a8a;
+    margin-top: 20px;
+}
+
+/* Assessment button */
+#risk-assessment button {
+    margin-top: 15px;
+}
