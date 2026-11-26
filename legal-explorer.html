@@ -2804,23 +2804,38 @@ function displayReflections() {
 
 
 
-document.getElementById("reflection-form").addEventListener(
+
+document.getElementById("peer-feedback-form").addEventListener(
     "submit",
     async function(event) {
         event.preventDefault();
 
-        const name = document.getElementById("reflection-name").value.trim();
-        const topic = document.getElementById("reflection-topic").value;
-        const content = document.getElementById("reflection-content").value.trim();
+        const reviewerName = document.getElementById("peer-reviewer-name").value.trim();
+        const caseId = document.getElementById("peer-case-id").value.trim();
+        const answerClarity = document.getElementById("peer-answer-clarity").value;
+        const taxAccuracy = document.getElementById("peer-tax-accuracy").value;
+        const aadabApplication = document.getElementById("peer-aadab-application").value;
+        const strengths = document.getElementById("peer-strengths").value.trim();
+        const suggestions = document.getElementById("peer-suggestions").value.trim();
+        const overallFeedback = document.getElementById("peer-overall-feedback").value.trim();
 
-        const status = document.getElementById("reflection-status");
+        const status = document.getElementById("peer-feedback-status");
 
-        if (!name || !topic || !content) {
+        if (
+            !reviewerName ||
+            !caseId ||
+            !answerClarity ||
+            !taxAccuracy ||
+            !aadabApplication ||
+            !strengths ||
+            !suggestions ||
+            !overallFeedback
+        ) {
             alert("Please complete all fields before submitting.");
             return;
         }
 
-        status.textContent = "Submitting your reflection...";
+        status.textContent = "Submitting your peer feedback...";
 
         try {
             await fetch(MODULE4_API_URL, {
@@ -2830,25 +2845,26 @@ document.getElementById("reflection-form").addEventListener(
                     "Content-Type": "text/plain;charset=utf-8"
                 },
                 body: JSON.stringify({
-                    action: "reflection",
-                    name: name,
-                    topic: topic,
-                    content: content
+                    action: "peerFeedback",
+                    reviewerName: reviewerName,
+                    caseId: caseId,
+                    answerClarity: answerClarity,
+                    taxAccuracy: taxAccuracy,
+                    aadabApplication: aadabApplication,
+                    strengths: strengths,
+                    suggestions: suggestions,
+                    overallFeedback: overallFeedback
                 })
             });
 
             status.textContent =
-                "Your reflection has been submitted. Refreshing shared reflections...";
+                "Your peer feedback has been submitted.";
 
-            document.getElementById("reflection-form").reset();
-
-            setTimeout(function() {
-                loadModule4SharedData();
-            }, 1500);
+            document.getElementById("peer-feedback-form").reset();
 
         } catch (error) {
             status.textContent =
-                "Unable to submit your reflection. Please try again.";
+                "Unable to submit peer feedback. Please try again.";
             console.error(error);
         }
     }
