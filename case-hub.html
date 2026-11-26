@@ -1394,32 +1394,85 @@
         }
 
 
-
         // TOGGLE MODULE COMPLETION
-        window.toggleModuleCompletion = function (moduleId) {
+window.toggleModuleCompletion = function (moduleId) {
 
-            const completed = getStoredArray(COMPLETION_KEY);
+    const completed = getStoredArray(COMPLETION_KEY);
 
-            const index = completed.indexOf(moduleId);
+    const index = completed.indexOf(moduleId);
 
+    if (index >= 0) {
+        completed.splice(index, 1);
+    } else {
+        completed.push(moduleId);
+    }
 
-            if (index >= 0) {
+    // Save completed modules in browser
+    saveArray(COMPLETION_KEY, completed);
 
-                completed.splice(index, 1);
+    // Update completion button
+    updateCompletionButton();
 
-            } else {
+    // Get saved student details
+    const studentId =
+        localStorage.getItem("pat3024_student_id") || "";
 
-                completed.push(moduleId);
+    const studentName =
+        localStorage.getItem("pat3024_student_name") || "";
 
-            }
+    // Student must save their profile on HOME first
+    if (!studentId || !studentName) {
+        alert("Please save your Student ID and Name on the HOME page first.");
+        return;
+    }
 
+    // Prepare current completion status
+    const moduleNames = {
+        module1: "Module 1 Completed",
+        module2: "Module 2 Completed",
+        module3: "Module 3 Completed",
+        module4: "Module 4 Completed"
+    };
 
-            saveArray(COMPLETION_KEY, completed);
+    const completionStatus = completed.length > 0
+        ? completed.map(module => moduleNames[module]).filter(Boolean).join(", ")
+        : "Started";
 
-            updateCompletionButton();
+    // Google Sheets database
+    const databaseURL =
+        "https://script.google.com/macros/s/AKfycbzMTQdlG2HyBHNjGvmLmKcgSR7vckYUXINwfI7GfNqkddwnPwrePOvN9IP98qlk8ZzR4g/exec";
 
-        };
+    // Receive database response
+    window.pat3024ModuleProgressCallback = function(response) {
+        if (response.success) {
+            console.log("Module progress saved to Google Sheets.");
+        } else {
+            console.error("Progress save failed:", response.message);
+        }
+    };
 
+    // Send current progress to Google Sheets
+    const params = new URLSearchParams({
+        action: "save",
+        studentId: studentId,
+        studentName: studentName,
+        completionStatus: completionStatus,
+        quizScore: "",
+        reflectionCompleted: "",
+        replaceStatus: "true",
+        callback: "pat3024ModuleProgressCallback"
+    });
+
+    const script = document.createElement("script");
+    script.src = databaseURL + "?" + params.toString();
+
+    script.onerror = function() {
+        console.error("Could not connect to the Learning Progress database.");
+    };
+
+    document.body.appendChild(script);
+
+};
 
 
         // SET UP KNOWLEDGE CHECK
