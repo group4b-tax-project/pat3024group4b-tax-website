@@ -611,10 +611,20 @@
         onclick="resetCalculator()">
         RESET CALCULATOR
     </button>
-        <div id="calculation-result">
-            <h3>Calculation Results</h3>
-            <p>Your tax computation results will appear here.</p>
-        </div>
+        <div id="student-submission-section">
+    <h3>Submit Your Tax Computation</h3>
+
+    <p>
+        After calculating your tax, submit your completed
+        computation to your lecturer.
+    </p>
+
+    <button type="button" onclick="submitTaxComputation()">
+        SUBMIT TAX COMPUTATION
+    </button>
+
+    <p id="submission-status"></p>
+</div>
     </section>
 
 </main>
@@ -1531,7 +1541,131 @@ const taxReductionPercentage =
 
     `;
 }
-       
+async function submitTaxComputation() {
+    const status = document.getElementById("submission-status");
+
+    // Get student details saved on the HOME page
+    const studentName =
+        localStorage.getItem("pat3024_student_name") || "";
+
+    const matricNo =
+        localStorage.getItem("pat3024_student_id") || "";
+
+    if (!studentName || !matricNo) {
+        status.textContent =
+            "Please save your Student Name and Matric Number on the HOME page first.";
+        status.style.color = "red";
+        return;
+    }
+
+    // Make sure the student has calculated the tax first
+    const resultArea = document.getElementById("calculation-result");
+
+    if (!resultArea.innerText.includes("Detailed Tax Computation Results")) {
+        status.textContent =
+            "Please complete your tax computation and click CALCULATE TAX first.";
+        status.style.color = "red";
+        return;
+    }
+
+    // Get input amounts
+    function getAmount(id) {
+        return Number(document.getElementById(id).value) || 0;
+    }
+
+    const pbt = getAmount("profit-before-tax");
+    const nonAllowable = getAmount("add-back");
+    const allowableDeductions = getAmount("deductions");
+    const nonTaxableIncome = getAmount("non-taxable-income");
+    const balancingCharge = getAmount("balancing-charge");
+    const currentCA = getAmount("capital-allowance");
+    const broughtForwardCA = getAmount("capital-allowance-bf");
+    const industrialBuildingAllowance =
+        getAmount("industrial-building-allowance");
+    const otherIncome = getAmount("other-income");
+    const donations = getAmount("approved-donations");
+    const doubleDeductions = getAmount("optimized-deductions");
+    const extraCA = getAmount("optimized-capital-allowance");
+    const specialDeduction = getAmount("special-deduction");
+
+    // Calculate the AaDab-optimized computation
+    const adjustedIncome =
+        pbt + nonAllowable - allowableDeductions
+        - nonTaxableIncome - doubleDeductions
+        - specialDeduction + balancingCharge;
+
+    const totalCA = currentCA + broughtForwardCA + extraCA;
+
+    const caAbsorbed = Math.min(
+        totalCA,
+        Math.max(0, adjustedIncome)
+    );
+
+    const statutoryIncome = Math.max(
+        0,
+        adjustedIncome - caAbsorbed - industrialBuildingAllowance
+    );
+
+    const aggregateIncome = statutoryIncome + otherIncome;
+
+    const allowableDonations = Math.min(
+        donations,
+        aggregateIncome * 0.10
+    );
+
+    const chargeableIncome = Math.max(
+        0,
+        aggregateIncome - allowableDonations
+    );
+
+    const taxPayable = chargeableIncome * 0.24;
+
+    // Include the displayed computation as a full text record
+    const fullTaxComputation = resultArea.innerText;
+
+    const submissionData = {
+        studentName: studentName,
+        matricNo: matricNo,
+        caseStudy: "Maju Mampan Sdn Bhd",
+        profitBeforeTax: pbt,
+        nonAllowable: nonAllowable,
+        allowableDeductions: allowableDeductions,
+        doubleDeductions: doubleDeductions,
+        statutoryIncome: statutoryIncome,
+        capitalAllowances: totalCA,
+        chargeableIncome: chargeableIncome,
+        taxPayable: taxPayable,
+        fullTaxComputation: fullTaxComputation
+    };
+
+    status.textContent = "Submitting your computation...";
+    status.style.color = "#1d4ed8";
+
+    try {
+        await fetch(
+            "https://script.google.com/macros/s/AKfycbyAmmygVgMYR02Mk-ePtzgJLTreC6p99pPgi1j49y7f4q1HLdNY-nlmpzRNztsc2xT1/exec",
+            {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=UTF-8"
+                },
+                body: JSON.stringify(submissionData)
+            }
+        );
+
+        status.textContent =
+            "Submission sent. Please check with your lecturer or verify that your record appears in the Google Sheet.";
+        status.style.color = "green";
+
+    } catch (error) {
+        status.textContent =
+            "Submission could not be sent. Please check your internet connection and try again.";
+        status.style.color = "red";
+
+        console.error("Tax computation submission error:", error);
+    }
+}      
 const taxAdjustmentAnswers = {
     1: {
         answer: "b",
