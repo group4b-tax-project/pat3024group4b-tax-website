@@ -4320,3 +4320,15 @@ footer {
 #risk-assessment button {
     margin-top: 15px;
 }
+.ita-reference {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    background: #eef4ff;
+    border: 1px solid #cbdaf2;
+    border-radius: 5px;
+    color: #17365d;
+    font-weight: 600;
+    font-size: 12px;
+    box-sizing: border-box;
+}
